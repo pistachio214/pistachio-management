@@ -8,9 +8,9 @@ import {
     Navigate,
 } from "react-router-dom";
 
-import {BeforeRouter} from "@/components/Router/guard";
+import {BeforeRouterComponent} from "@/components/Router/BeforeRouterComponent";
 
-import Layout from "@/components/Layout";
+import LayoutComponent from "@/components/Layout/LayoutComponent";
 import Login from "@/pages/Login";
 import Dashboard from "@/pages/Dashboard";
 import Dict from "@/pages/System/Dicts"
@@ -28,8 +28,8 @@ const RouterComponent: React.FC = () => {
                         <Route path='/' element={<Navigate to={'/dashboard'}/>}/>
                         <Route path='/login' element={<Login/>}/>
 
-                        <Route path={'/'} element={<Layout/>}>
-                            <Route path={"/"} element={<BeforeRouter />}>
+                        <Route path={'/'} element={<LayoutComponent/>}>
+                            <Route path={"/"} element={<BeforeRouterComponent/>}>
                                 <Route path={'/dashboard'} element={<Dashboard/>}/>
                                 <Route path={'/utils'}>
                                     <Route path={"/utils/dicts"} element={<Dict/>}/>

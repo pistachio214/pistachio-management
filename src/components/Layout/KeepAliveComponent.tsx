@@ -5,6 +5,7 @@ import {useLocation, useOutlet} from "react-router-dom";
 import styled from "styled-components";
 import {useAppDispatch, useAppSelector} from "@/redux/hook";
 import {reload} from "@/redux/slice/tab"
+import {RootState} from "@/redux/store";
 
 interface IProps {
     tabs: {
@@ -13,11 +14,11 @@ interface IProps {
     }[];
 }
 
-const KeepAlive: React.FC<IProps> = (props: IProps) => {
+const KeepAliveComponent: React.FC<IProps> = (props: IProps) => {
 
     const componentList = useRef(new Map());
-    const activeKey = useAppSelector((state) => state.tab.activeKey);
-    const loading = useAppSelector((state) => state.tab.loading);
+    const activeKey = useAppSelector((state: RootState) => state.tab.activeKey);
+    const loading = useAppSelector((state: RootState) => state.tab.loading);
 
     const outLet = useOutlet();
     const {pathname} = useLocation();
@@ -73,8 +74,8 @@ const SpinContainer = styled(Row)`
   height: 60vh;
 `;
 
-KeepAlive.defaultProps = {
+KeepAliveComponent.defaultProps = {
     tabs: [],
 }
 
-export default memo(KeepAlive);
+export default memo(KeepAliveComponent);

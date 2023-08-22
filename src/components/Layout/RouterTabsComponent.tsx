@@ -15,6 +15,7 @@ import {CSS} from "@dnd-kit/utilities";
 import {css} from "@emotion/css";
 
 import {useAppDispatch, useAppSelector} from "@/redux/hook";
+import {RootState} from "@/redux/store";
 
 interface DraggableTabPaneProps extends React.HTMLAttributes<HTMLDivElement> {
     "data-node-key": string;
@@ -69,11 +70,11 @@ const DraggableTabNode = ({
 
 //RouterTabs组件
 
-const RouterTabs = () => {
+const RouterTabsComponent = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
-    const tabs = useAppSelector((state) => state.tab.tabs);
-    const activeKey = useAppSelector((state) => state.tab.activeKey);
+    const tabs = useAppSelector((state: RootState) => state.tab.tabs);
+    const activeKey = useAppSelector((state: RootState) => state.tab.activeKey);
     const [items, setItems] = useState<{
         key: string;
         label: string;
@@ -192,4 +193,4 @@ const RouterTabs = () => {
     );
 };
 
-export default memo(RouterTabs);
+export default memo(RouterTabsComponent);

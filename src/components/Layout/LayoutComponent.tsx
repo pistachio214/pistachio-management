@@ -28,15 +28,15 @@ import {
 
 import logo from "@/assets/react.png";
 import defaultSettings from "@/defaultSettings";
-import SiderMenu from "@/components/Layout/SiderMenu";
 import {CallbackItem} from "@/types/common";
 import ColorSelectComponent from "@/components/ColorSelect/ColorSelectComponent";
 import {navigate as tabNavigate} from "@/redux/slice/tab";
-import RouterTabs from "@/components/Layout/RouterTabs";
-import KeepAlive from "@/components/Layout/KeepAlive";
+import SiderMenuComponent from "@/components/Layout/SiderMenuComponent";
+import RouterTabsComponent from "@/components/Layout/RouterTabsComponent";
+import KeepAliveComponent from "@/components/Layout/KeepAliveComponent";
 import {RootState} from "@/redux/store";
 
-const Layout: React.FC = () => {
+const LayoutComponent: React.FC = () => {
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
     const tab = useAppSelector((state: RootState) => ({...state.tab}), shallowEqual);
@@ -68,7 +68,7 @@ const Layout: React.FC = () => {
                         <TitleLogo src={logo} width={30} height={30} alt={"logo"}/>
                         {!collapsed && <TitleFont>{defaultSettings.title}</TitleFont>}
                     </SiderTitle>
-                    <SiderMenu menuSelect={menuSelect}></SiderMenu>
+                    <SiderMenuComponent menuSelect={menuSelect}/>
                 </LaySider>
                 <AntdLayout>
                     <LayHeader>
@@ -91,9 +91,9 @@ const Layout: React.FC = () => {
                     </LayHeader>
 
                     <LayContent>
-                        <RouterTabs/>
+                        <RouterTabsComponent/>
                         <Container>
-                            <KeepAlive tabs={tab.tabs}></KeepAlive>
+                            <KeepAliveComponent tabs={tab.tabs}/>
                         </Container>
                     </LayContent>
 
@@ -103,4 +103,4 @@ const Layout: React.FC = () => {
     );
 }
 
-export default React.memo(Layout);
+export default React.memo(LayoutComponent);

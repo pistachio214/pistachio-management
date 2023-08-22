@@ -19,7 +19,7 @@ interface IProps {
     menuSelect: (value: CallbackItem) => void;
 }
 
-const SiderMenu: React.FC<IProps> = (props: IProps) => {
+const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
 
     const tab = useAppSelector((state: RootState) => ({...state.tab}), shallowEqual);
 
@@ -114,4 +114,4 @@ const SiderMenu: React.FC<IProps> = (props: IProps) => {
 
 }
 
-export default React.memo(SiderMenu);
+export default React.memo(SiderMenuComponent);

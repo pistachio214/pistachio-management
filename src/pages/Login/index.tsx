@@ -24,6 +24,7 @@ import {ThemeState} from "@/redux/types/Theme";
 import login_img from "@/assets/login_img.png";
 import react_icon from "@/assets/react.svg";
 import defaultSettings from "@/defaultSettings";
+import {RootState} from "@/redux/store";
 
 interface FormState {
     username: string;
@@ -35,7 +36,7 @@ const Login: React.FC = () => {
 
     const navigate = useNavigate();
 
-    const themeState: ThemeState = useAppSelector((state) => ({...state.theme}), shallowEqual);
+    const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
 
     useEffect(() => {
         console.log(themeState);
