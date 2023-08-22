@@ -21,7 +21,7 @@ export default createGlobalStyle`
     &::-webkit-scrollbar-thumb {
       border-radius: 8px;
       min-height: 120px; // 滑块高度
-      -webkit-box-shadow: inset 0 0px 6px rgba(0, 0, 0, 0.2);
+      -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
       background: rgba(97, 108, 114, 0.4);
     }
   }
