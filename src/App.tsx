@@ -1,26 +1,48 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {useEffect} from 'react';
+import {ConfigProvider} from 'antd';
+import {ThemeState} from "@/redux/types/Theme";
+import {useAppSelector} from "@/redux/hook";
+import {shallowEqual} from "react-redux";
+import zhCN from "antd/es/locale/zh_CN";
+import RouterComponent from "@/components/Router";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import GlobalStyle from "@/styles/global";
+
+
+const App: React.FC = () => {
+
+    // 主题
+    const themeState: ThemeState = useAppSelector((state) => ({...state.theme}), shallowEqual);
+
+    useEffect(() => {
+        console.log('system theme: ', themeState)
+    }, [themeState])
+
+    return (
+        <>
+            <GlobalStyle></GlobalStyle>
+            <ConfigProvider locale={zhCN} theme={{token: themeState.config.token}}>
+                <RouterComponent/>
+            </ConfigProvider>
+        </>
+    )
 }
+// <ConfigProvider theme={{
+//   token: {
+//     // Seed Token，影响范围大
+//     colorPrimary: '#00b96b',
+//     borderRadius: 2,
+//
+//     // 派生变量，影响范围小
+//     colorBgContainer: '#f6ffed',
+//   }
+// }}
+// >
+//   <Space>
+//     <Button type="primary">Primary</Button>
+//     <Button>Default</Button>
+//   </Space>
+// </ConfigProvider>
+
 
 export default App;
