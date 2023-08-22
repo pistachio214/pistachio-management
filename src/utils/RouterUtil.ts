@@ -2,7 +2,7 @@
  * @description 路由工具函数
  */
 
-import {BaseRoute} from "@/components/router/index.d";
+import {BaseRoute} from "@/components/Router/type";
 import {matchPath} from "react-router-dom";
 
 export const getRoute = (

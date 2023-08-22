@@ -10,8 +10,8 @@ import {navigate as tabNavigate} from "@/redux/slice/tab";
 
 import {MenuContainer} from '@/components/Layout/style'
 import {CallbackItem} from "@/types/common";
-import {getRoute} from "@/utils/router";
-import {filterToMenu, getMenus} from "@/utils/menu";
+import {getRoute} from "@/utils/RouterUtil";
+import {filterToMenu, getMenus} from "@/utils/MenuUtil";
 
 import {baseRoutes} from "@/components/Router/router";
 

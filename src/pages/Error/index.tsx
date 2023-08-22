@@ -5,6 +5,7 @@ import {useAppDispatch} from "@/redux/hook";
 
 import {setTabs, setActiveKey} from "@/redux/slice/tab"
 import {Tab} from "@/redux/types/Tab";
+import defaultSettings from "@/defaultSettings";
 
 /**
  * 404页面
@@ -33,7 +34,7 @@ const NonExistent = memo(() => {
                 style={{margin: "auto"}}
                 status="404"
                 title="404"
-                subTitle="抱歉，您访问的页面不存在。"
+                subTitle={defaultSettings.notfoundTitle}
                 extra={
                     <Button type="primary" onClick={goHome}>
                         回到系统
@@ -43,5 +44,6 @@ const NonExistent = memo(() => {
         </>
     );
 });
+
 
 export default NonExistent;

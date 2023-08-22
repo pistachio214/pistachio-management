@@ -63,10 +63,10 @@ const LayoutComponent: React.FC = () => {
     return (
         <>
             <AntdLayout style={{height: "100vh"}}>
-                <LaySider collapsed={collapsed} width={200} collapsible trigger={null}>
+                <LaySider collapsed={collapsed} width={300} collapsible trigger={null}>
                     <SiderTitle config={themeState.config}>
                         <TitleLogo src={logo} width={30} height={30} alt={"logo"}/>
-                        {!collapsed && <TitleFont>{defaultSettings.title}</TitleFont>}
+                        {!collapsed && <TitleFont>{defaultSettings.logoSystemTitle}</TitleFont>}
                     </SiderTitle>
                     <SiderMenuComponent menuSelect={menuSelect}/>
                 </LaySider>
@@ -80,7 +80,7 @@ const LayoutComponent: React.FC = () => {
                         <Row align={"middle"}>
                             <Space>
                                 <UserTag icon={<UserOutlined/>} bordered={false}>
-                                    admin
+                                    萧十一郎
                                 </UserTag>
                                 <ColorSelectComponent/>
                                 <Button type="primary" onClick={loginOut}>

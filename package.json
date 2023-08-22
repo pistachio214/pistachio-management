@@ -1,5 +1,6 @@
 {
-  "name": "antd-demo",
+  "name": "pistachio-react",
+  "description": "用于与pistachio-api项目配套",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -18,6 +19,7 @@
     "@types/react": "^18.0.0",
     "ahooks": "^3.7.8",
     "antd": "^5.8.4",
+    "axios": "^1.4.0",
     "craco-alias": "^3.0.1",
     "craco-antd": "^2.0.0",
     "craco-less-fix": "^1.21.1",
