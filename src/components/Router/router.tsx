@@ -1,5 +1,5 @@
 import React from "react";
-import {DashboardFilled, RadiusSettingOutlined} from "@ant-design/icons";
+import {DashboardFilled, RadiusSettingOutlined, SettingOutlined} from "@ant-design/icons";
 import {BaseRoute} from "@/components/Router/type";
 
 export const baseRoutes: BaseRoute[] = [
@@ -12,6 +12,26 @@ export const baseRoutes: BaseRoute[] = [
             title: "工作台",
             icon: <DashboardFilled/>,
         },
+    },
+    {
+        path: "/system",
+        name: "system",
+        meta: {
+            hidden: false,
+            title: "系统设置",
+            icon: <SettingOutlined/>,
+        },
+        children: [
+            {
+                path: '/system/users',
+                element: <></>,
+                name: 'users',
+                meta: {
+                    hidden: false,
+                    title: '人员管理'
+                }
+            }
+        ]
     },
     {
         path: "/utils",

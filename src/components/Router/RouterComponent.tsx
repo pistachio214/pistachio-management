@@ -10,12 +10,13 @@ import {
 
 import {BeforeRouterComponent} from "@/components/Router/BeforeRouterComponent";
 
+import NonExistent from "@/pages/error";
+
 import LayoutComponent from "@/components/Layout/LayoutComponent";
 import Login from "@/pages/login";
 import Dashboard from "@/pages/dashboard";
 import Dict from "@/pages/system/dict"
-
-import NonExistent from "@/pages/error";
+import User from "@/pages/system/user";
 
 const RouterComponent: React.FC = () => {
 
@@ -30,11 +31,9 @@ const RouterComponent: React.FC = () => {
                         <Route path={'/'} element={<LayoutComponent/>}>
                             <Route path={"/"} element={<BeforeRouterComponent/>}>
                                 <Route path={'/dashboard'} element={<Dashboard/>}/>
-                                <Route path={'/utils'}>
-                                    <Route path={"/utils/dicts"} element={<Dict/>}/>
-                                </Route>
+                                <Route path={"/utils/dicts"} element={<Dict/>}/>
+                                <Route path={"/system/users"} element={<User/>}/>
                             </Route>
-
                         </Route>
 
                         <Route path={'*'} element={<NonExistent/>}/>
