@@ -1,3 +1,5 @@
+import {PageQuestionType} from "@/types/common";
+
 interface SysRole {
     id: number
     name: string
@@ -9,14 +11,17 @@ interface SysRole {
     updatedAt: string
 }
 
-interface RolesListParams {
-    current?: number
+interface RolesListParams extends PageQuestionType{
     username?: string
-    size?: number
     status?: number
+}
+
+interface RoleQuestionType extends PageQuestionType {
+    name?: string
 }
 
 export type {
     SysRole,
     RolesListParams,
+    RoleQuestionType,
 }

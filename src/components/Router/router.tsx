@@ -30,7 +30,25 @@ export const baseRoutes: BaseRoute[] = [
                     hidden: false,
                     title: '人员管理'
                 }
-            }
+            },
+            {
+                path: '/system/roles',
+                element: <></>,
+                name: 'roles',
+                meta: {
+                    hidden: false,
+                    title: '角色管理'
+                }
+            },
+            {
+                path: '/system/menus',
+                element: <></>,
+                name: 'menus',
+                meta: {
+                    hidden: false,
+                    title: '菜单管理'
+                }
+            },
         ]
     },
     {

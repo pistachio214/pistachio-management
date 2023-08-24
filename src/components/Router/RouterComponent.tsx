@@ -11,12 +11,15 @@ import {
 import {BeforeRouterComponent} from "@/components/Router/BeforeRouterComponent";
 
 import NonExistent from "@/pages/error";
+import Login from "@/pages/login";
 
 import LayoutComponent from "@/components/Layout/LayoutComponent";
-import Login from "@/pages/login";
+
 import Dashboard from "@/pages/dashboard";
 import Dict from "@/pages/system/dict"
 import User from "@/pages/system/user";
+import Role from "@/pages/system/role";
+import Menu from "@/pages/system/menu";
 
 const RouterComponent: React.FC = () => {
 
@@ -33,6 +36,8 @@ const RouterComponent: React.FC = () => {
                                 <Route path={'/dashboard'} element={<Dashboard/>}/>
                                 <Route path={"/utils/dicts"} element={<Dict/>}/>
                                 <Route path={"/system/users"} element={<User/>}/>
+                                <Route path={"/system/roles"} element={<Role/>}/>
+                                <Route path={"/system/menus"} element={<Menu/>}/>
                             </Route>
                         </Route>
 

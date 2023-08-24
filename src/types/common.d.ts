@@ -15,6 +15,11 @@ export interface OptionsInterface {
     value: string
 }
 
+export interface OptionSelect {
+    label: string
+    value: number
+}
+
 //Layout中回调函数传参类型
 export interface CallbackItem {
     key: string;
