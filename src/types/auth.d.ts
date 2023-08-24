@@ -1,10 +1,18 @@
 import React from 'react';
 
-interface LoginParams {
-    username: string
-    password: string
+interface Captcha {
+    base64Img: string
+    token: string
+}
+
+interface CodeUuid {
     code: string
     uuid: string
+}
+
+interface LoginParams extends CodeUuid {
+    username: string
+    password: string
     remember: boolean
 }
 
@@ -13,7 +21,16 @@ interface AuthWrapperProps {
     hasPermiss: string[]
 }
 
+interface LoginResponse {
+    tokenName: string
+    tokenValue: string
+    tokenPrefix: string
+}
+
 export type {
+    Captcha,
+    CodeUuid,
     LoginParams,
+    LoginResponse,
     AuthWrapperProps
 }

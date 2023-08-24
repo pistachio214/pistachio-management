@@ -91,7 +91,7 @@ const LayoutComponent: React.FC = () => {
                     </LayHeader>
 
                     <LayContent>
-                        <RouterTabsComponent/>
+                        {defaultSettings.isShowTabs ? (<RouterTabsComponent/>) : null}
                         <Container>
                             <KeepAliveComponent tabs={tab.tabs}/>
                         </Container>

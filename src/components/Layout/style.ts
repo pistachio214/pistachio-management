@@ -39,14 +39,13 @@ export const TitleFont = styled.div`
 export const LayContent = styled(Content)`
   display: flex;
   flex-flow: column nowrap;
-  padding: 1%;
-  padding-top: 0;
+  padding: 0 1% 1% 1%;
   box-sizing: border-box;
 `;
 
 export const Container = styled.div`
+  margin-top: 0.5rem;
   box-shadow: 0 2px 8px #f0f1f2;
-  border-radius: 15px;
   padding: 20px;
   flex-shrink: 0;
   flex-grow: 0;

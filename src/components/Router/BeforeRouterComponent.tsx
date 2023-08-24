@@ -7,10 +7,11 @@ import {Navigate, Outlet, useLocation} from "react-router-dom";
 export const BeforeRouterComponent = () => {
     const [isLogin, setIsLogin] = useState(true);
     const {pathname} = useLocation();
-    const token = sessionStorage.getItem("token")
+    const token = sessionStorage.getItem("tokenValue")
 
     useEffect(() => {
         token ? setIsLogin(true) : setIsLogin(false);
     }, [pathname, token]);
+
     return isLogin ? <Outlet/> : <Navigate to="/login"/>;
 };

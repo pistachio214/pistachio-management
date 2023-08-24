@@ -1,5 +1,3 @@
-// fix bug craco-less在react-scripts v5中数组的push问题
-const CracoAntDesignPlugin = require('./cracoAntdFix');
 const CracoAlias = require('craco-alias');
 
 module.exports = {
@@ -37,13 +35,5 @@ module.exports = {
                 tsConfigPath: './tsconfig.extend.json'
             }
         },
-        {
-            plugin: CracoAntDesignPlugin,
-            options: {
-                customizeTheme: {
-                    '@primary-color': '#1DA57A',
-                },
-            }
-        }
     ]
 };

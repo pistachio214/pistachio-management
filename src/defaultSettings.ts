@@ -15,16 +15,21 @@ class defaultSettings {
      * 主题token构建
      */
     static token?: TokenState = {
-        colorPrimary: '',
-        colorLink: '',
-        colorLinkActive: '',
-        colorLinkHover: ''
+        colorPrimary: '#1DA57A',
+        colorLink: '#1DA57A',
+        colorLinkActive: '#1DA57A',
+        colorLinkHover: '#1DA57A'
     }
 
     /**
      * 主题 deepcolor
      */
-    static deepColor?: string = '#388991';
+    static deepColor?: string = '#1DA57A';
+
+    /**
+     * 是否显示tabs卡片
+     */
+    static isShowTabs: boolean = true;
 
     /**
      * 管理员默认头像

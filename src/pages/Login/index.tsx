@@ -1,13 +1,15 @@
-import React, {useEffect} from "react";
-import {Checkbox, Form, Input} from "antd";
+import React, {useEffect, useState} from "react";
+import {useNavigate} from "react-router";
+
+import {Checkbox, Form, Input, Image, message} from "antd";
 import {
     EyeInvisibleOutlined,
     EyeTwoTone,
     LockOutlined,
     UserOutlined,
+    SafetyCertificateOutlined,
 } from "@ant-design/icons";
 
-import {useNavigate} from "react-router";
 import {
     LoginContainer,
     LoginBg,
@@ -16,6 +18,7 @@ import {
     Title,
     IconBox,
     LoginButton,
+    CodeItemContainer,
 } from "@/pages/Login/style";
 import {useAppSelector} from "@/redux/hook";
 import {shallowEqual} from "react-redux";
@@ -25,11 +28,15 @@ import login_img from "@/assets/login_img.png";
 import react_icon from "@/assets/react.svg";
 import defaultSettings from "@/defaultSettings";
 import {RootState} from "@/redux/store";
+import {Captcha, CodeUuid, LoginParams, LoginResponse} from "@/types/auth";
+import {getCaptcha, login} from "@/api/auth";
+import {AxiosResponse} from "axios";
 
 interface FormState {
     username: string;
     password: string;
     remember: boolean;
+    code: string
 }
 
 const Login: React.FC = () => {
@@ -38,21 +45,51 @@ const Login: React.FC = () => {
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
 
+    const [codeState, setCodeState] = useState<CodeUuid>();
+
     useEffect(() => {
         console.log(themeState);
     }, [themeState]);
 
+    useEffect(() => {
+        getCodeImage();
+    }, [])
+
     //表单数据
     const [form] = Form.useForm<FormState>();
 
-    const rememberChecked = !!localStorage.getItem("rememberme");
+    const rememberChecked = !localStorage.getItem("rememberme");
+
+    // 获取验证码图片和uuid
+    const getCodeImage = () => {
+        getCaptcha().then((res: AxiosResponse<Captcha>) => {
+            setCodeState({
+                code: res.data.base64Img,
+                uuid: res.data.token,
+            })
+        })
+    }
 
     const onFinish = () => {
         form.validateFields().then(async () => {
             const data: FormState = form.getFieldsValue();
-            console.log('form data = ', data);
-            sessionStorage.setItem("token", "1");
-            navigate('/');
+            let loginParam: LoginParams = {
+                ...data,
+                ...{
+                    uuid: codeState?.uuid || ""
+                }
+            };
+            login(loginParam).then((res: AxiosResponse<LoginResponse>) => {
+                sessionStorage.setItem('tokenName', res.data.tokenName);
+                sessionStorage.setItem('tokenValue', res.data.tokenValue);
+                sessionStorage.setItem('tokenPrefix', res.data.tokenPrefix);
+
+                message.success('🎉🎉🎉 登录成功', 1, () => {
+                    navigate('/');
+                });
+            }).catch(() => {
+                getCodeImage();
+            })
         })
     }
 
@@ -82,6 +119,7 @@ const Login: React.FC = () => {
                             allowClear
                         />
                     </Form.Item>
+
                     <Form.Item
                         name="password"
                         rules={[{required: true, message: "请输入密码"}]}
@@ -94,6 +132,28 @@ const Login: React.FC = () => {
                             }
                         />
                     </Form.Item>
+
+                    <Form.Item
+                        name="code"
+                        rules={[{required: true, message: "请输入验证码"}]}
+                    >
+                        <CodeItemContainer>
+                            <Input
+                                prefix={<SafetyCertificateOutlined/>}
+                                className={'code-item-input'}
+                                placeholder="验证码(code)"
+                                maxLength={5}
+                            />
+                            <div className={'code-item-image'} onClick={() => getCodeImage()}>
+                                <Image
+                                    height={35}
+                                    src={codeState?.code}
+                                    preview={false}
+                                />
+                            </div>
+                        </CodeItemContainer>
+                    </Form.Item>
+
                     <Form.Item>
                         <Form.Item name="remember" valuePropName="checked" noStyle>
                             <Checkbox>记住我</Checkbox>

@@ -12,7 +12,7 @@ import {OperatorContainer} from "@/components/ActionOperator/style";
 import UuidUtil from "@/utils/UuidUtil";
 import AuthUtil from "@/utils/AuthUtil";
 
-const ActionOperatorComponent: React.FC = (props: IOperatorProps) => {
+const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps) => {
     const userStateMap: MenuState = useAppSelector((state: RootState) => ({...state.user}), shallowEqual);
     const authoritys: string[] = userStateMap.authoritys;
 

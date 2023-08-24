@@ -16,6 +16,8 @@ import {css} from "@emotion/css";
 
 import {useAppDispatch, useAppSelector} from "@/redux/hook";
 import {RootState} from "@/redux/store";
+import {reload, setActiveKey, setTabs} from "@/redux/slice/tab";
+import {Tab} from "@/redux/types/Tab";
 
 interface DraggableTabPaneProps extends React.HTMLAttributes<HTMLDivElement> {
     "data-node-key": string;
@@ -88,9 +90,11 @@ const RouterTabsComponent = () => {
         setItems(tabs);
         tabs.length === 1 ? setTabsType("card") : setTabsType("editable-card");
     }, [tabs]);
+
     const tabChange = (key: string) => {
-        dispatch({type: "tab/setActiveKey", payload: key});
+        dispatch(setActiveKey(key));
     };
+
     useEffect(() => {
         navigate(activeKey);
         // eslint-disable-next-line
@@ -113,16 +117,13 @@ const RouterTabsComponent = () => {
         action: "add" | "remove"
     ) => {
         if (action === "remove") {
-            const newItems = items.filter((item) => item.key !== targetKey);
+            const newItems: Tab[] = items.filter((item) => item.key !== targetKey);
             if (activeKey === targetKey) {
-                dispatch({
-                    type: "tab/setactiveKey",
-                    payload: newItems[newItems.length - 1].key,
-                });
+                dispatch(setActiveKey(newItems[newItems.length - 1].key))
                 navigate(newItems[newItems.length - 1].key);
             }
             setItems(newItems);
-            dispatch({type: "tab/setTabs", payload: newItems});
+            dispatch(setTabs(newItems));
         }
     };
 
@@ -142,25 +143,20 @@ const RouterTabsComponent = () => {
             </Row>
         );
     };
+
     const refresh = () => {
-        dispatch({type: "tab/reload", payload: true});
+        dispatch(reload(true));
     };
+
     const clearAll = () => {
-        dispatch({
-            type: "tab/setTabs",
-            payload: [
-                {
-                    key: "/home",
-                    label: "工作台",
-                },
-            ],
-        });
-        dispatch({type: "tab/setactiveKey", payload: "/home"});
+        dispatch(setTabs([{key: "/home", label: "工作台"}]));
+        dispatch(setActiveKey("/home"));
+
         navigate("/home");
     };
     return (
         <Tabs
-            style={{marginTop: 10}}
+            style={{marginTop: 10, height: 45}}
             type={tabsType}
             hideAdd
             className={className}

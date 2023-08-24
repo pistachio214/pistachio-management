@@ -1,7 +1,7 @@
 interface Tab {
     key: string;
     label: string;
-    isMenu: boolean;
+    isMenu?: boolean;
 }
 
 interface TabState {

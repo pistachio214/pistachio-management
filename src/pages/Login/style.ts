@@ -92,3 +92,24 @@ export const IconBox = styled.img`
 export const LoginButton = styled(Button)`
   width: 100%;
 `;
+
+export const CodeItemContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+  .code-item-input {
+    width: 75%;
+    margin-right: 5px;
+    padding: 6.5px 11px 6.5px 11px;
+    vertical-align: middle;
+    border-radius: 0;
+  }
+
+  .code-item-image {
+    width: 23%;
+    vertical-align: middle;
+    padding: 0;
+    border: 1px solid black;
+  }
+`

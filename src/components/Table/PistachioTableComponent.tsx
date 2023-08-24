@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Table} from "antd";
 import {ReloadOutlined, PlusOutlined} from "@ant-design/icons";
 
@@ -12,6 +12,11 @@ const PistachioTableComponent: React.FC<ITableProps> = (props: ITableProps) => {
     const [loadingStatus, setLoadingStatus] = useState<boolean>(false);
     const [data, setData] = useState<any[]>([]);
     const [pagination, setPagination] = useState<IPagination>();
+
+    useEffect(() => {
+        initList();
+    }, [props.url, props.params, props.isVisible]); // eslint-disable-line react-hooks/exhaustive-deps
+
 
     const initList = async () => {
         setLoadingStatus(true);
@@ -39,7 +44,6 @@ const PistachioTableComponent: React.FC<ITableProps> = (props: ITableProps) => {
             setLoadingStatus(false);
         });
     }
-
 
     return (
         <PisTableContainer>

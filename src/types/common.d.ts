@@ -1,11 +1,19 @@
 //接口返回值
 export interface Response<T> {
-    succeed: boolean;
     code: number;
-    codeMsg: string;
+    message: string;
     data: T;
 }
 
+export interface PageQuestionType {
+    current?: number
+    size?: number
+}
+
+export interface OptionsInterface {
+    label: string
+    value: string
+}
 
 //Layout中回调函数传参类型
 export interface CallbackItem {
