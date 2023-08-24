@@ -5,15 +5,16 @@ import {ColumnsType} from "antd/lib/table";
 import {AxiosResponse} from "axios";
 
 import {DictQuestionType, SysDict, SysDictListResponse} from "@/types/dict";
-import DictUtil from "@/utils/DictUtil";
 import {OptionsInterface} from "@/types/common";
 import {IOperator} from "@/types/operator";
+import {delDict, getDictByKey, getDictList} from "@/api/dict";
+import DictUtil from "@/utils/DictUtil";
+
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
 import PistachioDictFormComponent from "@/components/Dict/PistachioDictFormComponent";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
-import {delDict, getDictByKey, getDictList} from "@/api/dict";
-import DictSaveModalComponent from "@/pages/system/dict/DictSaveModalComponent";
-import DictItemModalComponent from "@/pages/system/dict/DictItemModalComponent";
+import DictSaveModalComponent from "@/components/Dict/DictSaveModalComponent";
+import DictItemModalComponent from "@/components/Dict/DictItemModalComponent";
 
 const Dict: React.FC = () => {
 
