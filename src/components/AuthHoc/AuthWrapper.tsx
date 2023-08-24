@@ -4,10 +4,11 @@ import {MenuState} from "@/redux/types/Menu";
 import {shallowEqual} from "react-redux";
 import {AuthWrapperProps} from '@/types/auth';
 import AuthUtil from '@/utils/AuthUtil';
+import {RootState} from "@/redux/store";
 
 export const HappyAuthWrapper: React.FC<AuthWrapperProps> = (props: AuthWrapperProps) => {
 
-    const userStateMap: MenuState = useAppSelector((state: any) => ({...state.user}), shallowEqual);
+    const userStateMap: MenuState = useAppSelector((state: RootState) => ({...state.user}), shallowEqual);
     const authoritys: string[] = userStateMap.authoritys;
 
     return (

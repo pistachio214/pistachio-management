@@ -156,7 +156,7 @@ const RouterTabsComponent = () => {
     };
     return (
         <Tabs
-            style={{marginTop: 10, height: 45}}
+            style={{marginTop: 10, height: 32, display: 'none'}}
             type={tabsType}
             hideAdd
             className={className}
@@ -164,9 +164,10 @@ const RouterTabsComponent = () => {
             activeKey={activeKey}
             onEdit={onEdit}
             onChange={tabChange}
+            tabBarGutter={3}
             tabBarExtraContent={renderExtraContent()}
             renderTabBar={(tabBarProps, DefaultTabBar) => (
-                <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
+                <DndContext sensors={[sensor]} onDragEnd={onDragEnd} >
                     <SortableContext
                         items={items.map((i) => i.key)}
                         strategy={horizontalListSortingStrategy}

@@ -19,7 +19,7 @@ const Dict: React.FC = () => {
 
     const [form] = Form.useForm();
 
-    const [params, setParams] = useState<DictQuestionType | undefined>();
+    const [params, setParams] = useState<DictQuestionType>();
 
     const [isSaveVisible, setIsSaveVisible] = useState<boolean>(false);
     const [id, setId] = useState<number>(0);
@@ -157,7 +157,7 @@ const Dict: React.FC = () => {
         })
     }
 
-    const searchDom = (
+    const searchRender = (
         <Form form={form} layout="inline" name="search-dict" onFinish={(values) => handleSearch(values)}>
             <Form.Item name={'type'} label={'类型名称'}>
                 <Input placeholder="类型名称" allowClear/>
@@ -178,7 +178,7 @@ const Dict: React.FC = () => {
             <PistachioTableComponent
                 rowKey={(record: SysDict) => record.id!}
                 columns={columns}
-                search={searchDom}
+                search={searchRender}
                 url={getDictList()}
                 isVisible={isRefresh}
                 params={params}

@@ -48,7 +48,6 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
     useEffect(() => {
         let key = "";
         for (const item of items) {
-            console.log('item=', item);
             // eslint-disable-next-line array-callback-return,no-loop-func
             (item as any).children?.map((child: any) => {
                 child.key === tab.activeKey && (key = (item as any).key);
