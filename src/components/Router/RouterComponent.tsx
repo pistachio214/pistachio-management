@@ -11,12 +11,11 @@ import {
 import {BeforeRouterComponent} from "@/components/Router/BeforeRouterComponent";
 
 import LayoutComponent from "@/components/Layout/LayoutComponent";
-import Login from "@/pages/Login";
-import Dashboard from "@/pages/Dashboard";
-import Dict from "@/pages/System/Dicts"
+import Login from "@/pages/login";
+import Dashboard from "@/pages/dashboard";
+import Dict from "@/pages/system/dict"
 
-
-import NonExistent from "@/pages/Error";
+import NonExistent from "@/pages/error";
 
 const RouterComponent: React.FC = () => {
 

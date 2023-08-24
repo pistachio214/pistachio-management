@@ -19,7 +19,7 @@ import {
     IconBox,
     LoginButton,
     CodeItemContainer,
-} from "@/pages/Login/style";
+} from "@/pages/login/style";
 import {useAppSelector} from "@/redux/hook";
 import {shallowEqual} from "react-redux";
 import {ThemeState} from "@/redux/types/Theme";

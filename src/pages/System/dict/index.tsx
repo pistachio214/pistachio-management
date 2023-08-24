@@ -12,8 +12,8 @@ import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorC
 import PistachioDictFormComponent from "@/components/Dict/PistachioDictFormComponent";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
 import {delDict, getDictByKey, getDictList} from "@/api/dict";
-import DictSaveModalComponent from "@/pages/System/Dicts/DictSaveModalComponent";
-import DictItemModalComponent from "@/pages/System/Dicts/DictItemModalComponent";
+import DictSaveModalComponent from "@/pages/system/dict/DictSaveModalComponent";
+import DictItemModalComponent from "@/pages/system/dict/DictItemModalComponent";
 
 const Dict: React.FC = () => {
 

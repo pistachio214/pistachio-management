@@ -9,7 +9,7 @@ import {IOperator} from "@/types/operator";
 import {dictItemDelete, dictItemList} from "@/api/dict";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
-import DictItemSaveModalComponent from "@/pages/System/Dicts/DictItemSaveModalComponent";
+import DictItemSaveModalComponent from "@/pages/system/dict/DictItemSaveModalComponent";
 
 interface IProps {
     name?: string
