@@ -11,7 +11,7 @@ interface SysRole {
     updatedAt: string
 }
 
-interface RolesListParams extends PageQuestionType{
+interface RolesListParams extends PageQuestionType {
     username?: string
     status?: number
 }
