@@ -6,6 +6,8 @@ import {PisTableContainer} from "@/components/Table/style";
 import AuthWrapper from "@/components/AuthHoc/AuthWrapper";
 import {ITableProps, IPagination} from "@/types/table";
 import request from "@/axios/request";
+import {AxiosResponse} from "axios";
+import {Response} from "@/types/common";
 
 const PistachioTableComponent: React.FC<ITableProps> = (props: ITableProps) => {
 
@@ -26,9 +28,9 @@ const PistachioTableComponent: React.FC<ITableProps> = (props: ITableProps) => {
             method: method,
             params: params
         }).then((res) => {
-            console.log(res.data);
+            console.log(res.data.data);
 
-            const {content, size, number, totalElements} = res.data;
+            const {content, size, number, totalElements} = res.data.data;
 
             setData(content);
             let pagination: IPagination = {
@@ -126,7 +128,9 @@ PistachioTableComponent.defaultProps = {
     params: {},
     plus: {
         hide: false,
-        click: () => { console.log('点击新增按钮') },
+        click: () => {
+            console.log('点击新增按钮')
+        },
         hasPremiss: []
     },
     isVisible: false

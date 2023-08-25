@@ -40,8 +40,10 @@ const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
 
     const initChildren = () => {
         getRoleAll({size: 9999, status: 1}).then(res => {
+            const {data} = res.data;
+
             let option: OptionsInterface[] = [];
-            res.data.content.forEach((item: SysRole, index: number) => {
+            data.content.forEach((item: SysRole, index: number) => {
                 option.push({label: item.name, value: item.id.toString()})
             })
 
