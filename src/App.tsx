@@ -1,5 +1,5 @@
 import React from 'react';
-import {ConfigProvider} from 'antd';
+import {ConfigProvider, App as AntdApp,} from 'antd';
 import {ThemeState} from "@/redux/types/Theme";
 import {useAppSelector} from "@/redux/hook";
 import {shallowEqual} from "react-redux";
@@ -8,6 +8,7 @@ import RouterComponent from "@/components/Router/RouterComponent";
 
 import GlobalStyle from "@/styles/global";
 import {RootState} from "@/redux/store";
+import EntryComponent from "@/components/Antd/EscapeAntd";
 
 const App: React.FC = () => {
 
@@ -16,9 +17,12 @@ const App: React.FC = () => {
 
     return (
         <>
-            <GlobalStyle></GlobalStyle>
+            <GlobalStyle/>
             <ConfigProvider locale={zhCN} theme={{token: themeState.config.token}}>
-                <RouterComponent/>
+                <AntdApp>
+                    <EntryComponent/>
+                    <RouterComponent/>
+                </AntdApp>
             </ConfigProvider>
         </>
     )
