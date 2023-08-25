@@ -47,7 +47,7 @@ instance.interceptors.response.use((res: AxiosResponse) => {
         return Promise.reject(res.data);
     }
 
-    return res.data;
+    return res;
 }, err => {
     return Promise.reject(err);
 })
