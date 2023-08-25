@@ -44,7 +44,7 @@ instance.interceptors.response.use((res: AxiosResponse) => {
             default:
                 message.error(res.data.message);
         }
-        return Promise.reject(res.data);
+        return Promise.reject(res.data.message);
     }
 
     return res;
