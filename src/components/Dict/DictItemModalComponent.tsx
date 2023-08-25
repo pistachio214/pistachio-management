@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Modal} from "antd";
 import {ColumnsType} from "antd/lib/table";
-import { DeleteOutlined } from "@ant-design/icons";
+import {DeleteOutlined} from "@ant-design/icons";
 
 import {PageQuestionType} from "@/types/common";
 import {SysDictItem} from "@/types/dict";
@@ -74,7 +74,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                     {
                         title: '删除',
                         danger: true,
-                        icon: <DeleteOutlined />,
+                        icon: <DeleteOutlined/>,
                         permission: ['sys:dict:item:delete'],
                         message: `是否删除该字典项 [ ${record.label} ] ?`,
                         onClick: () => {
@@ -84,7 +84,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                 ];
 
                 return (
-                    <ActionOperatorComponent items={item} />
+                    <ActionOperatorComponent items={item}/>
                 )
             },
         },
@@ -118,12 +118,13 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
 
     return (
         <>
-            <Modal title={`${props.name} 字典项`}
-                   open={props.isVisible}
-                   onCancel={() => handleCancel()}
-                   getContainer={false}
-                   width={'80%'}
-                   footer={false}
+            <Modal
+                title={`${props.name} 字典项`}
+                open={props.isVisible}
+                onCancel={() => handleCancel()}
+                getContainer={false}
+                width={'80%'}
+                footer={false}
             >
                 <PistachioTableComponent
                     url={dictItemList(props.id)}
@@ -137,7 +138,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                         click: () => showCreateDictItemModal()
                     }}
                     quickJump={(page: number) => {
-                        setParams({ ...params, ...{ current: page } })
+                        setParams({...params, ...{current: page}})
                     }}
                 />
 

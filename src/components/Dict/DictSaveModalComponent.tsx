@@ -57,11 +57,12 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
     return (
         <>
-            <Modal title={props.isEdit ? "编辑字典" : "新增字典"}
-                   open={props.isVisible}
-                   onCancel={() => handleCancel()}
-                   onOk={() => form.submit()}
-                   getContainer={false}
+            <Modal
+                title={props.isEdit ? "编辑字典" : "新增字典"}
+                open={props.isVisible}
+                onCancel={() => handleCancel()}
+                onOk={() => form.submit()}
+                getContainer={false}
             >
 
                 <Form

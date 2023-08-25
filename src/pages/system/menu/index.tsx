@@ -1,8 +1,9 @@
 import React, {useEffect, useState} from "react";
-import {Badge, Button, message, Table} from 'antd';
+import {Badge, Button, Table} from 'antd';
 import {ColumnsType} from "antd/lib/table";
 import {DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined} from "@ant-design/icons";
 import {AxiosResponse} from "axios";
+import {message} from "@/components/Antd/EscapeAntd";
 
 import {SysMenu} from "@/types/menu";
 import {IOperator} from "@/types/operator";

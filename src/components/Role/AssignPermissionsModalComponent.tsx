@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from "react";
-import {Modal, Form, Tree, message} from 'antd';
+import {Modal, Form, Tree} from 'antd';
 import {AxiosResponse} from "axios";
 import {Key} from "rc-table/lib/interface";
 
@@ -7,6 +7,7 @@ import {MenuTreeNodesType, SysMenu} from "@/types/menu";
 import {findRoleById, permRole} from "@/api/role";
 import {SysRole} from "@/types/role";
 import {getMenuList} from "@/api/menu";
+import {message} from "@/components/Antd/EscapeAntd";
 
 interface IProps {
     id: number | undefined
@@ -44,7 +45,7 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
 
     const initMenuList = async () => {
         await getMenuList().then(res => {
-            let menuList: SysMenu[] = res.data;
+            let menuList: SysMenu[] = res.data.list;
             let treeData: MenuTreeNodesType[] = generatorMenuTreeData(menuList);
             setNodes(treeData);
         })
@@ -70,8 +71,8 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
     }
 
     const handleOk = () => {
-        permRole(props.id!, checkedKeys).then((res: AxiosResponse) => {
-            message.success(res.data.message)
+        permRole(props.id!, checkedKeys).then((res: any) => {
+            message.success(res.message)
             handleCancel()
         });
     }

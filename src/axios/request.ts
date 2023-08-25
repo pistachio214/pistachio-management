@@ -1,14 +1,12 @@
-import {message} from "antd";
+import {message} from "@/components/Antd/EscapeAntd";
 import axios, {
     AxiosInstance,
     AxiosResponse,
     InternalAxiosRequestConfig,
 } from "axios";
 
-const BASE_URL: string = process.env.REACT_APP_BASE_URL!;
-
 const instance: AxiosInstance = axios.create({
-    baseURL: `/${BASE_URL}`,
+    baseURL: `/${process.env.REACT_APP_BASE_URL!}`,
     timeout: 5000,
     headers: {
         "Content-Type": "application/json;charset=UTF-8",
@@ -25,9 +23,7 @@ instance.interceptors.request.use((config: InternalAxiosRequestConfig) => {
         const tokenName = sessionStorage.getItem('tokenName')!
         const tokenPrefix = sessionStorage.getItem('tokenPrefix')!
 
-        const tokenValue = tokenPrefix + ' ' + sessionStorage.getItem('tokenValue')!
-
-        config.headers![tokenName] = tokenValue
+        config.headers![tokenName] = tokenPrefix + ' ' + sessionStorage.getItem('tokenValue') || ""
     }
     return config;
 }, err => {
@@ -48,9 +44,9 @@ instance.interceptors.response.use((res: AxiosResponse) => {
             default:
                 message.error(res.data.message);
         }
-
         return Promise.reject(res.data);
     }
+
     return res.data;
 }, err => {
     return Promise.reject(err);

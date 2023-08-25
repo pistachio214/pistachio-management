@@ -55,11 +55,12 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
     return (
         <>
-            <Modal title={`字典项`}
-                   open={props.isVisible}
-                   onCancel={() => handleCancel()}
-                   onOk={() => form.submit()}
-                   getContainer={false}
+            <Modal
+                title={`字典项`}
+                open={props.isVisible}
+                onCancel={() => handleCancel()}
+                onOk={() => form.submit()}
+                getContainer={false}
             >
                 <Form
                     name="save-dicts-item"

@@ -78,7 +78,7 @@ const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
                 getContainer={false}
             >
                 <Form
-                    name="edit-role"
+                    name="edit-role-menu"
                     form={form}
                     labelCol={{span: 4}}
                     wrapperCol={{span: 20}}

@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router";
 
-import {Checkbox, Form, Input, Image, message} from "antd";
+import {Checkbox, Form, Input, Image} from "antd";
 import {
     EyeInvisibleOutlined,
     EyeTwoTone,
@@ -9,6 +9,7 @@ import {
     UserOutlined,
     SafetyCertificateOutlined,
 } from "@ant-design/icons";
+import {message} from "@/components/Antd/EscapeAntd";
 
 import {
     LoginContainer,

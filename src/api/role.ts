@@ -26,5 +26,5 @@ export const deleteRole = (id: number) => {
 }
 
 export const permRole = (roleId: number, menuIds: number[]) => {
-    return request({url: `/sys-role/perm/${roleId}`, method: "POST", data: menuIds});
+    return request({url: `/sys-role/perm/${roleId}`, method: "POST", data: {menuIds: menuIds}});
 }

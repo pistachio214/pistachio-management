@@ -50,18 +50,19 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
 
     return (
         <>
-            <Modal title={props.edit ? "编辑角色" : "新增角色"}
-                   visible={props.isVisible}
-                   onCancel={() => handleCancel()}
-                   onOk={() => form.submit()}
-                   getContainer={false}
+            <Modal
+                title={props.edit ? "编辑角色" : "新增角色"}
+                open={props.isVisible}
+                onCancel={() => handleCancel()}
+                onOk={() => form.submit()}
+                getContainer={false}
             >
 
                 <Form
                     name="edit-role"
                     form={form}
-                    labelCol={{ span: 4 }}
-                    wrapperCol={{ span: 20 }}
+                    labelCol={{span: 4}}
+                    wrapperCol={{span: 20}}
                     onFinish={() => handleOk()}
                     labelAlign="left"
                     autoComplete="off"
@@ -72,39 +73,39 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
                         name="id"
                         hidden={true}
                     >
-                        <Input />
+                        <Input/>
                     </Form.Item>
 
                     <Form.Item
                         label="角色名称"
                         name="name"
                         rules={[
-                            { required: true, message: '请输入角色名称!' }
+                            {required: true, message: '请输入角色名称!'}
                         ]}
                     >
-                        <Input placeholder="角色名称" />
+                        <Input placeholder="角色名称"/>
                     </Form.Item>
 
                     <Form.Item
                         label="唯一编码"
                         name="code"
                         rules={[
-                            { required: true, message: '请输入唯一编码!' }
+                            {required: true, message: '请输入唯一编码!'}
                         ]}
                     >
-                        <Input placeholder="唯一编码" />
+                        <Input placeholder="唯一编码"/>
                     </Form.Item>
 
                     <Form.Item
                         label="角色状态"
                         name="status"
                         rules={[
-                            { required: true, message: '请选择角色状态!' }
+                            {required: true, message: '请选择角色状态!'}
                         ]}
                     >
                         <Radio.Group value={1} options={[
-                            { label: '启用', value: 1 },
-                            { label: '禁用', value: 0 }
+                            {label: '启用', value: 1},
+                            {label: '禁用', value: 0}
                         ]}>
                         </Radio.Group>
                     </Form.Item>
@@ -113,10 +114,10 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
                         label="描述"
                         name="remark"
                         rules={[
-                            { required: true, message: '请输入角色描述!' }
+                            {required: true, message: '请输入角色描述!'}
                         ]}
                     >
-                        <Input.TextArea rows={4} placeholder="角色描述" />
+                        <Input.TextArea rows={4} placeholder="角色描述"/>
                     </Form.Item>
 
                 </Form>

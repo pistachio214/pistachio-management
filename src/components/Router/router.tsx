@@ -52,23 +52,41 @@ export const baseRoutes: BaseRoute[] = [
         ]
     },
     {
-        path: "/utils",
-        name: "utils",
+        path: "/developer",
+        name: "developer",
         meta: {
             hidden: false,
-            title: "系统工具",
+            title: "开发者工具",
             icon: <RadiusSettingOutlined/>,
         },
         children: [
             {
-                path: '/utils/dicts',
+                path: '/developer/dict',
                 element: <></>,
                 name: 'dict',
                 meta: {
                     hidden: false,
                     title: '数据字典'
                 }
-            }
+            },
+            {
+                path: '/developer/oper',
+                element: <></>,
+                name: 'oper',
+                meta: {
+                    hidden: false,
+                    title: '操作日志'
+                }
+            },
+            {
+                path: '/developer/exception',
+                element: <></>,
+                name: 'exception',
+                meta: {
+                    hidden: false,
+                    title: '异常日志'
+                }
+            },
         ]
     },
 ];

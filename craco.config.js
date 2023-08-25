@@ -3,11 +3,11 @@ const CracoAlias = require('craco-alias');
 module.exports = {
     devServer: {
         proxy: {
-            '/dev': {
+            '/dev/': {
                 target: 'http://127.0.0.1:18004/',
                 changeOrign: true,
                 pathRewrite: {
-                    "^/dev": ''
+                    "^/dev/": ''
                 }
             },
             '/mac': {

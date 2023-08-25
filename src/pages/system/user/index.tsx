@@ -1,11 +1,12 @@
 import React, {useState} from "react";
-import {Form, Avatar, Image, Badge, Tag, message, Input, Button,} from "antd";
+import {Form, Avatar, Image, Badge, Tag, Input, Button,} from "antd";
 import {ColumnsType} from "antd/lib/table";
 import {
     PartitionOutlined,
     RedoOutlined,
     DeleteOutlined
 } from '@ant-design/icons';
+import {message} from "@/components/Antd/EscapeAntd";
 
 import {AssignRoles, SysUser, UserQuestionType} from "@/types/user";
 import defaultSettings from "@/defaultSettings";
