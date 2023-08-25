@@ -1,8 +1,8 @@
 import styled, {createGlobalStyle, keyframes} from "styled-components";
-
+import {ThemeState} from "@/redux/types/Theme";
 
 //全局样式
-export default createGlobalStyle`
+export default createGlobalStyle<ThemeState>`
   * {
     margin: 0;
     padding: 0;
@@ -29,6 +29,13 @@ export default createGlobalStyle`
   //更改antd的样式
   .ant-menu-light .ant-menu-submenu-selected > .ant-menu-submenu-title {
     color: #fff;
+  }
+  
+  .ant-layout-sider-children .ant-menu-submenu-inline .ant-menu-submenu-title {
+    &:hover {
+      color: ${(props: ThemeState) => props.config.token.colorPrimary};
+    }
+    
   }
 `;
 

@@ -17,7 +17,7 @@ const App: React.FC = () => {
 
     return (
         <>
-            <GlobalStyle/>
+            <GlobalStyle config={themeState.config}/>
             <ConfigProvider locale={zhCN} theme={{token: themeState.config.token}}>
                 <AntdApp>
                     <EntryComponent/>
