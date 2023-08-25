@@ -8,6 +8,7 @@ import {findRoleById, permRole} from "@/api/role";
 import {SysRole} from "@/types/role";
 import {getMenuList} from "@/api/menu";
 import {message} from "@/components/Antd/EscapeAntd";
+import {Response} from "@/types/common";
 
 interface IProps {
     id: number | undefined
@@ -25,9 +26,10 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
         const initSelected = () => {
             const {id, isVisible} = props;
             if (isVisible && id !== undefined && id) {
-                findRoleById(id).then((res: AxiosResponse<SysRole>) => {
+                findRoleById(id).then((res: AxiosResponse<Response<SysRole>>) => {
+                    const {data} = res.data;
                     let checkedKey: number[] = [];
-                    res.data.menuIds.forEach((item: number) => {
+                    data.menuIds.forEach((item: number) => {
                         checkedKey.push(item);
                     })
                     setCheckedKeys(checkedKey);
@@ -71,8 +73,8 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
     }
 
     const handleOk = () => {
-        permRole(props.id!, checkedKeys).then((res: any) => {
-            message.success(res.message)
+        permRole(props.id!, checkedKeys).then((res: AxiosResponse<Response<string>>) => {
+            message.success(res.data.message);
             handleCancel()
         });
     }

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Form, Select} from "antd";
-import {OptionsInterface} from "@/types/common";
+import {OptionsInterface, Response} from "@/types/common";
 import {getDictByKey} from "@/api/dict";
 import {AxiosResponse} from "axios";
 import {SysDictListResponse} from "@/types/dict";
@@ -21,11 +21,12 @@ const PistachioDictFormComponent: React.FC<IProps> = (props: IProps) => {
     const [label, setLabel] = useState<string>('');
 
     useEffect(() => {
-        getDictByKey(props.type).then((res: AxiosResponse<SysDictListResponse>) => {
-            if (res.data != null) {
-                setLabel(res.data.name)
+        getDictByKey(props.type).then((res: AxiosResponse<Response<SysDictListResponse>>) => {
+            const {data} = res.data;
+            if (data != null) {
+                setLabel(data.name)
                 let option: OptionsInterface[] = [];
-                option.push.apply(option, res.data.items)
+                option.push.apply(option, data.items)
                 setOptions(option)
             }
         })

@@ -6,16 +6,17 @@ import {
     RedoOutlined,
     DeleteOutlined
 } from '@ant-design/icons';
+import {AxiosResponse} from "axios";
 import {message} from "@/components/Antd/EscapeAntd";
 
 import {AssignRoles, SysUser, UserQuestionType} from "@/types/user";
 import defaultSettings from "@/defaultSettings";
 import {SysRole} from "@/types/role";
+import {Response} from "@/types/common";
 import {UserRoleContainer} from "@/pages/system/user/style";
 import {IOperator} from "@/types/operator";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
 import {delUser, getUserList, restPassword} from "@/api/user";
-import {AxiosResponse} from "axios";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
 import AssignRolesModalComponent from "@/components/User/AssignRolesModalComponent";
 import UserCreateModalComponent from "@/components/User/UserCreateModalComponent";
@@ -174,7 +175,7 @@ const User: React.FC = () => {
     }
 
     const handleResetPassword = (id: number) => {
-        restPassword(id).then((res: AxiosResponse<string>) => {
+        restPassword(id).then((res: AxiosResponse<Response<string>>) => {
             message.success(`密码初始化成功! 初始化密码为: ${res.data}`)
         })
     }

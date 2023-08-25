@@ -5,6 +5,7 @@ import ReactJson from "react-json-view";
 
 import {SysOperLog, SysOperLogoDetailsProps} from "@/types/log";
 import {findOperLog} from "@/api/log";
+import {Response} from "@/types/common";
 
 const OperLogDetailModalComponent: React.FC<SysOperLogoDetailsProps> = (props: SysOperLogoDetailsProps) => {
 
@@ -14,8 +15,9 @@ const OperLogDetailModalComponent: React.FC<SysOperLogoDetailsProps> = (props: S
         const {id, isVisible} = props;
 
         if (isVisible) {
-            findOperLog(id).then((res: AxiosResponse<SysOperLog>) => {
-                setSysOperLog(res.data);
+            findOperLog(id).then((res: AxiosResponse<Response<SysOperLog>>) => {
+                const {data} = res.data;
+                setSysOperLog(data);
             })
         }
     }, [props.isVisible])// eslint-disable-line react-hooks/exhaustive-deps

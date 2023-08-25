@@ -5,7 +5,7 @@ import {ColumnsType} from "antd/lib/table";
 import {AxiosResponse} from "axios";
 
 import {DictQuestionType, SysDict, SysDictListResponse} from "@/types/dict";
-import {OptionsInterface} from "@/types/common";
+import {OptionsInterface, Response} from "@/types/common";
 import {IOperator} from "@/types/operator";
 import {delDict, getDictByKey, getDictList} from "@/api/dict";
 import DictUtil from "@/utils/DictUtil";
@@ -34,9 +34,11 @@ const Dict: React.FC = () => {
     const [dictType, setDictType] = useState<OptionsInterface[]>([]);
 
     useEffect(() => {
-        getDictByKey('dicts_type').then((res: AxiosResponse<SysDictListResponse>) => {
-            if (res.data != null) {
-                setDictType(res.data.items)
+        getDictByKey('dicts_type').then((res: AxiosResponse<Response<SysDictListResponse>>) => {
+            const {data} = res.data;
+
+            if (data != null) {
+                setDictType(data.items)
             }
         });
     }, [])

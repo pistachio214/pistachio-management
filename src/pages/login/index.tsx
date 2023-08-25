@@ -32,6 +32,7 @@ import {RootState} from "@/redux/store";
 import {Captcha, CodeUuid, LoginParams, LoginResponse} from "@/types/auth";
 import {getCaptcha, login} from "@/api/auth";
 import {AxiosResponse} from "axios";
+import {Response} from "@/types/common";
 
 interface FormState {
     username: string;
@@ -63,10 +64,11 @@ const Login: React.FC = () => {
 
     // 获取验证码图片和uuid
     const getCodeImage = () => {
-        getCaptcha().then((res: AxiosResponse<Captcha>) => {
+        getCaptcha().then((res: AxiosResponse<Response<Captcha>>) => {
+            const {data} = res.data;
             setCodeState({
-                code: res.data.base64Img,
-                uuid: res.data.token,
+                code: data.base64Img,
+                uuid: data.token,
             })
         })
     }
@@ -80,10 +82,12 @@ const Login: React.FC = () => {
                     uuid: codeState?.uuid || ""
                 }
             };
-            login(loginParam).then((res: AxiosResponse<LoginResponse>) => {
-                sessionStorage.setItem('tokenName', res.data.tokenName);
-                sessionStorage.setItem('tokenValue', res.data.tokenValue);
-                sessionStorage.setItem('tokenPrefix', res.data.tokenPrefix);
+            login(loginParam).then((res: AxiosResponse<Response<LoginResponse>>) => {
+                const {data} = res.data;
+
+                sessionStorage.setItem('tokenName', data.tokenName);
+                sessionStorage.setItem('tokenValue', data.tokenValue);
+                sessionStorage.setItem('tokenPrefix', data.tokenPrefix);
 
                 message.success('🎉🎉🎉 登录成功', 1, () => {
                     navigate('/');

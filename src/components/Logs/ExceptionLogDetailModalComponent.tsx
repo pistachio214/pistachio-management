@@ -5,6 +5,7 @@ import ReactJson from "react-json-view";
 
 import {SysExceptionLog, SysExceptionLogoDetailsProps} from "@/types/log";
 import {findExceptionLog} from "@/api/log";
+import {Response} from "@/types/common";
 
 const ExceptionLogDetailModalComponent: React.FC<SysExceptionLogoDetailsProps> = (props: SysExceptionLogoDetailsProps) => {
 
@@ -14,8 +15,9 @@ const ExceptionLogDetailModalComponent: React.FC<SysExceptionLogoDetailsProps> =
         const {id, isVisible} = props;
 
         if (isVisible) {
-            findExceptionLog(id).then((res: AxiosResponse<SysExceptionLog>) => {
-                setSysOperLog(res.data);
+            findExceptionLog(id).then((res: AxiosResponse<Response<SysExceptionLog>>) => {
+                const {data} = res.data;
+                setSysOperLog(data);
             })
         }
     }, [props.isVisible])// eslint-disable-line react-hooks/exhaustive-deps

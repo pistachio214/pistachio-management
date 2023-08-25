@@ -12,6 +12,7 @@ import {delMenu, getMenuList} from "@/api/menu";
 import {MenuContainer} from "@/pages/system/menu/style";
 import AuthWrapper from "@/components/AuthHoc/AuthWrapper";
 import MenuEditModalComponent from "@/components/Menu/MenuEditModalComponent";
+import {Response} from "@/types/common";
 
 const Menu: React.FC = () => {
 
@@ -125,8 +126,10 @@ const Menu: React.FC = () => {
 
     const initUseEffect = () => {
         setIsLoading(true);
-        getMenuList().then((res: AxiosResponse<{ list: SysMenu[] }>) => {
-            setData(generatorMenuTree(res.data.list));
+        getMenuList().then((res: AxiosResponse<Response<{ list: SysMenu[] }>>) => {
+            const {data} = res.data;
+
+            setData(generatorMenuTree(data.list));
             setIsLoading(false);
         })
     }

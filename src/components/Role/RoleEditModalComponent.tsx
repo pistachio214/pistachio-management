@@ -4,6 +4,7 @@ import {AxiosResponse} from "axios";
 import {Modal, Form, Input, Radio} from 'antd';
 import {createRole, editRole, findRoleById} from "@/api/role";
 import {SysRole} from "@/types/role";
+import {Response} from "@/types/common";
 
 interface IProps {
     isVisible: boolean
@@ -38,8 +39,9 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
         const {id, edit, isVisible} = props;
         if (edit && isVisible && id !== 0) {
             //编辑
-            findRoleById(id!).then((res: AxiosResponse<SysRole>) => {
-                form.setFieldsValue(res.data);
+            findRoleById(id!).then((res: AxiosResponse<Response<SysRole>>) => {
+                const {data} = res.data;
+                form.setFieldsValue(data);
             })
         } else {
             if (isVisible) {

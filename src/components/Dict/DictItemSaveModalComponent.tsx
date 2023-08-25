@@ -4,6 +4,7 @@ import {AxiosResponse} from "axios";
 
 import {dictItemEdit, dictItemInfo, dictItemSave} from "@/api/dict";
 import {SysDictItem} from "@/types/dict";
+import {Response} from "@/types/common";
 
 interface IProps {
     id: number
@@ -23,8 +24,9 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
         if (isEdit && isVisible && id !== 0) {
             //编辑
-            dictItemInfo(props.id!).then((res: AxiosResponse<SysDictItem>) => {
-                form.setFieldsValue(res.data);
+            dictItemInfo(props.id!).then((res: AxiosResponse<Response<SysDictItem>>) => {
+                const {data} = res.data;
+                form.setFieldsValue(data);
             })
         } else {
             if (isVisible) {

@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import {Form, Modal, Input, Select} from "antd";
-import {OptionsInterface} from "@/types/common";
+import {OptionsInterface, Response} from "@/types/common";
 import {editDict, findDict, getDictByKey, saveDict} from "@/api/dict";
 import {AxiosResponse} from "axios";
 import {SysDictListResponse, SysDictInfoResponse} from "@/types/dict";
@@ -21,8 +21,9 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
         const {id, isEdit, isVisible} = props;
         if (isEdit && isVisible && id !== 0) {
             //编辑
-            findDict(id!).then((res: AxiosResponse<SysDictInfoResponse>) => {
-                form.setFieldsValue({...res.data, ...{system: res.data.system}});
+            findDict(id!).then((res: AxiosResponse<Response<SysDictInfoResponse>>) => {
+                const {data} = res.data;
+                form.setFieldsValue({...data, ...{system: data.system}});
             })
         } else {
             if (isVisible) {
@@ -30,9 +31,10 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
             }
         }
 
-        getDictByKey('dicts_type').then((res: AxiosResponse<SysDictListResponse>) => {
-            if (res.data != null) {
-                setDictItem(res.data.items);
+        getDictByKey('dicts_type').then((res: AxiosResponse<Response<SysDictListResponse>>) => {
+            const {data} = res.data;
+            if (data != null) {
+                setDictItem(data.items);
             }
 
         })
