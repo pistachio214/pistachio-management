@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router";
 import {
     Button,
@@ -35,8 +35,11 @@ import SiderMenuComponent from "@/components/Layout/SiderMenuComponent";
 import RouterTabsComponent from "@/components/Layout/RouterTabsComponent";
 import KeepAliveComponent from "@/components/Layout/KeepAliveComponent";
 import { RootState } from "@/redux/store";
+import { setContentHeight } from "@/redux/slice/setting";
 
 const LayoutComponent: React.FC = () => {
+
+    const contentRef = useRef<HTMLDivElement>(null);
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
     const tab = useAppSelector((state: RootState) => ({...state.tab}), shallowEqual);
@@ -45,6 +48,14 @@ const LayoutComponent: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
+
+    useEffect(() => {
+        if (contentRef.current) {
+            const height = contentRef.current.offsetHeight;
+            dispatch(setContentHeight(height - 255));
+        }
+        // eslint-disable-next-line
+    }, [])
 
     const menuSelect = (value: CallbackItem) => {
         let payload = {
@@ -92,7 +103,7 @@ const LayoutComponent: React.FC = () => {
 
                     <LayContent>
                         {defaultSettings.isShowTabs ? (<RouterTabsComponent/>) : (<></>)}
-                        <Container>
+                        <Container ref={contentRef}>
                             <KeepAliveComponent tabs={tab.tabs}/>
                         </Container>
                     </LayContent>

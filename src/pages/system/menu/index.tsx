@@ -13,8 +13,14 @@ import { MenuContainer } from "@/pages/system/menu/style";
 import AuthWrapper from "@/components/AuthHoc/AuthWrapper";
 import MenuEditModalComponent from "@/components/Menu/MenuEditModalComponent";
 import { Response } from "@/types/common";
+import { useAppSelector } from "@/redux/hook";
+import { RootState } from "@/redux/store";
+import { shallowEqual } from "react-redux";
+import { SettingState } from "@/redux/types/Setting";
 
 const Menu: React.FC = () => {
+
+    const settingState: SettingState = useAppSelector((state: RootState) => ({...state.setting}), shallowEqual);
 
     const [data, setData] = useState<SysMenu[]>();
     const [isRef, setIsRef] = useState<boolean>(false);
@@ -204,7 +210,7 @@ const Menu: React.FC = () => {
                 rowKey={(record: SysMenu) => record.id}
                 columns={columns}
                 dataSource={data}
-                scroll={{y: 600}}
+                scroll={{y: settingState.contentHeight}}
                 loading={isLoading}
             />
 
