@@ -21,9 +21,10 @@ interface RoutesList {
 }
 
 export interface BaseRoute {
-    path: string;
-    element?: ReactNode;
-    name: string;
-    children?: BaseRoute[];
+    path: string
+    element?: ReactNode
+    name: string
+    children?: BaseRoute[]
     meta: Meta
+    hasPermiss?: string[]
 }
