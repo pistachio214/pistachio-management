@@ -15,7 +15,7 @@ interface IProps {
 
 const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [ form ] = Form.useForm();
+    const [form] = Form.useForm();
 
     const handleOk = () => {
         const {edit} = props;
@@ -48,7 +48,7 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
                 form.resetFields();
             }
         }
-    }, [ props.id, props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.id, props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>

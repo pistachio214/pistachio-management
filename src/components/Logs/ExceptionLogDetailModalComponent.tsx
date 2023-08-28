@@ -9,7 +9,7 @@ import { Response } from "@/types/common";
 
 const ExceptionLogDetailModalComponent: React.FC<SysExceptionLogoDetailsProps> = (props: SysExceptionLogoDetailsProps) => {
 
-    const [ sysOperLog, setSysOperLog ] = useState<SysExceptionLog>();
+    const [sysOperLog, setSysOperLog] = useState<SysExceptionLog>();
 
     useEffect(() => {
         const {id, isVisible} = props;
@@ -20,7 +20,7 @@ const ExceptionLogDetailModalComponent: React.FC<SysExceptionLogoDetailsProps> =
                 setSysOperLog(data);
             })
         }
-    }, [ props.isVisible ])// eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.isVisible])// eslint-disable-line react-hooks/exhaustive-deps
 
     const handleCancel = () => {
         props.closeModel()

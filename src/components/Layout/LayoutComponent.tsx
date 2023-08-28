@@ -44,7 +44,7 @@ const LayoutComponent: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const [ collapsed, setCollapsed ] = useState<boolean>(false);
+    const [collapsed, setCollapsed] = useState<boolean>(false);
 
     const menuSelect = (value: CallbackItem) => {
         let payload = {

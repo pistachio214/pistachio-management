@@ -14,9 +14,9 @@ interface IProps {
 }
 
 const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
-    const [ form ] = Form.useForm();
-    const [ keys, setKeys ] = useState<string[]>([]);
-    const [ selectOption, setSelectOption ] = useState<OptionsInterface[]>([]);
+    const [form] = Form.useForm();
+    const [keys, setKeys] = useState<string[]>([]);
+    const [selectOption, setSelectOption] = useState<OptionsInterface[]>([]);
 
     useEffect(() => {
         initChildren();
@@ -24,7 +24,7 @@ const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
 
     useEffect(() => {
         initAssignRoles()
-    }, [ props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const initAssignRoles = () => {
         const {assignRoles, isVisible} = props;

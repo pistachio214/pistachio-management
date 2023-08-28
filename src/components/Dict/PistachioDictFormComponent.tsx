@@ -17,8 +17,8 @@ interface IProps {
 
 const PistachioDictFormComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [ options, setOptions ] = useState<OptionsInterface[]>([]);
-    const [ label, setLabel ] = useState<string>('');
+    const [options, setOptions] = useState<OptionsInterface[]>([]);
+    const [label, setLabel] = useState<string>('');
 
     useEffect(() => {
         getDictByKey(props.type).then((res: AxiosResponse<Response<SysDictListResponse>>) => {
@@ -30,7 +30,7 @@ const PistachioDictFormComponent: React.FC<IProps> = (props: IProps) => {
                 setOptions(option)
             }
         })
-    }, [ props.type ]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.type]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>

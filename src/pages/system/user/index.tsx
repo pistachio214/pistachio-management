@@ -23,14 +23,14 @@ import UserCreateModalComponent from "@/components/User/UserCreateModalComponent
 
 const User: React.FC = () => {
 
-    const [ form ] = Form.useForm();
+    const [form] = Form.useForm();
 
-    const [ params, setParams ] = useState<UserQuestionType>();
-    const [ isAssignRolesVisible, setIsAssignRolesVisible ] = useState<boolean>(false);
-    const [ isCreateUserVisible, setIsCreateUserVisible ] = useState<boolean>(false);
-    const [ assignRoles, setAssignRoles ] = useState<AssignRoles>();
+    const [params, setParams] = useState<UserQuestionType>();
+    const [isAssignRolesVisible, setIsAssignRolesVisible] = useState<boolean>(false);
+    const [isCreateUserVisible, setIsCreateUserVisible] = useState<boolean>(false);
+    const [assignRoles, setAssignRoles] = useState<AssignRoles>();
 
-    const [ isRefresh, setIsRefresh ] = useState<boolean>(false);
+    const [isRefresh, setIsRefresh] = useState<boolean>(false);
 
     const columns: ColumnsType<SysUser> = [
         {
@@ -120,7 +120,7 @@ const User: React.FC = () => {
                     {
                         title: '分配角色',
                         icon: <PartitionOutlined/>,
-                        permission: [ 'sys:user:role' ],
+                        permission: ['sys:user:role'],
                         onClick: () => {
                             showAssignRolesModal(record.id, record.sysRoles);
                         }
@@ -128,7 +128,7 @@ const User: React.FC = () => {
                     {
                         title: '重置密码',
                         icon: <RedoOutlined/>,
-                        permission: [ 'sys:user:repass' ],
+                        permission: ['sys:user:repass'],
                         onClick: () => {
                             handleResetPassword(record.id);
                         }
@@ -140,7 +140,7 @@ const User: React.FC = () => {
                         title: '删除',
                         danger: true,
                         icon: <DeleteOutlined/>,
-                        permission: [ 'sys:user:delete' ],
+                        permission: ['sys:user:delete'],
                         message: `是否删除该用户 [ ${record.username} ] ?`,
                         onClick: () => {
                             handleDeleteUser(record.id);
@@ -187,7 +187,7 @@ const User: React.FC = () => {
         })
     }
 
-    const handleSearch = (values: { username: string }) => {
+    const handleSearch = (values: {username: string}) => {
         setParams(values);
     }
 
@@ -215,11 +215,11 @@ const User: React.FC = () => {
                 isVisible={isRefresh}
                 params={params}
                 plus={{
-                    hasPremiss: [ 'sys:user:save' ],
+                    hasPremiss: ['sys:user:save'],
                     click: () => showCreateUserModal()
                 }}
                 reload={{
-                    hasPremiss: [ 'sys:user:list' ]
+                    hasPremiss: ['sys:user:list']
                 }}
                 quickJump={(page: number) => {
                     setParams({...params, ...{current: page}})

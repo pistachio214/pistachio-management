@@ -21,7 +21,7 @@ export const TitleLogo = styled.img`
 export const SiderTitle = styled.div<ThemeState>`
   height: ${HeaderHeight};
   width: 100%;
-  background-color: ${(props: { config: ThemeState["config"] }) =>
+  background-color: ${(props: {config: ThemeState["config"]}) =>
     props.config.token.colorPrimary};
   display: flex;
   align-items: center;

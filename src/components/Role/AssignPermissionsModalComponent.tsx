@@ -18,9 +18,9 @@ interface IProps {
 
 const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [ form ] = Form.useForm();
-    const [ nodes, setNodes ] = useState<MenuTreeNodesType[] | undefined>();
-    const [ checkedKeys, setCheckedKeys ] = useState<number[]>([]);
+    const [form] = Form.useForm();
+    const [nodes, setNodes] = useState<MenuTreeNodesType[] | undefined>();
+    const [checkedKeys, setCheckedKeys] = useState<number[]>([]);
 
     useEffect(() => {
         const initSelected = () => {
@@ -39,7 +39,7 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
             }
         }
         initSelected();
-    }, [ props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         initMenuList();
@@ -47,7 +47,8 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
 
     const initMenuList = async () => {
         await getMenuList().then(res => {
-            let menuList: SysMenu[] = res.data.list;
+            const {data} = res.data;
+            let menuList: SysMenu[] = data.list;
             let treeData: MenuTreeNodesType[] = generatorMenuTreeData(menuList);
             setNodes(treeData);
         })
@@ -83,9 +84,9 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
         props.closeModal();
     }
 
-    const onCheck = (checkedKeys: Key[] | { checked: Key[]; halfChecked: Key[]; }, info: any) => {
+    const onCheck = (checkedKeys: Key[] | {checked: Key[]; halfChecked: Key[];}, info: any) => {
         let keys: number[] = [];
-        info.checkedNodes.forEach((item: { key: string, title: string }) => {
+        info.checkedNodes.forEach((item: {key: string, title: string}) => {
             keys.push(Number(item.key));
         })
         setCheckedKeys(keys);

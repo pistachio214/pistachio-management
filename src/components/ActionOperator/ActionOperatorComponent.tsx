@@ -101,7 +101,7 @@ const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps
                     }
                     {
                         <Dropdown key={`dropdown-happy-operator-${UuidUtil.getUuiD(8)}`}
-                                  overlay={genreateMenuMore(itemOperator)} trigger={[ 'click' ]}>
+                                  overlay={genreateMenuMore(itemOperator)} trigger={['click']}>
                             <Button type='link' size='small' className="ant-dropdown-link"
                                     onClick={e => e.preventDefault()}>
                                 更多 <DownOutlined/>

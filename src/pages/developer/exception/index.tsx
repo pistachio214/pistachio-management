@@ -15,12 +15,12 @@ const {RangePicker} = DatePicker;
 
 const Exception: React.FC = () => {
 
-    const [ form ] = Form.useForm();
+    const [form] = Form.useForm();
 
-    const [ params, setParams ] = useState<OperLogQuestionType>();
+    const [params, setParams] = useState<OperLogQuestionType>();
 
-    const [ id, setId ] = useState<number>(0);
-    const [ showVisible, setShowVisible ] = useState<boolean>(false);
+    const [id, setId] = useState<number>(0);
+    const [showVisible, setShowVisible] = useState<boolean>(false);
 
     const tableWidthHiddenStyle: React.HTMLAttributes<SysExceptionLog> | React.TdHTMLAttributes<SysExceptionLog> = {
         style: {
@@ -90,7 +90,7 @@ const Exception: React.FC = () => {
                 const item: IOperator[] = [
                     {
                         title: '详情',
-                        permission: [ 'sys:exception:log:info' ],
+                        permission: ['sys:exception:log:info'],
                         onClick: () => {
                             showEditDictModal(record.id!);
                         }
@@ -109,7 +109,7 @@ const Exception: React.FC = () => {
         setShowVisible(true);
     }
 
-    const handleSearch = (values: { operUserName: string, time: moment.Moment[] }) => {
+    const handleSearch = (values: {operUserName: string, time: moment.Moment[]}) => {
         const {operUserName, time} = values
 
         let par = {
@@ -158,7 +158,7 @@ const Exception: React.FC = () => {
                 url={getExceptionLoginList()}
                 params={params}
                 reload={{
-                    hasPremiss: [ 'sys:exception:log:list' ]
+                    hasPremiss: ['sys:exception:log:list']
                 }}
                 plus={{
                     hide: true

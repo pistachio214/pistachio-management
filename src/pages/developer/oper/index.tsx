@@ -14,12 +14,12 @@ const {RangePicker} = DatePicker;
 
 const Oper: React.FC = () => {
 
-    const [ form ] = Form.useForm();
+    const [form] = Form.useForm();
 
-    const [ params, setParams ] = useState<OperLogQuestionType>();
+    const [params, setParams] = useState<OperLogQuestionType>();
 
-    const [ id, setId ] = useState<number>(0);
-    const [ showVisible, setShowVisible ] = useState<boolean>(false);
+    const [id, setId] = useState<number>(0);
+    const [showVisible, setShowVisible] = useState<boolean>(false);
 
     const tableWidthHiddenStyle: React.HTMLAttributes<SysOperLog> | React.TdHTMLAttributes<SysOperLog> = {
         style: {
@@ -109,7 +109,7 @@ const Oper: React.FC = () => {
                 const item: IOperator[] = [
                     {
                         title: '详情',
-                        permission: [ 'sys:oper:log:info' ],
+                        permission: ['sys:oper:log:info'],
                         onClick: () => {
                             showEditDictModal(record.id!);
                         }
@@ -128,7 +128,7 @@ const Oper: React.FC = () => {
         setShowVisible(true);
     }
 
-    const handleSearch = (values: { operUserName: string, time: moment.Moment[] }) => {
+    const handleSearch = (values: {operUserName: string, time: moment.Moment[]}) => {
         const {operUserName, time} = values
 
         let par = {
@@ -177,7 +177,7 @@ const Oper: React.FC = () => {
                 url={getOperLogList()}
                 params={params}
                 reload={{
-                    hasPremiss: [ 'sys:oper:log:list' ]
+                    hasPremiss: ['sys:oper:log:list']
                 }}
                 plus={{
                     hide: true

@@ -16,12 +16,12 @@ import { Response } from "@/types/common";
 
 const Menu: React.FC = () => {
 
-    const [ data, setData ] = useState<SysMenu[]>();
-    const [ isRef, setIsRef ] = useState<boolean>(false);
-    const [ isLoading, setIsLoading ] = useState<boolean>(false);
-    const [ isEditModalVisible, setIsEditModalVisible ] = useState<boolean>(false);
-    const [ editMenu, setEditMenu ] = useState<SysMenu>();
-    const [ isEdit, setIsEdit ] = useState<boolean>(false);
+    const [data, setData] = useState<SysMenu[]>();
+    const [isRef, setIsRef] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
+    const [editMenu, setEditMenu] = useState<SysMenu>();
+    const [isEdit, setIsEdit] = useState<boolean>(false);
 
     const columns: ColumnsType<SysMenu> = [
         {
@@ -99,7 +99,7 @@ const Menu: React.FC = () => {
                     {
                         title: '编辑',
                         icon: <EditOutlined/>,
-                        permission: [ 'sys:menu:update' ],
+                        permission: ['sys:menu:update'],
                         onClick: () => {
                             showEditModal(record);
                         }
@@ -109,7 +109,7 @@ const Menu: React.FC = () => {
                         danger: true,
                         message: `是否删除 [ ${record.name} ] ?`,
                         icon: <DeleteOutlined/>,
-                        permission: [ 'sys:menu:delete' ],
+                        permission: ['sys:menu:delete'],
                         onClick: () => {
                             handleDeleteMenu(record.id);
                         }
@@ -122,11 +122,11 @@ const Menu: React.FC = () => {
 
     useEffect(() => {
         initUseEffect();
-    }, [ isRef ]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [isRef]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const initUseEffect = () => {
         setIsLoading(true);
-        getMenuList().then((res: AxiosResponse<Response<{ list: SysMenu[] }>>) => {
+        getMenuList().then((res: AxiosResponse<Response<{list: SysMenu[]}>>) => {
             const {data} = res.data;
 
             setData(generatorMenuTree(data.list));
@@ -178,7 +178,7 @@ const Menu: React.FC = () => {
         <MenuContainer>
             <div className="action-container">
                 <div className="common-btn-container">
-                    <AuthWrapper hasPermiss={[ 'sys:menu:list' ]}>
+                    <AuthWrapper hasPermiss={['sys:menu:list']}>
                         <Button
                             type="primary"
                             icon={<ReloadOutlined/>}
@@ -188,7 +188,7 @@ const Menu: React.FC = () => {
                         </Button>
                     </AuthWrapper>
 
-                    <AuthWrapper hasPermiss={[ 'sys:menu:save' ]}>
+                    <AuthWrapper hasPermiss={['sys:menu:save']}>
                         <Button
                             icon={<PlusOutlined/>}
                             onClick={() => showEditModalAdd()}

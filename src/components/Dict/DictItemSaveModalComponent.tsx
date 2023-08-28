@@ -17,7 +17,7 @@ interface IProps {
 
 const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [ form ] = Form.useForm();
+    const [form] = Form.useForm();
 
     useEffect(() => {
         const {id, isEdit, isVisible} = props;
@@ -36,7 +36,7 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
         }
 
-    }, [ props.dictId, props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.dictId, props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleCancel = () => {
         props.closeModal()

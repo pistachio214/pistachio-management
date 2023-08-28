@@ -33,7 +33,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setNavAndAuthoritys: (state: UserState, action: PayloadAction<{ authoritys: [], nav: MenuNavItem[] }>) => {
+        setNavAndAuthoritys: (state: UserState, action: PayloadAction<{authoritys: [], nav: MenuNavItem[]}>) => {
             state.authoritys = action.payload.authoritys
             state.nav = action.payload.nav
         },

@@ -14,8 +14,8 @@ interface IProps {
 
 const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [ form ] = Form.useForm();
-    const [ dictItem, setDictItem ] = useState<OptionsInterface[]>([])
+    const [form] = Form.useForm();
+    const [dictItem, setDictItem] = useState<OptionsInterface[]>([])
 
     useEffect(() => {
         const {id, isEdit, isVisible} = props;
@@ -39,7 +39,7 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
         })
 
-    }, [ props.id, props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.id, props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleOk = () => {
         let request;

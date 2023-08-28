@@ -60,7 +60,7 @@ const DraggableTabNode = ({
                 `
             );
         }
-    }, [ className, isSorting, onActiveBarTransform, transform, transition ]);
+    }, [className, isSorting, onActiveBarTransform, transform, transition]);
 
     return React.cloneElement(props.children as React.ReactElement, {
         ref: setNodeRef,
@@ -77,11 +77,11 @@ const RouterTabsComponent = () => {
     const dispatch = useAppDispatch();
     const tabs = useAppSelector((state: RootState) => state.tab.tabs);
     const activeKey = useAppSelector((state: RootState) => state.tab.activeKey);
-    const [ items, setItems ] = useState<{
+    const [items, setItems] = useState<{
         key: string;
         label: string;
     }[]>([]);
-    const [ className, setClassName ] = useState("");
+    const [className, setClassName] = useState("");
     const sensor = useSensor(PointerSensor, {
         activationConstraint: {distance: 10},
     });
@@ -89,7 +89,7 @@ const RouterTabsComponent = () => {
     useEffect(() => {
         setItems(tabs);
         tabs.length === 1 ? setTabsType("card") : setTabsType("editable-card");
-    }, [ tabs ]);
+    }, [tabs]);
 
     const tabChange = (key: string) => {
         dispatch(setActiveKey(key));
@@ -98,7 +98,7 @@ const RouterTabsComponent = () => {
     useEffect(() => {
         navigate(activeKey);
         // eslint-disable-next-line
-    }, [ activeKey ]);
+    }, [activeKey]);
 
     //拖拽结束
     const onDragEnd = ({active, over}: DragEndEvent) => {
@@ -128,7 +128,7 @@ const RouterTabsComponent = () => {
     };
 
     //控制按钮关闭状态
-    const [ tabsType, setTabsType ] = useState<"editable-card" | "card">("card");
+    const [tabsType, setTabsType] = useState<"editable-card" | "card">("card");
 
     //tab右侧的按钮
     const renderExtraContent = () => {
@@ -149,7 +149,7 @@ const RouterTabsComponent = () => {
     };
 
     const clearAll = () => {
-        dispatch(setTabs([ {key: "/home", label: "工作台"} ]));
+        dispatch(setTabs([{key: "/home", label: "工作台"}]));
         dispatch(setActiveKey("/home"));
 
         navigate("/home");
@@ -167,7 +167,7 @@ const RouterTabsComponent = () => {
             tabBarGutter={3}
             tabBarExtraContent={renderExtraContent()}
             renderTabBar={(tabBarProps, DefaultTabBar) => (
-                <DndContext sensors={[ sensor ]} onDragEnd={onDragEnd}>
+                <DndContext sensors={[sensor]} onDragEnd={onDragEnd}>
                     <SortableContext
                         items={items.map((i) => i.key)}
                         strategy={horizontalListSortingStrategy}

@@ -26,14 +26,14 @@ const KeepAliveComponent: React.FC<IProps> = (props: IProps) => {
     const dispatch = useAppDispatch();
     const forceUpdate = useUpdate();
 
-    const [ endloading, setEndLoading ] = useState(false);
+    const [endloading, setEndLoading] = useState(false);
     useEffect(() => {
         if (!componentList.current.has(pathname)) {
             componentList.current.set(pathname, outLet);
         }
         forceUpdate();
         // eslint-disable-next-line
-    }, [ pathname, endloading, activeKey ]);
+    }, [pathname, endloading, activeKey]);
     useEffect(() => {
         componentList.current.forEach((_value, key) => {
             if (!props.tabs.some((tab) => tab.key === key)) {
@@ -43,7 +43,7 @@ const KeepAliveComponent: React.FC<IProps> = (props: IProps) => {
 
         forceUpdate();
         // eslint-disable-next-line
-    }, [ props.tabs ]);
+    }, [props.tabs]);
     useEffect(() => {
         if (loading) {
             componentList.current.delete(pathname);
@@ -51,10 +51,10 @@ const KeepAliveComponent: React.FC<IProps> = (props: IProps) => {
             dispatch(reload(false));
         }
         // eslint-disable-next-line
-    }, [ loading ]);
+    }, [loading]);
     return (
         <div>
-            {Array.from(componentList.current).map(([ key, component ]) => (
+            {Array.from(componentList.current).map(([key, component]) => (
                 <div key={key} style={{display: pathname === key ? "block" : "none"}}>
                     <Suspense
                         fallback={

@@ -47,18 +47,18 @@ const Login: React.FC = () => {
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
 
-    const [ codeState, setCodeState ] = useState<CodeUuid>();
+    const [codeState, setCodeState] = useState<CodeUuid>();
 
     useEffect(() => {
         console.log(themeState);
-    }, [ themeState ]);
+    }, [themeState]);
 
     useEffect(() => {
         getCodeImage();
     }, [])
 
     //表单数据
-    const [ form ] = Form.useForm<FormState>();
+    const [form] = Form.useForm<FormState>();
 
     const rememberChecked = !localStorage.getItem("rememberme");
 
@@ -116,7 +116,7 @@ const Login: React.FC = () => {
                 >
                     <Form.Item
                         name="username"
-                        rules={[ {required: true, message: "请输入账号"} ]}
+                        rules={[{required: true, message: "请输入账号"}]}
                     >
                         <Input
                             prefix={<UserOutlined className="site-form-item-icon"/>}
@@ -127,7 +127,7 @@ const Login: React.FC = () => {
 
                     <Form.Item
                         name="password"
-                        rules={[ {required: true, message: "请输入密码"} ]}
+                        rules={[{required: true, message: "请输入密码"}]}
                     >
                         <Input.Password
                             prefix={<LockOutlined className="site-form-item-icon"/>}
@@ -140,7 +140,7 @@ const Login: React.FC = () => {
 
                     <Form.Item
                         name="code"
-                        rules={[ {required: true, message: "请输入验证码"} ]}
+                        rules={[{required: true, message: "请输入验证码"}]}
                     >
                         <CodeItemContainer>
                             <Input

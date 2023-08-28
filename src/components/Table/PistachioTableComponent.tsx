@@ -6,18 +6,16 @@ import { PisTableContainer } from "@/components/Table/style";
 import AuthWrapper from "@/components/AuthHoc/AuthWrapper";
 import { ITableProps, IPagination } from "@/types/table";
 import request from "@/axios/request";
-import { AxiosResponse } from "axios";
-import { Response } from "@/types/common";
 
 const PistachioTableComponent: React.FC<ITableProps> = (props: ITableProps) => {
 
-    const [ loadingStatus, setLoadingStatus ] = useState<boolean>(false);
-    const [ data, setData ] = useState<any[]>([]);
-    const [ pagination, setPagination ] = useState<IPagination>();
+    const [loadingStatus, setLoadingStatus] = useState<boolean>(false);
+    const [data, setData] = useState<any[]>([]);
+    const [pagination, setPagination] = useState<IPagination>();
 
     useEffect(() => {
         initList();
-    }, [ props.url, props.params, props.isVisible ]); // eslint-disable-line react-hooks/exhaustive-deps
+    }, [props.url, props.params, props.isVisible]); // eslint-disable-line react-hooks/exhaustive-deps
 
 
     const initList = async () => {

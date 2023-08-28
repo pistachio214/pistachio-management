@@ -37,7 +37,7 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
     const {pathname} = useLocation();
     const dispatch = useAppDispatch();
 
-    const [ openKeys, setOpenKeys ] = useState<string[]>([]);
+    const [openKeys, setOpenKeys] = useState<string[]>([]);
 
     //处理生成菜单数据
     const items = useMemo(() => {
@@ -54,8 +54,8 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
             });
         }
 
-        key === "" ? setOpenKeys([]) : setOpenKeys([ key ]);
-    }, [ tab.activeKey, items ]);
+        key === "" ? setOpenKeys([]) : setOpenKeys([key]);
+    }, [tab.activeKey, items]);
 
     //根据pathname初始化tabs
     useEffect(() => {
@@ -84,9 +84,9 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
             }
         }
         // eslint-disable-next-line
-    }, [ pathname ]);
+    }, [pathname]);
 
-    const onClick = ({key, item,}: { key: string; item: any; }) => {
+    const onClick = ({key, item,}: {key: string; item: any;}) => {
         let payload = {
             key,
             label: item.props.title,
@@ -103,7 +103,7 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
                 mode={'inline'}
                 openKeys={openKeys}
                 onOpenChange={(keys) => setOpenKeys(keys)}
-                selectedKeys={[ tab.activeKey ]}
+                selectedKeys={[tab.activeKey]}
                 items={items}
                 config={themeState.config}
                 deepcolor={themeState.deepcolor}
