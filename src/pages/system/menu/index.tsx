@@ -53,15 +53,41 @@ const Menu: React.FC = () => {
             render: (type: number) => {
                 switch (type) {
                     case 0:
-                        return <Button type="primary" ghost={true} size="small">目录</Button>
+                        return (
+                            <Button
+                                type="primary"
+                                ghost={true}
+                                size="small"
+                            >
+                                目录
+                            </Button>
+                        )
                     case 1:
-                        return <Button type="default" ghost={true} className="menu-type-button-success"
-                                       size="small">菜单</Button>
+                        return (
+                            <Button
+                                type="default"
+                                ghost={true}
+                                className="menu-type-button-success"
+                                size="small"
+                            >
+                                菜单
+                            </Button>
+                        )
                     case 2:
-                        return <Button type="default" ghost={true} className="menu-type-button-info"
-                                       size="small">按钮</Button>
+                        return (
+                            <Button
+                                type="default"
+                                ghost={true}
+                                className="menu-type-button-info"
+                                size="small"
+                            >
+                                按钮
+                            </Button>
+                        )
                     default:
-                        return <Button type="default" ghost={true} danger={true} size="small">未知</Button>
+                        return (
+                            <Button type="default" ghost={true} danger={true} size="small">未知</Button>
+                        )
                 }
             }
         },
