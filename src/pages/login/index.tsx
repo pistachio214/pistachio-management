@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from "react";
-import {useNavigate} from "react-router";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 
-import {Checkbox, Form, Input, Image} from "antd";
+import { Checkbox, Form, Input, Image } from "antd";
 import {
     EyeInvisibleOutlined,
     EyeTwoTone,
@@ -9,7 +9,7 @@ import {
     UserOutlined,
     SafetyCertificateOutlined,
 } from "@ant-design/icons";
-import {message} from "@/components/Antd/EscapeAntd";
+import { message } from "@/components/Antd/EscapeAntd";
 
 import {
     LoginContainer,
@@ -21,18 +21,18 @@ import {
     LoginButton,
     CodeItemContainer,
 } from "@/pages/login/style";
-import {useAppSelector} from "@/redux/hook";
-import {shallowEqual} from "react-redux";
-import {ThemeState} from "@/redux/types/Theme";
+import { useAppSelector } from "@/redux/hook";
+import { shallowEqual } from "react-redux";
+import { ThemeState } from "@/redux/types/Theme";
 
 import login_img from "@/assets/login_img.png";
 import react_icon from "@/assets/react.svg";
 import defaultSettings from "@/defaultSettings";
-import {RootState} from "@/redux/store";
-import {Captcha, CodeUuid, LoginParams, LoginResponse} from "@/types/auth";
-import {getCaptcha, login} from "@/api/auth";
-import {AxiosResponse} from "axios";
-import {Response} from "@/types/common";
+import { RootState } from "@/redux/store";
+import { Captcha, CodeUuid, LoginParams, LoginResponse } from "@/types/auth";
+import { getCaptcha, login } from "@/api/auth";
+import { AxiosResponse } from "axios";
+import { Response } from "@/types/common";
 
 interface FormState {
     username: string;
@@ -47,18 +47,18 @@ const Login: React.FC = () => {
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
 
-    const [codeState, setCodeState] = useState<CodeUuid>();
+    const [ codeState, setCodeState ] = useState<CodeUuid>();
 
     useEffect(() => {
         console.log(themeState);
-    }, [themeState]);
+    }, [ themeState ]);
 
     useEffect(() => {
         getCodeImage();
     }, [])
 
     //表单数据
-    const [form] = Form.useForm<FormState>();
+    const [ form ] = Form.useForm<FormState>();
 
     const rememberChecked = !localStorage.getItem("rememberme");
 
@@ -116,7 +116,7 @@ const Login: React.FC = () => {
                 >
                     <Form.Item
                         name="username"
-                        rules={[{required: true, message: "请输入账号"}]}
+                        rules={[ {required: true, message: "请输入账号"} ]}
                     >
                         <Input
                             prefix={<UserOutlined className="site-form-item-icon"/>}
@@ -127,7 +127,7 @@ const Login: React.FC = () => {
 
                     <Form.Item
                         name="password"
-                        rules={[{required: true, message: "请输入密码"}]}
+                        rules={[ {required: true, message: "请输入密码"} ]}
                     >
                         <Input.Password
                             prefix={<LockOutlined className="site-form-item-icon"/>}
@@ -140,7 +140,7 @@ const Login: React.FC = () => {
 
                     <Form.Item
                         name="code"
-                        rules={[{required: true, message: "请输入验证码"}]}
+                        rules={[ {required: true, message: "请输入验证码"} ]}
                     >
                         <CodeItemContainer>
                             <Input

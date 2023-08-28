@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Form, Modal, Input, Select} from "antd";
-import {OptionsInterface, Response} from "@/types/common";
-import {editDict, findDict, getDictByKey, saveDict} from "@/api/dict";
-import {AxiosResponse} from "axios";
-import {SysDictListResponse, SysDictInfoResponse} from "@/types/dict";
+import React, { useEffect, useState } from "react";
+import { Form, Modal, Input, Select } from "antd";
+import { OptionsInterface, Response } from "@/types/common";
+import { editDict, findDict, getDictByKey, saveDict } from "@/api/dict";
+import { AxiosResponse } from "axios";
+import { SysDictListResponse, SysDictInfoResponse } from "@/types/dict";
 
 interface IProps {
     id: number
@@ -14,8 +14,8 @@ interface IProps {
 
 const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [form] = Form.useForm();
-    const [dictItem, setDictItem] = useState<OptionsInterface[]>([])
+    const [ form ] = Form.useForm();
+    const [ dictItem, setDictItem ] = useState<OptionsInterface[]>([])
 
     useEffect(() => {
         const {id, isEdit, isVisible} = props;
@@ -39,7 +39,7 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
         })
 
-    }, [props.id, props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.id, props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleOk = () => {
         let request;

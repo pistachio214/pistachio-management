@@ -1,13 +1,13 @@
-import React, {useEffect, useState} from "react";
-import {Form, Input, Button} from "antd";
-import {DeleteOutlined} from "@ant-design/icons";
-import {ColumnsType} from "antd/lib/table";
-import {AxiosResponse} from "axios";
+import React, { useEffect, useState } from "react";
+import { Form, Input, Button } from "antd";
+import { DeleteOutlined } from "@ant-design/icons";
+import { ColumnsType } from "antd/lib/table";
+import { AxiosResponse } from "axios";
 
-import {DictQuestionType, SysDict, SysDictListResponse} from "@/types/dict";
-import {OptionsInterface, Response} from "@/types/common";
-import {IOperator} from "@/types/operator";
-import {delDict, getDictByKey, getDictList} from "@/api/dict";
+import { DictQuestionType, SysDict, SysDictListResponse } from "@/types/dict";
+import { OptionsInterface, Response } from "@/types/common";
+import { IOperator } from "@/types/operator";
+import { delDict, getDictByKey, getDictList } from "@/api/dict";
 import DictUtil from "@/utils/DictUtil";
 
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
@@ -18,20 +18,20 @@ import DictItemModalComponent from "@/components/Dict/DictItemModalComponent";
 
 const Dict: React.FC = () => {
 
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
 
-    const [params, setParams] = useState<DictQuestionType>();
+    const [ params, setParams ] = useState<DictQuestionType>();
 
-    const [isSaveVisible, setIsSaveVisible] = useState<boolean>(false);
-    const [id, setId] = useState<number>(0);
-    const [edit, setEdit] = useState<boolean>(false);
+    const [ isSaveVisible, setIsSaveVisible ] = useState<boolean>(false);
+    const [ id, setId ] = useState<number>(0);
+    const [ edit, setEdit ] = useState<boolean>(false);
 
-    const [isDictItemVisible, setIsDictItemVisible] = useState<boolean>(false);
-    const [dictName, setDictName] = useState<string>();
-    const [type, setType] = useState<string>('');
+    const [ isDictItemVisible, setIsDictItemVisible ] = useState<boolean>(false);
+    const [ dictName, setDictName ] = useState<string>();
+    const [ type, setType ] = useState<string>('');
 
-    const [isRefresh, setIsRefresh] = useState<boolean>(false);
-    const [dictType, setDictType] = useState<OptionsInterface[]>([]);
+    const [ isRefresh, setIsRefresh ] = useState<boolean>(false);
+    const [ dictType, setDictType ] = useState<OptionsInterface[]>([]);
 
     useEffect(() => {
         getDictByKey('dicts_type').then((res: AxiosResponse<Response<SysDictListResponse>>) => {
@@ -84,14 +84,14 @@ const Dict: React.FC = () => {
                 const item: IOperator[] = [
                     {
                         title: '字典项',
-                        permission: ['sys:dict:item:list'],
+                        permission: [ 'sys:dict:item:list' ],
                         onClick: () => {
                             showDictItemModal(record.id!, `${record.description} ( ${record.type} ) `, record.type)
                         }
                     },
                     {
                         title: '编辑',
-                        permission: ['sys:dict:edit'],
+                        permission: [ 'sys:dict:edit' ],
                         onClick: () => {
                             showEditDictModal(record.id!);
                         }
@@ -103,7 +103,7 @@ const Dict: React.FC = () => {
                         title: '删除',
                         danger: true,
                         icon: <DeleteOutlined/>,
-                        permission: ['sys:dict:delete'],
+                        permission: [ 'sys:dict:delete' ],
                         message: `是否删除该字典 [ ${record.description} ] ?`,
                         onClick: () => {
                             handleDelete(record.id!);
@@ -186,11 +186,11 @@ const Dict: React.FC = () => {
                 isVisible={isRefresh}
                 params={params}
                 reload={{
-                    hasPremiss: ['sys:dict:list']
+                    hasPremiss: [ 'sys:dict:list' ]
                 }}
                 plus={{
                     click: () => showSaveDictModal(),
-                    hasPremiss: ['sys:dict:save']
+                    hasPremiss: [ 'sys:dict:save' ]
                 }}
                 quickJump={(page: number) => {
                     setParams({...params, ...{current: page}})

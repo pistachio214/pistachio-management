@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from "react";
-import {Form, Modal, Select} from "antd";
+import React, { useEffect, useState } from "react";
+import { Form, Modal, Select } from "antd";
 
-import {AssignRoles} from "@/types/user";
-import {OptionsInterface} from "@/types/common";
-import {SysRole} from "@/types/role";
-import {getRoleAll} from "@/api/role";
-import {permRole} from "@/api/user";
+import { AssignRoles } from "@/types/user";
+import { OptionsInterface } from "@/types/common";
+import { SysRole } from "@/types/role";
+import { getRoleAll } from "@/api/role";
+import { permRole } from "@/api/user";
 
 interface IProps {
     isVisible: boolean
@@ -14,9 +14,9 @@ interface IProps {
 }
 
 const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
-    const [form] = Form.useForm();
-    const [keys, setKeys] = useState<string[]>([]);
-    const [selectOption, setSelectOption] = useState<OptionsInterface[]>([]);
+    const [ form ] = Form.useForm();
+    const [ keys, setKeys ] = useState<string[]>([]);
+    const [ selectOption, setSelectOption ] = useState<OptionsInterface[]>([]);
 
     useEffect(() => {
         initChildren();
@@ -24,7 +24,7 @@ const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
 
     useEffect(() => {
         initAssignRoles()
-    }, [props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const initAssignRoles = () => {
         const {assignRoles, isVisible} = props;
@@ -105,7 +105,7 @@ const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
 
 AssignRolesModalComponent.defaultProps = {
     isVisible: false,
-    assignRoles: { id: 0, sysRoles: [] }
+    assignRoles: {id: 0, sysRoles: []}
 }
 
 export default AssignRolesModalComponent;

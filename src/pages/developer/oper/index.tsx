@@ -1,25 +1,25 @@
-import React, {useState} from "react";
-import {Form, Input, Button, Tooltip, DatePicker} from 'antd';
-import {ColumnsType} from "antd/lib/table";
+import React, { useState } from "react";
+import { Form, Input, Button, Tooltip, DatePicker } from 'antd';
+import { ColumnsType } from "antd/lib/table";
 import * as moment from "moment";
 
-import {OperLogQuestionType, SysOperLog} from "@/types/log";
-import {IOperator} from "@/types/operator";
+import { OperLogQuestionType, SysOperLog } from "@/types/log";
+import { IOperator } from "@/types/operator";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
-import {getOperLogList} from "@/api/log";
+import { getOperLogList } from "@/api/log";
 import OperLogDetailModalComponent from "@/components/Logs/OperLogDetailModalComponent";
 
 const {RangePicker} = DatePicker;
 
 const Oper: React.FC = () => {
 
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
 
-    const [params, setParams] = useState<OperLogQuestionType>();
+    const [ params, setParams ] = useState<OperLogQuestionType>();
 
-    const [id, setId] = useState<number>(0);
-    const [showVisible, setShowVisible] = useState<boolean>(false);
+    const [ id, setId ] = useState<number>(0);
+    const [ showVisible, setShowVisible ] = useState<boolean>(false);
 
     const tableWidthHiddenStyle: React.HTMLAttributes<SysOperLog> | React.TdHTMLAttributes<SysOperLog> = {
         style: {
@@ -109,7 +109,7 @@ const Oper: React.FC = () => {
                 const item: IOperator[] = [
                     {
                         title: '详情',
-                        permission: ['sys:oper:log:info'],
+                        permission: [ 'sys:oper:log:info' ],
                         onClick: () => {
                             showEditDictModal(record.id!);
                         }
@@ -177,7 +177,7 @@ const Oper: React.FC = () => {
                 url={getOperLogList()}
                 params={params}
                 reload={{
-                    hasPremiss: ['sys:oper:log:list']
+                    hasPremiss: [ 'sys:oper:log:list' ]
                 }}
                 plus={{
                     hide: true

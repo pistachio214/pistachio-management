@@ -1,4 +1,4 @@
-import {TokenState} from "@/redux/types/Theme";
+import { TokenState } from "@/redux/types/Theme";
 
 class defaultSettings {
     /**

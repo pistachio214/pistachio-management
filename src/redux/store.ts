@@ -1,7 +1,7 @@
-import {Reducer} from "react";
-import {configureStore} from "@reduxjs/toolkit";
+import { Reducer } from "react";
+import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger"
-import {ReducersMapObject, combineReducers, CombinedState} from 'redux'
+import { ReducersMapObject, combineReducers, CombinedState } from 'redux'
 
 import {
     persistStore,
@@ -14,8 +14,8 @@ import {
     REGISTER,
 } from 'redux-persist';
 import storage from "redux-persist/lib/storage";
-import {PersistConfig} from 'redux-persist/es/types'
-import {PersistPartial} from "redux-persist/es/persistReducer";
+import { PersistConfig } from 'redux-persist/es/types'
+import { PersistPartial } from "redux-persist/es/persistReducer";
 import autoMergeLevel2 from "redux-persist/lib/stateReconciler/autoMergeLevel2";
 
 import stateSlice from "@/redux/slice/slice";
@@ -47,7 +47,7 @@ export const store = configureStore({
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({
             serializableCheck: {
-                ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+                ignoredActions: [ FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER ],
             },
         }).concat(logger)
 });

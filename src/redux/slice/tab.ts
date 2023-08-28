@@ -2,7 +2,7 @@ import {
     createSlice,
     PayloadAction
 } from "@reduxjs/toolkit";
-import {Tab, TabState} from "@/redux/types/Tab";
+import { Tab, TabState } from "@/redux/types/Tab";
 import JSON5 from 'json5'
 
 const initialState: TabState = {

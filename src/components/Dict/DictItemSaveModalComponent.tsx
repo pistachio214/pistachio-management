@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
-import {Modal, Form, Input, InputNumber} from 'antd';
-import {AxiosResponse} from "axios";
+import React, { useEffect } from "react";
+import { Modal, Form, Input, InputNumber } from 'antd';
+import { AxiosResponse } from "axios";
 
-import {dictItemEdit, dictItemInfo, dictItemSave} from "@/api/dict";
-import {SysDictItem} from "@/types/dict";
-import {Response} from "@/types/common";
+import { dictItemEdit, dictItemInfo, dictItemSave } from "@/api/dict";
+import { SysDictItem } from "@/types/dict";
+import { Response } from "@/types/common";
 
 interface IProps {
     id: number
@@ -17,7 +17,7 @@ interface IProps {
 
 const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
 
     useEffect(() => {
         const {id, isEdit, isVisible} = props;
@@ -36,7 +36,7 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
 
         }
 
-    }, [props.dictId, props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.dictId, props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleCancel = () => {
         props.closeModal()

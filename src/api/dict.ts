@@ -1,5 +1,5 @@
 import request from "@/axios/request";
-import {SysDict, SysDictItem} from "@/types/dict";
+import { SysDict, SysDictItem } from "@/types/dict";
 
 export const getDictList = (): string => {
     return `/developer-dict/list`;

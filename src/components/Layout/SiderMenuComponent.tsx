@@ -1,19 +1,19 @@
-import React, {useEffect, useMemo, useState} from "react";
-import {useLocation, useNavigate} from "react-router";
-import {shallowEqual} from "react-redux";
-import {ConfigProvider} from "antd";
+import React, { useEffect, useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router";
+import { shallowEqual } from "react-redux";
+import { ConfigProvider } from "antd";
 
-import {ThemeState} from "@/redux/types/Theme";
-import {useAppDispatch, useAppSelector} from "@/redux/hook";
-import {RootState} from "@/redux/store";
-import {navigate as tabNavigate} from "@/redux/slice/tab";
+import { ThemeState } from "@/redux/types/Theme";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { RootState } from "@/redux/store";
+import { navigate as tabNavigate } from "@/redux/slice/tab";
 
-import {MenuContainer} from '@/components/Layout/style'
-import {CallbackItem} from "@/types/common";
-import {getRoute} from "@/utils/RouterUtil";
-import {filterToMenu, getMenus} from "@/utils/MenuUtil";
+import { MenuContainer } from '@/components/Layout/style'
+import { CallbackItem } from "@/types/common";
+import { getRoute } from "@/utils/RouterUtil";
+import { filterToMenu, getMenus } from "@/utils/MenuUtil";
 
-import {baseRoutes} from "@/components/Router/router";
+import { baseRoutes } from "@/components/Router/router";
 
 interface IProps {
     menuSelect: (value: CallbackItem) => void;
@@ -37,7 +37,7 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
     const {pathname} = useLocation();
     const dispatch = useAppDispatch();
 
-    const [openKeys, setOpenKeys] = useState<string[]>([]);
+    const [ openKeys, setOpenKeys ] = useState<string[]>([]);
 
     //处理生成菜单数据
     const items = useMemo(() => {
@@ -54,8 +54,8 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
             });
         }
 
-        key === "" ? setOpenKeys([]) : setOpenKeys([key]);
-    }, [tab.activeKey, items]);
+        key === "" ? setOpenKeys([]) : setOpenKeys([ key ]);
+    }, [ tab.activeKey, items ]);
 
     //根据pathname初始化tabs
     useEffect(() => {
@@ -84,7 +84,7 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
             }
         }
         // eslint-disable-next-line
-    }, [pathname]);
+    }, [ pathname ]);
 
     const onClick = ({key, item,}: { key: string; item: any; }) => {
         let payload = {
@@ -103,7 +103,7 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
                 mode={'inline'}
                 openKeys={openKeys}
                 onOpenChange={(keys) => setOpenKeys(keys)}
-                selectedKeys={[tab.activeKey]}
+                selectedKeys={[ tab.activeKey ]}
                 items={items}
                 config={themeState.config}
                 deepcolor={themeState.deepcolor}

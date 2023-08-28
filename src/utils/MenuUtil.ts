@@ -1,6 +1,6 @@
-import {MenuProps} from "antd";
-import {cloneDeep} from "lodash";
-import {BaseRoute} from "@/components/Router/type";
+import { MenuProps } from "antd";
+import { cloneDeep } from "lodash";
+import { BaseRoute } from "@/components/Router/type";
 
 export type MenuItem = Required<MenuProps>["items"][number];
 

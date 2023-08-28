@@ -1,26 +1,26 @@
-import React, {useState} from "react";
-import {Badge, Button, Form, Input} from "antd";
-import {ColumnsType} from "antd/lib/table";
-import {DeleteOutlined, EditOutlined, PartitionOutlined} from "@ant-design/icons";
+import React, { useState } from "react";
+import { Badge, Button, Form, Input } from "antd";
+import { ColumnsType } from "antd/lib/table";
+import { DeleteOutlined, EditOutlined, PartitionOutlined } from "@ant-design/icons";
 
-import {RoleQuestionType, SysRole} from "@/types/role";
-import {IOperator} from "@/types/operator";
+import { RoleQuestionType, SysRole } from "@/types/role";
+import { IOperator } from "@/types/operator";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
-import {deleteRole, getRoleList} from "@/api/role";
+import { deleteRole, getRoleList } from "@/api/role";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
 import RoleEditModalComponent from "@/components/Role/RoleEditModalComponent";
 import AssignPermissionsModalComponent from "@/components/Role/AssignPermissionsModalComponent";
 
 const Role: React.FC = () => {
 
-    const [params, setParams] = useState<RoleQuestionType>();
+    const [ params, setParams ] = useState<RoleQuestionType>();
 
-    const [editVisible, setEditVisible] = useState<boolean>(false);
-    const [assignPermissionsVisible, setAssignPermissionsVisible] = useState<boolean>(false);
+    const [ editVisible, setEditVisible ] = useState<boolean>(false);
+    const [ assignPermissionsVisible, setAssignPermissionsVisible ] = useState<boolean>(false);
 
-    const [id, setId] = useState<number>();
-    const [isEdit, setIsEdit] = useState<boolean>(false);
-    const [isRefresh, setIsRefresh] = useState<boolean>(false);
+    const [ id, setId ] = useState<number>();
+    const [ isEdit, setIsEdit ] = useState<boolean>(false);
+    const [ isRefresh, setIsRefresh ] = useState<boolean>(false);
 
     const columns: ColumnsType<SysRole> = [
         {
@@ -71,7 +71,7 @@ const Role: React.FC = () => {
                     {
                         title: '分配权限',
                         icon: <PartitionOutlined/>,
-                        permission: ['sys:role:perm'],
+                        permission: [ 'sys:role:perm' ],
                         onClick: () => {
                             showAssignPermissionsModal(record.id);
                         }
@@ -79,7 +79,7 @@ const Role: React.FC = () => {
                     {
                         title: '编辑',
                         icon: <EditOutlined/>,
-                        permission: ['sys:role:update'],
+                        permission: [ 'sys:role:update' ],
                         onClick: () => {
                             showEditModal(record.id);
                         }
@@ -92,7 +92,7 @@ const Role: React.FC = () => {
                         danger: true,
                         message: `是否删除角色 [ ${record.name} ] ?`,
                         icon: <DeleteOutlined/>,
-                        permission: ['sys:role:delete'],
+                        permission: [ 'sys:role:delete' ],
                         onClick: () => {
                             handleDeleteRole(record.id);
                         }
@@ -166,10 +166,10 @@ const Role: React.FC = () => {
                     setParams({...params, ...{current: page}})
                 }}
                 reload={{
-                    hasPremiss: ['sys:role:list'],
+                    hasPremiss: [ 'sys:role:list' ],
                 }}
                 plus={{
-                    hasPremiss: ['sys:role:save'],
+                    hasPremiss: [ 'sys:role:save' ],
                     click: () => {
                         setIsEdit(false);
                         setEditVisible(true);

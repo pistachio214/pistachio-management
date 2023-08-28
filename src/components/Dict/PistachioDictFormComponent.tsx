@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Form, Select} from "antd";
-import {OptionsInterface, Response} from "@/types/common";
-import {getDictByKey} from "@/api/dict";
-import {AxiosResponse} from "axios";
-import {SysDictListResponse} from "@/types/dict";
+import React, { useEffect, useState } from "react";
+import { Form, Select } from "antd";
+import { OptionsInterface, Response } from "@/types/common";
+import { getDictByKey } from "@/api/dict";
+import { AxiosResponse } from "axios";
+import { SysDictListResponse } from "@/types/dict";
 import UuidUtil from "@/utils/UuidUtil";
 
 interface IProps {
@@ -17,8 +17,8 @@ interface IProps {
 
 const PistachioDictFormComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [options, setOptions] = useState<OptionsInterface[]>([]);
-    const [label, setLabel] = useState<string>('');
+    const [ options, setOptions ] = useState<OptionsInterface[]>([]);
+    const [ label, setLabel ] = useState<string>('');
 
     useEffect(() => {
         getDictByKey(props.type).then((res: AxiosResponse<Response<SysDictListResponse>>) => {
@@ -30,7 +30,7 @@ const PistachioDictFormComponent: React.FC<IProps> = (props: IProps) => {
                 setOptions(option)
             }
         })
-    }, [props.type]) // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.type ]) // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>

@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from "react";
-import {Modal, Form, Tree} from 'antd';
-import {AxiosResponse} from "axios";
-import {Key} from "rc-table/lib/interface";
+import React, { useEffect, useState } from "react";
+import { Modal, Form, Tree } from 'antd';
+import { AxiosResponse } from "axios";
+import { Key } from "rc-table/lib/interface";
 
-import {MenuTreeNodesType, SysMenu} from "@/types/menu";
-import {findRoleById, permRole} from "@/api/role";
-import {SysRole} from "@/types/role";
-import {getMenuList} from "@/api/menu";
-import {message} from "@/components/Antd/EscapeAntd";
-import {Response} from "@/types/common";
+import { MenuTreeNodesType, SysMenu } from "@/types/menu";
+import { findRoleById, permRole } from "@/api/role";
+import { SysRole } from "@/types/role";
+import { getMenuList } from "@/api/menu";
+import { message } from "@/components/Antd/EscapeAntd";
+import { Response } from "@/types/common";
 
 interface IProps {
     id: number | undefined
@@ -18,9 +18,9 @@ interface IProps {
 
 const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [form] = Form.useForm();
-    const [nodes, setNodes] = useState<MenuTreeNodesType[] | undefined>();
-    const [checkedKeys, setCheckedKeys] = useState<number[]>([]);
+    const [ form ] = Form.useForm();
+    const [ nodes, setNodes ] = useState<MenuTreeNodesType[] | undefined>();
+    const [ checkedKeys, setCheckedKeys ] = useState<number[]>([]);
 
     useEffect(() => {
         const initSelected = () => {
@@ -39,7 +39,7 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
             }
         }
         initSelected();
-    }, [props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     useEffect(() => {
         initMenuList();

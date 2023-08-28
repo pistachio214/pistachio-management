@@ -1,6 +1,6 @@
 import React from "react";
-import {DashboardFilled, RadiusSettingOutlined, SettingOutlined} from "@ant-design/icons";
-import {BaseRoute} from "@/components/Router/type";
+import { DashboardFilled, RadiusSettingOutlined, SettingOutlined } from "@ant-design/icons";
+import { BaseRoute } from "@/components/Router/type";
 
 export const baseRoutes: BaseRoute[] = [
     {

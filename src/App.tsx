@@ -1,13 +1,13 @@
 import React from 'react';
-import {ConfigProvider, App as AntdApp,} from 'antd';
-import {ThemeState} from "@/redux/types/Theme";
-import {useAppSelector} from "@/redux/hook";
-import {shallowEqual} from "react-redux";
+import { ConfigProvider, App as AntdApp, } from 'antd';
+import { ThemeState } from "@/redux/types/Theme";
+import { useAppSelector } from "@/redux/hook";
+import { shallowEqual } from "react-redux";
 import zhCN from "antd/es/locale/zh_CN";
 import RouterComponent from "@/components/Router/RouterComponent";
 
 import GlobalStyle from "@/styles/global";
-import {RootState} from "@/redux/store";
+import { RootState } from "@/redux/store";
 import EntryComponent from "@/components/Antd/EscapeAntd";
 
 const App: React.FC = () => {

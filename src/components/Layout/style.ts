@@ -3,9 +3,9 @@ import {
     Layout, Menu, Tag
 } from "antd";
 
-import {Rotate} from "@/styles/global";
-import {HeaderHeight} from "@/styles/config";
-import {ThemeState} from "@/redux/types/Theme";
+import { Rotate } from "@/styles/global";
+import { HeaderHeight } from "@/styles/config";
+import { ThemeState } from "@/redux/types/Theme";
 
 const {Sider, Header, Content} = Layout;
 
@@ -22,7 +22,7 @@ export const SiderTitle = styled.div<ThemeState>`
   height: ${HeaderHeight};
   width: 100%;
   background-color: ${(props: { config: ThemeState["config"] }) =>
-          props.config.token.colorPrimary};
+    props.config.token.colorPrimary};
   display: flex;
   align-items: center;
   box-sizing: border-box;

@@ -1,5 +1,5 @@
-import {ColumnsType} from "antd/lib/table";
-import {Method} from "axios";
+import { ColumnsType } from "antd/lib/table";
+import { Method } from "axios";
 
 
 interface TablePlusType {

@@ -1,27 +1,27 @@
-import React, {useEffect, useState} from "react";
-import {Badge, Button, Table} from 'antd';
-import {ColumnsType} from "antd/lib/table";
-import {DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined} from "@ant-design/icons";
-import {AxiosResponse} from "axios";
-import {message} from "@/components/Antd/EscapeAntd";
+import React, { useEffect, useState } from "react";
+import { Badge, Button, Table } from 'antd';
+import { ColumnsType } from "antd/lib/table";
+import { DeleteOutlined, EditOutlined, PlusOutlined, ReloadOutlined } from "@ant-design/icons";
+import { AxiosResponse } from "axios";
+import { message } from "@/components/Antd/EscapeAntd";
 
-import {SysMenu} from "@/types/menu";
-import {IOperator} from "@/types/operator";
+import { SysMenu } from "@/types/menu";
+import { IOperator } from "@/types/operator";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
-import {delMenu, getMenuList} from "@/api/menu";
-import {MenuContainer} from "@/pages/system/menu/style";
+import { delMenu, getMenuList } from "@/api/menu";
+import { MenuContainer } from "@/pages/system/menu/style";
 import AuthWrapper from "@/components/AuthHoc/AuthWrapper";
 import MenuEditModalComponent from "@/components/Menu/MenuEditModalComponent";
-import {Response} from "@/types/common";
+import { Response } from "@/types/common";
 
 const Menu: React.FC = () => {
 
-    const [data, setData] = useState<SysMenu[]>();
-    const [isRef, setIsRef] = useState<boolean>(false);
-    const [isLoading, setIsLoading] = useState<boolean>(false);
-    const [isEditModalVisible, setIsEditModalVisible] = useState<boolean>(false);
-    const [editMenu, setEditMenu] = useState<SysMenu>();
-    const [isEdit, setIsEdit] = useState<boolean>(false);
+    const [ data, setData ] = useState<SysMenu[]>();
+    const [ isRef, setIsRef ] = useState<boolean>(false);
+    const [ isLoading, setIsLoading ] = useState<boolean>(false);
+    const [ isEditModalVisible, setIsEditModalVisible ] = useState<boolean>(false);
+    const [ editMenu, setEditMenu ] = useState<SysMenu>();
+    const [ isEdit, setIsEdit ] = useState<boolean>(false);
 
     const columns: ColumnsType<SysMenu> = [
         {
@@ -99,7 +99,7 @@ const Menu: React.FC = () => {
                     {
                         title: '编辑',
                         icon: <EditOutlined/>,
-                        permission: ['sys:menu:update'],
+                        permission: [ 'sys:menu:update' ],
                         onClick: () => {
                             showEditModal(record);
                         }
@@ -109,7 +109,7 @@ const Menu: React.FC = () => {
                         danger: true,
                         message: `是否删除 [ ${record.name} ] ?`,
                         icon: <DeleteOutlined/>,
-                        permission: ['sys:menu:delete'],
+                        permission: [ 'sys:menu:delete' ],
                         onClick: () => {
                             handleDeleteMenu(record.id);
                         }
@@ -122,7 +122,7 @@ const Menu: React.FC = () => {
 
     useEffect(() => {
         initUseEffect();
-    }, [isRef]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ isRef ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const initUseEffect = () => {
         setIsLoading(true);
@@ -178,19 +178,19 @@ const Menu: React.FC = () => {
         <MenuContainer>
             <div className="action-container">
                 <div className="common-btn-container">
-                    <AuthWrapper hasPermiss={['sys:menu:list']}>
+                    <AuthWrapper hasPermiss={[ 'sys:menu:list' ]}>
                         <Button
                             type="primary"
-                            icon={<ReloadOutlined />}
+                            icon={<ReloadOutlined/>}
                             onClick={() => refRelease()}
                         >
                             刷新
                         </Button>
                     </AuthWrapper>
 
-                    <AuthWrapper hasPermiss={['sys:menu:save']}>
+                    <AuthWrapper hasPermiss={[ 'sys:menu:save' ]}>
                         <Button
-                            icon={<PlusOutlined />}
+                            icon={<PlusOutlined/>}
                             onClick={() => showEditModalAdd()}
                         >
                             新增
@@ -204,7 +204,7 @@ const Menu: React.FC = () => {
                 rowKey={(record: SysMenu) => record.id}
                 columns={columns}
                 dataSource={data}
-                scroll={{ y: 600 }}
+                scroll={{y: 600}}
                 loading={isLoading}
             />
 

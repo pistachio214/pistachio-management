@@ -1,10 +1,10 @@
-import React, {useEffect} from "react";
-import {AxiosResponse} from "axios";
+import React, { useEffect } from "react";
+import { AxiosResponse } from "axios";
 
-import {Modal, Form, Input, Radio} from 'antd';
-import {createRole, editRole, findRoleById} from "@/api/role";
-import {SysRole} from "@/types/role";
-import {Response} from "@/types/common";
+import { Modal, Form, Input, Radio } from 'antd';
+import { createRole, editRole, findRoleById } from "@/api/role";
+import { SysRole } from "@/types/role";
+import { Response } from "@/types/common";
 
 interface IProps {
     isVisible: boolean
@@ -15,7 +15,7 @@ interface IProps {
 
 const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
 
     const handleOk = () => {
         const {edit} = props;
@@ -48,7 +48,7 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
                 form.resetFields();
             }
         }
-    }, [props.id, props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.id, props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     return (
         <>

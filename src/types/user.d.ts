@@ -1,5 +1,5 @@
-import {PageQuestionType} from "@/types/common";
-import {SysRole} from "@/types/role";
+import { PageQuestionType } from "@/types/common";
+import { SysRole } from "@/types/role";
 
 interface UserQuestionType extends PageQuestionType {
     username?: string

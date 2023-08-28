@@ -18,7 +18,7 @@ export const settingSlice = createSlice({
     },
 });
 
-export const { setClientHeight } = settingSlice.actions;
+export const {setClientHeight} = settingSlice.actions;
 export default settingSlice.reducer;
 
 

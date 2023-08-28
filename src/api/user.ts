@@ -1,5 +1,5 @@
 import request from "@/axios/request";
-import {UserCreateRequest} from "@/types/user";
+import { UserCreateRequest } from "@/types/user";
 
 export const getUserList = (): string => {
     return `/sys-user/list`;

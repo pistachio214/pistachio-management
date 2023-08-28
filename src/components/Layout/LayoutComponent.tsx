@@ -1,5 +1,5 @@
-import React, {useState} from "react";
-import {useNavigate} from "react-router";
+import React, { useState } from "react";
+import { useNavigate } from "react-router";
 import {
     Button,
     Layout as AntdLayout,
@@ -11,9 +11,9 @@ import {
     MenuFoldOutlined,
     UserOutlined,
 } from "@ant-design/icons";
-import {shallowEqual} from "react-redux";
-import {useAppDispatch, useAppSelector} from "@/redux/hook";
-import {ThemeState} from "@/redux/types/Theme";
+import { shallowEqual } from "react-redux";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { ThemeState } from "@/redux/types/Theme";
 
 import {
     LaySider,
@@ -28,13 +28,13 @@ import {
 
 import logo from "@/assets/react.png";
 import defaultSettings from "@/defaultSettings";
-import {CallbackItem} from "@/types/common";
+import { CallbackItem } from "@/types/common";
 import ColorSelectComponent from "@/components/ColorSelect/ColorSelectComponent";
-import {navigate as tabNavigate} from "@/redux/slice/tab";
+import { navigate as tabNavigate } from "@/redux/slice/tab";
 import SiderMenuComponent from "@/components/Layout/SiderMenuComponent";
 import RouterTabsComponent from "@/components/Layout/RouterTabsComponent";
 import KeepAliveComponent from "@/components/Layout/KeepAliveComponent";
-import {RootState} from "@/redux/store";
+import { RootState } from "@/redux/store";
 
 const LayoutComponent: React.FC = () => {
 
@@ -44,7 +44,7 @@ const LayoutComponent: React.FC = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
-    const [collapsed, setCollapsed] = useState<boolean>(false);
+    const [ collapsed, setCollapsed ] = useState<boolean>(false);
 
     const menuSelect = (value: CallbackItem) => {
         let payload = {

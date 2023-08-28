@@ -1,12 +1,12 @@
-import React, {useState} from "react";
-import {Modal} from "antd";
-import {ColumnsType} from "antd/lib/table";
-import {DeleteOutlined} from "@ant-design/icons";
+import React, { useState } from "react";
+import { Modal } from "antd";
+import { ColumnsType } from "antd/lib/table";
+import { DeleteOutlined } from "@ant-design/icons";
 
-import {PageQuestionType} from "@/types/common";
-import {SysDictItem} from "@/types/dict";
-import {IOperator} from "@/types/operator";
-import {dictItemDelete, dictItemList} from "@/api/dict";
+import { PageQuestionType } from "@/types/common";
+import { SysDictItem } from "@/types/dict";
+import { IOperator } from "@/types/operator";
+import { dictItemDelete, dictItemList } from "@/api/dict";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
 import DictItemSaveModalComponent from "@/components/Dict/DictItemSaveModalComponent";
@@ -21,12 +21,12 @@ interface IProps {
 
 const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [params, setParams] = useState<PageQuestionType>();
-    const [id, setId] = useState<number>(0);
-    const [isRefresh, setIsRefresh] = useState<boolean>(false);
-    const [isEdit, setIsEdit] = useState<boolean>(false);
+    const [ params, setParams ] = useState<PageQuestionType>();
+    const [ id, setId ] = useState<number>(0);
+    const [ isRefresh, setIsRefresh ] = useState<boolean>(false);
+    const [ isEdit, setIsEdit ] = useState<boolean>(false);
 
-    const [isSaveDictItemVisible, setIsSaveDictItemVisible] = useState<boolean>(false);
+    const [ isSaveDictItemVisible, setIsSaveDictItemVisible ] = useState<boolean>(false);
 
     const columns: ColumnsType<SysDictItem> = [
         {
@@ -66,7 +66,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                 const item: IOperator[] = [
                     {
                         title: '编辑',
-                        permission: ['sys:dict:item:save'],
+                        permission: [ 'sys:dict:item:save' ],
                         onClick: () => {
                             showEditDictItemModal(record.id!);
                         }
@@ -75,7 +75,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                         title: '删除',
                         danger: true,
                         icon: <DeleteOutlined/>,
-                        permission: ['sys:dict:item:delete'],
+                        permission: [ 'sys:dict:item:delete' ],
                         message: `是否删除该字典项 [ ${record.label} ] ?`,
                         onClick: () => {
                             handleDelete(record.id!);
@@ -134,7 +134,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                     params={params}
                     reload={{
                         hide: true,
-                        hasPremiss: ['sys:dict:item:list'],
+                        hasPremiss: [ 'sys:dict:item:list' ],
                         click: () => showCreateDictItemModal()
                     }}
                     quickJump={(page: number) => {

@@ -1,5 +1,5 @@
 import request from "@/axios/request";
-import {LoginParams} from "@/types/auth"
+import { LoginParams } from "@/types/auth"
 
 export const getCaptcha = () => {
     return request({

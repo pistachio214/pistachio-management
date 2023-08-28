@@ -19,7 +19,7 @@ interface PromiseNum {
 
 const promise_one: Promise<PromiseNum> = new Promise((res, rej) => {
     setTimeout(() => {
-        res({ number: 10 });
+        res({number: 10});
     }, 3000);
 });
 
@@ -65,11 +65,11 @@ export const userSlice = createSlice({
     },
 });
 
-export const { 
-    setNavAndAuthoritys, 
-    setUserData, 
-    clearUserState, 
-    saveUserAvatar 
+export const {
+    setNavAndAuthoritys,
+    setUserData,
+    clearUserState,
+    saveUserAvatar
 } = userSlice.actions;
 export default userSlice.reducer;
 

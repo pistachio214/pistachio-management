@@ -1,4 +1,4 @@
-import {PageQuestionType} from "@/types/common";
+import { PageQuestionType } from "@/types/common";
 
 interface SysRole {
     id: number

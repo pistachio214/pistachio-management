@@ -1,5 +1,5 @@
 import request from "@/axios/request";
-import {MenuEdit} from "@/types/menu";
+import { MenuEdit } from "@/types/menu";
 
 const baseURL = '/sys-menu';
 

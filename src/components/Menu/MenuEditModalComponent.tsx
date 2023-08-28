@@ -1,9 +1,9 @@
-import React, {useEffect, useState} from "react";
-import {Modal, Form, Input, Radio, Select, InputNumber} from 'antd';
+import React, { useEffect, useState } from "react";
+import { Modal, Form, Input, Radio, Select, InputNumber } from 'antd';
 
-import {SysMenu} from "@/types/menu";
-import {OptionSelect} from "@/types/common";
-import {editMenu, saveMenu} from "@/api/menu";
+import { SysMenu } from "@/types/menu";
+import { OptionSelect } from "@/types/common";
+import { editMenu, saveMenu } from "@/api/menu";
 
 interface IProps {
     isVisible: boolean
@@ -15,8 +15,8 @@ interface IProps {
 
 const MenuEditModalComponent: React.FC<IProps> = (props: IProps) => {
 
-    const [form] = Form.useForm();
-    const [menuOptions, setMenuOptions] = useState<OptionSelect[]>();
+    const [ form ] = Form.useForm();
+    const [ menuOptions, setMenuOptions ] = useState<OptionSelect[]>();
 
     useEffect(() => {
         const {menuInfo, edit, isVisible, menuList} = props;
@@ -36,7 +36,7 @@ const MenuEditModalComponent: React.FC<IProps> = (props: IProps) => {
         }
 
 
-    }, [props.menuInfo, props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.menuInfo, props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
     const handleOk = () => {
         const {edit} = props;
@@ -57,7 +57,7 @@ const MenuEditModalComponent: React.FC<IProps> = (props: IProps) => {
 
         if (menuList.length) {
             menuList.forEach((item: SysMenu) => {
-                if ([0, 1].includes(item.type)) {
+                if ([ 0, 1 ].includes(item.type)) {
                     let name = item.type === 0 ? item.name : ` ---- ${item.name}`;
                     options.push({label: name, value: item.id});
                     if (item.children && item.children.length) {

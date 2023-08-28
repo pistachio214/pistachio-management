@@ -1,7 +1,7 @@
-import styled, {keyframes} from "styled-components";
-import {Button} from "antd";
-import {ThemeState} from "@/redux/types/Theme";
-import {Rotate} from "@/styles/global";
+import styled, { keyframes } from "styled-components";
+import { Button } from "antd";
+import { ThemeState } from "@/redux/types/Theme";
+import { Rotate } from "@/styles/global";
 
 const fromLeft = keyframes`
   from {

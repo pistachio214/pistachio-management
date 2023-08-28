@@ -1,13 +1,13 @@
 import React from "react";
-import {Col, ColorPicker, Popover, Row, Space, Button} from "antd";
-import {ClearOutlined} from "@ant-design/icons";
+import { Col, ColorPicker, Popover, Row, Space, Button } from "antd";
+import { ClearOutlined } from "@ant-design/icons";
 import styled from "styled-components";
-import {shallowEqual} from "react-redux";
+import { shallowEqual } from "react-redux";
 
-import {useAppDispatch, useAppSelector} from "@/redux/hook";
-import {ThemeState} from "@/redux/types/Theme";
-import {RootState} from "@/redux/store";
-import {changeColor, changeGradient} from "@/redux/slice/theme"
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
+import { ThemeState } from "@/redux/types/Theme";
+import { RootState } from "@/redux/store";
+import { changeColor, changeGradient } from "@/redux/slice/theme"
 
 const ColorSelectComponent: React.FC = () => {
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);

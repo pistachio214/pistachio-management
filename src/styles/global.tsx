@@ -1,5 +1,5 @@
-import styled, {createGlobalStyle, keyframes} from "styled-components";
-import {ThemeState} from "@/redux/types/Theme";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
+import { ThemeState } from "@/redux/types/Theme";
 
 //全局样式
 export default createGlobalStyle<ThemeState>`

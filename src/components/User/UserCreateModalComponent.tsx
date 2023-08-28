@@ -1,7 +1,7 @@
-import React, {useEffect} from "react";
-import {Modal, Form, Input, Radio} from 'antd';
+import React, { useEffect } from "react";
+import { Modal, Form, Input, Radio } from 'antd';
 
-import {createUser} from "@/api/user";
+import { createUser } from "@/api/user";
 
 interface IProps {
     isVisible: boolean
@@ -9,7 +9,7 @@ interface IProps {
 }
 
 const UserCreateModalComponent: React.FC<IProps> = (props: IProps) => {
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
 
     const handleCancel = () => {
         props.closeModal();
@@ -27,7 +27,7 @@ const UserCreateModalComponent: React.FC<IProps> = (props: IProps) => {
             //打开弹出层，重置界面
             form.resetFields();
         }
-    }, [props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.isVisible ]);  // eslint-disable-line react-hooks/exhaustive-deps
 
 
     return (

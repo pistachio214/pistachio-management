@@ -1,13 +1,13 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 
-import {Form, Input, Button, Tooltip, DatePicker} from 'antd';
-import {ColumnsType} from "antd/lib/table";
+import { Form, Input, Button, Tooltip, DatePicker } from 'antd';
+import { ColumnsType } from "antd/lib/table";
 
 import * as moment from "moment";
-import {OperLogQuestionType, SysExceptionLog} from "@/types/log";
-import {IOperator} from "@/types/operator";
+import { OperLogQuestionType, SysExceptionLog } from "@/types/log";
+import { IOperator } from "@/types/operator";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
-import {getExceptionLoginList} from "@/api/log";
+import { getExceptionLoginList } from "@/api/log";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
 import ExceptionLogDetailModalComponent from "@/components/Logs/ExceptionLogDetailModalComponent";
 
@@ -15,12 +15,12 @@ const {RangePicker} = DatePicker;
 
 const Exception: React.FC = () => {
 
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
 
-    const [params, setParams] = useState<OperLogQuestionType>();
+    const [ params, setParams ] = useState<OperLogQuestionType>();
 
-    const [id, setId] = useState<number>(0);
-    const [showVisible, setShowVisible] = useState<boolean>(false);
+    const [ id, setId ] = useState<number>(0);
+    const [ showVisible, setShowVisible ] = useState<boolean>(false);
 
     const tableWidthHiddenStyle: React.HTMLAttributes<SysExceptionLog> | React.TdHTMLAttributes<SysExceptionLog> = {
         style: {
@@ -90,7 +90,7 @@ const Exception: React.FC = () => {
                 const item: IOperator[] = [
                     {
                         title: '详情',
-                        permission: ['sys:exception:log:info'],
+                        permission: [ 'sys:exception:log:info' ],
                         onClick: () => {
                             showEditDictModal(record.id!);
                         }
@@ -158,7 +158,7 @@ const Exception: React.FC = () => {
                 url={getExceptionLoginList()}
                 params={params}
                 reload={{
-                    hasPremiss: ['sys:exception:log:list']
+                    hasPremiss: [ 'sys:exception:log:list' ]
                 }}
                 plus={{
                     hide: true

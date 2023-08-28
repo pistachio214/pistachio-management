@@ -1,14 +1,14 @@
 import React from "react";
-import {shallowEqual} from "react-redux";
+import { shallowEqual } from "react-redux";
 
 import { Menu, Dropdown, Button, Popconfirm } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
-import {IOperator, IOperatorProps} from "@/types/operator";
-import {MenuState} from "@/redux/types/Menu";
-import {RootState} from "@/redux/store";
-import {useAppSelector} from "@/redux/hook";
-import {OperatorContainer} from "@/components/ActionOperator/style";
+import { IOperator, IOperatorProps } from "@/types/operator";
+import { MenuState } from "@/redux/types/Menu";
+import { RootState } from "@/redux/store";
+import { useAppSelector } from "@/redux/hook";
+import { OperatorContainer } from "@/components/ActionOperator/style";
 import UuidUtil from "@/utils/UuidUtil";
 import AuthUtil from "@/utils/AuthUtil";
 
@@ -81,7 +81,7 @@ const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps
                                         >
                                             {item.title}
                                         </Button>
-                                    </Popconfirm >
+                                    </Popconfirm>
                                 )
 
                             }
@@ -100,9 +100,11 @@ const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps
                         })
                     }
                     {
-                        <Dropdown key={`dropdown-happy-operator-${UuidUtil.getUuiD(8)}`} overlay={genreateMenuMore(itemOperator)} trigger={['click']}>
-                            <Button type='link' size='small' className="ant-dropdown-link" onClick={e => e.preventDefault()}>
-                                更多 <DownOutlined />
+                        <Dropdown key={`dropdown-happy-operator-${UuidUtil.getUuiD(8)}`}
+                                  overlay={genreateMenuMore(itemOperator)} trigger={[ 'click' ]}>
+                            <Button type='link' size='small' className="ant-dropdown-link"
+                                    onClick={e => e.preventDefault()}>
+                                更多 <DownOutlined/>
                             </Button>
                         </Dropdown>
                     }
@@ -130,7 +132,7 @@ const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps
                                     >
                                         {item.title}
                                     </Button>
-                                </Popconfirm >
+                                </Popconfirm>
 
                             }
 

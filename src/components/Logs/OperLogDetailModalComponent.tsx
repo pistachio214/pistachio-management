@@ -1,15 +1,15 @@
-import React, {useEffect, useState} from "react";
-import {Modal, Descriptions} from "antd";
-import {AxiosResponse} from "axios";
+import React, { useEffect, useState } from "react";
+import { Modal, Descriptions } from "antd";
+import { AxiosResponse } from "axios";
 import ReactJson from "react-json-view";
 
-import {SysOperLog, SysOperLogoDetailsProps} from "@/types/log";
-import {findOperLog} from "@/api/log";
-import {Response} from "@/types/common";
+import { SysOperLog, SysOperLogoDetailsProps } from "@/types/log";
+import { findOperLog } from "@/api/log";
+import { Response } from "@/types/common";
 
 const OperLogDetailModalComponent: React.FC<SysOperLogoDetailsProps> = (props: SysOperLogoDetailsProps) => {
 
-    const [sysOperLog, setSysOperLog] = useState<SysOperLog>();
+    const [ sysOperLog, setSysOperLog ] = useState<SysOperLog>();
 
     useEffect(() => {
         const {id, isVisible} = props;
@@ -20,7 +20,7 @@ const OperLogDetailModalComponent: React.FC<SysOperLogoDetailsProps> = (props: S
                 setSysOperLog(data);
             })
         }
-    }, [props.isVisible])// eslint-disable-line react-hooks/exhaustive-deps
+    }, [ props.isVisible ])// eslint-disable-line react-hooks/exhaustive-deps
 
     const handleCancel = () => {
         props.closeModel()

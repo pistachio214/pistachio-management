@@ -1,4 +1,4 @@
-import {message} from "@/components/Antd/EscapeAntd";
+import { message } from "@/components/Antd/EscapeAntd";
 import axios, {
     AxiosInstance,
     AxiosResponse,

@@ -8,7 +8,7 @@ import {
     Navigate,
 } from "react-router-dom";
 
-import {BeforeRouterComponent} from "@/components/Router/BeforeRouterComponent";
+import { BeforeRouterComponent } from "@/components/Router/BeforeRouterComponent";
 
 import NonExistent from "@/pages/error";
 import Login from "@/pages/login";

@@ -1,5 +1,5 @@
 import request from "@/axios/request";
-import {RolesListParams, SysRole} from "@/types/role";
+import { RolesListParams, SysRole } from "@/types/role";
 
 export const getRoleList = (): string => {
     return `/sys-role/list`;

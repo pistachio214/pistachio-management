@@ -1,36 +1,36 @@
-import React, {useState} from "react";
-import {Form, Avatar, Image, Badge, Tag, Input, Button,} from "antd";
-import {ColumnsType} from "antd/lib/table";
+import React, { useState } from "react";
+import { Form, Avatar, Image, Badge, Tag, Input, Button, } from "antd";
+import { ColumnsType } from "antd/lib/table";
 import {
     PartitionOutlined,
     RedoOutlined,
     DeleteOutlined
 } from '@ant-design/icons';
-import {AxiosResponse} from "axios";
-import {message} from "@/components/Antd/EscapeAntd";
+import { AxiosResponse } from "axios";
+import { message } from "@/components/Antd/EscapeAntd";
 
-import {AssignRoles, SysUser, UserQuestionType} from "@/types/user";
+import { AssignRoles, SysUser, UserQuestionType } from "@/types/user";
 import defaultSettings from "@/defaultSettings";
-import {SysRole} from "@/types/role";
-import {Response} from "@/types/common";
-import {UserRoleContainer} from "@/pages/system/user/style";
-import {IOperator} from "@/types/operator";
+import { SysRole } from "@/types/role";
+import { Response } from "@/types/common";
+import { UserRoleContainer } from "@/pages/system/user/style";
+import { IOperator } from "@/types/operator";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
-import {delUser, getUserList, restPassword} from "@/api/user";
+import { delUser, getUserList, restPassword } from "@/api/user";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
 import AssignRolesModalComponent from "@/components/User/AssignRolesModalComponent";
 import UserCreateModalComponent from "@/components/User/UserCreateModalComponent";
 
 const User: React.FC = () => {
 
-    const [form] = Form.useForm();
+    const [ form ] = Form.useForm();
 
-    const [params, setParams] = useState<UserQuestionType>();
-    const [isAssignRolesVisible, setIsAssignRolesVisible] = useState<boolean>(false);
-    const [isCreateUserVisible, setIsCreateUserVisible] = useState<boolean>(false);
-    const [assignRoles, setAssignRoles] = useState<AssignRoles>();
+    const [ params, setParams ] = useState<UserQuestionType>();
+    const [ isAssignRolesVisible, setIsAssignRolesVisible ] = useState<boolean>(false);
+    const [ isCreateUserVisible, setIsCreateUserVisible ] = useState<boolean>(false);
+    const [ assignRoles, setAssignRoles ] = useState<AssignRoles>();
 
-    const [isRefresh, setIsRefresh] = useState<boolean>(false);
+    const [ isRefresh, setIsRefresh ] = useState<boolean>(false);
 
     const columns: ColumnsType<SysUser> = [
         {
@@ -120,7 +120,7 @@ const User: React.FC = () => {
                     {
                         title: '分配角色',
                         icon: <PartitionOutlined/>,
-                        permission: ['sys:user:role'],
+                        permission: [ 'sys:user:role' ],
                         onClick: () => {
                             showAssignRolesModal(record.id, record.sysRoles);
                         }
@@ -128,7 +128,7 @@ const User: React.FC = () => {
                     {
                         title: '重置密码',
                         icon: <RedoOutlined/>,
-                        permission: ['sys:user:repass'],
+                        permission: [ 'sys:user:repass' ],
                         onClick: () => {
                             handleResetPassword(record.id);
                         }
@@ -140,7 +140,7 @@ const User: React.FC = () => {
                         title: '删除',
                         danger: true,
                         icon: <DeleteOutlined/>,
-                        permission: ['sys:user:delete'],
+                        permission: [ 'sys:user:delete' ],
                         message: `是否删除该用户 [ ${record.username} ] ?`,
                         onClick: () => {
                             handleDeleteUser(record.id);
@@ -215,11 +215,11 @@ const User: React.FC = () => {
                 isVisible={isRefresh}
                 params={params}
                 plus={{
-                    hasPremiss: ['sys:user:save'],
+                    hasPremiss: [ 'sys:user:save' ],
                     click: () => showCreateUserModal()
                 }}
                 reload={{
-                    hasPremiss: ['sys:user:list']
+                    hasPremiss: [ 'sys:user:list' ]
                 }}
                 quickJump={(page: number) => {
                     setParams({...params, ...{current: page}})

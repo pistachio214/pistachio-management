@@ -1,10 +1,10 @@
-import {Button, Result} from "antd";
-import {memo} from "react";
-import {useNavigate} from "react-router-dom";
-import {useAppDispatch} from "@/redux/hook";
+import { Button, Result } from "antd";
+import { memo } from "react";
+import { useNavigate } from "react-router-dom";
+import { useAppDispatch } from "@/redux/hook";
 
-import {setTabs, setActiveKey} from "@/redux/slice/tab"
-import {Tab} from "@/redux/types/Tab";
+import { setTabs, setActiveKey } from "@/redux/slice/tab"
+import { Tab } from "@/redux/types/Tab";
 import defaultSettings from "@/defaultSettings";
 
 /**

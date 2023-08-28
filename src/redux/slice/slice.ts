@@ -1,5 +1,5 @@
-import { 
-    createSlice, 
+import {
+    createSlice,
 } from "@reduxjs/toolkit";
 
 interface InitialState {
@@ -31,7 +31,7 @@ export const stateSlice = createSlice({
     },
 });
 
-export const { add, minus, change, back } = stateSlice.actions;
+export const {add, minus, change, back} = stateSlice.actions;
 export default stateSlice.reducer;
 
 
