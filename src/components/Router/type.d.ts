@@ -26,5 +26,4 @@ export interface BaseRoute {
     name: string
     children?: BaseRoute[]
     meta: Meta
-    hasPermiss?: string[]
 }

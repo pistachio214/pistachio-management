@@ -29,7 +29,7 @@ interface MenuEdit {
 
 interface MenuTreeNodesType {
     title: string
-    key: number
+    key: string
     children?: MenuTreeNodesType[]
 }
 

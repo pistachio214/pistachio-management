@@ -1,6 +1,7 @@
-import React, { ComponentType, LazyExoticComponent, lazy } from "react";
+import React from "react";
 import * as Icon from '@ant-design/icons';
 import { BaseRoute } from "@/components/Router/type";
+import { AuthorNavsType, RouteReactNode } from "@/types/common";
 
 import { BeforeRouterComponent } from "@/components/Router/BeforeRouterComponent";
 
@@ -14,28 +15,102 @@ import Oper from "@/pages/developer/oper";
 import Exception from "@/pages/developer/exception";
 
 import Dashboard from "@/pages/dashboard";
-// import User from "@/pages/system/user";
+import User from "@/pages/system/user";
 import Role from "@/pages/system/role";
 import Menu from "@/pages/system/menu";
 
 const iconBC = (name?: string) => {
+
     if (name !== null && name !== undefined && name.length > 0) {
         return React.createElement((Icon && Icon as any)[name]);
     }
 
-    return <></>;
+    return undefined;
+}
+
+const RouteNodeMap: RouteReactNode[] = [
+    {key: "Dict", component: <Dict/>},
+    {key: "Oper", component: <Oper/>},
+    {key: "Exception", component: <Exception/>},
+
+    {key: "Dashboard", component: <Dashboard/>},
+    {key: "User", component: <User/>},
+    {key: "Role", component: <Role/>},
+    {key: "Menu", component: <Menu/>},
+];
+
+// 根据路由的key获取路由ReactNode组件
+const getComponent = (key: string | null) => {
+    if (key !== null) {
+        const reactNode = RouteNodeMap.find((reactNodeMap: RouteReactNode) => reactNodeMap.key === key)
+        if (reactNode) {
+            return reactNode.component;
+        }
+    }
+
+    return undefined;
+}
+
+export const generateRoutes = () => {
+    return [
+        {
+            path: '/login',
+            element: <Login/>
+        },
+        {
+            element: <BeforeRouterComponent/>,
+            children: [
+                {
+                    path: '/',
+                    name: 'layout',
+                    element: <LayoutComponent/>,
+                    children: allRoutes
+                }
+            ]
+        },
+        {
+            path: "*",
+            element: <NonExistent/>
+        }
+    ]
 }
 
 
-const getComponent = (componentUrl: string): React.ReactNode => {
-    const Component: LazyExoticComponent<ComponentType<any>> = lazy(() => import(componentUrl));
+export const generateBaseRoutes = (data: AuthorNavsType[]) => {
+    let res: BaseRoute[] = [];
 
-    return (
-        <Component/>
-    );
-};
+    if (data.length > 0) {
+        data.forEach((item: AuthorNavsType, index: number) => {
+            let component = getComponent(item.component);
+            let db: BaseRoute = {
+                path: item.path,
+                name: `${item.name || ""}-${index}`,
+                element: component,
+                meta: {
+                    hidden: generateMetaHidden(item),
+                    title: item.title,
+                    icon: iconBC(item.icon || undefined),
+                },
+            };
 
-export const baseRoutes: BaseRoute[] = [
+            if (item.children !== undefined && item.children !== null && item.children.length > 0) {
+                db.children = generateBaseRoutes(item.children)
+            }
+
+            res.push(db);
+        })
+    }
+
+    return res;
+}
+
+const generateMetaHidden = (data: AuthorNavsType) => {
+    let component = getComponent(data.component);
+
+    return component === undefined && data.children === undefined;
+}
+
+export const allRoutes: BaseRoute[] = [
     {
         path: "/dashboard",
         name: "dashboard",
@@ -57,9 +132,8 @@ export const baseRoutes: BaseRoute[] = [
         children: [
             {
                 path: '/system/users',
-                element: getComponent("../../pages/system/user"),
+                element: getComponent("User"),
                 name: 'users',
-                hasPermiss: ["sys:user:list"],
                 meta: {
                     hidden: false,
                     title: '人员管理'
@@ -69,7 +143,6 @@ export const baseRoutes: BaseRoute[] = [
                 path: '/system/roles',
                 element: <Role/>,
                 name: 'roles',
-                hasPermiss: ["sys:role:list"],
                 meta: {
                     hidden: false,
                     title: '角色管理'
@@ -79,7 +152,6 @@ export const baseRoutes: BaseRoute[] = [
                 path: '/system/menus',
                 element: <Menu/>,
                 name: 'menus',
-                hasPermiss: ["sys:menu:list"],
                 meta: {
                     hidden: false,
                     title: '菜单管理'
@@ -100,7 +172,6 @@ export const baseRoutes: BaseRoute[] = [
                 path: '/developer/dict',
                 element: <Dict/>,
                 name: 'dict',
-                hasPermiss: ["developer:dict:list"],
                 meta: {
                     hidden: false,
                     title: '数据字典'
@@ -110,7 +181,6 @@ export const baseRoutes: BaseRoute[] = [
                 path: '/developer/oper',
                 element: <Oper/>,
                 name: 'oper',
-                hasPermiss: ["developer:oper:log:list"],
                 meta: {
                     hidden: false,
                     title: '操作日志'
@@ -120,7 +190,6 @@ export const baseRoutes: BaseRoute[] = [
                 path: '/developer/exception',
                 element: <Exception/>,
                 name: 'exception',
-                hasPermiss: ["developer:exception:log:list"],
                 meta: {
                     hidden: false,
                     title: '异常日志'
@@ -128,26 +197,4 @@ export const baseRoutes: BaseRoute[] = [
             },
         ]
     },
-];
-
-export const routes = [
-    {
-        path: '/login',
-        element: <Login/>
-    },
-    {
-        element: <BeforeRouterComponent/>,
-        children: [
-            {
-                path: '/',
-                name: 'layout',
-                element: <LayoutComponent/>,
-                children: baseRoutes
-            }
-        ]
-    },
-    {
-        path: "*",
-        element: <NonExistent/>
-    }
 ];

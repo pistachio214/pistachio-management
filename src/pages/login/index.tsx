@@ -21,7 +21,7 @@ import {
     LoginButton,
     CodeItemContainer,
 } from "@/pages/login/style";
-import { useAppSelector } from "@/redux/hook";
+import { useAppDispatch, useAppSelector } from "@/redux/hook";
 import { shallowEqual } from "react-redux";
 import { ThemeState } from "@/redux/types/Theme";
 
@@ -32,7 +32,9 @@ import { RootState } from "@/redux/store";
 import { Captcha, CodeUuid, LoginParams, LoginResponse } from "@/types/auth";
 import { getCaptcha, login } from "@/api/auth";
 import { AxiosResponse } from "axios";
-import { Response } from "@/types/common";
+import { AuthorResponse, Response } from "@/types/common";
+import { getNav } from "@/api/menu";
+import { setNavAndAuthoritys } from "@/redux/slice/user";
 
 interface FormState {
     username: string;
@@ -44,6 +46,7 @@ interface FormState {
 const Login: React.FC = () => {
 
     const navigate = useNavigate();
+    const dispatch = useAppDispatch();
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
 
@@ -89,9 +92,15 @@ const Login: React.FC = () => {
                 sessionStorage.setItem('tokenValue', data.tokenValue);
                 sessionStorage.setItem('tokenPrefix', data.tokenPrefix);
 
-                message.success('🎉🎉🎉 登录成功', 1, () => {
-                    navigate('/');
-                });
+                getNav().then((authRes: AxiosResponse<Response<AuthorResponse>>) => {
+                    const {navs, authoritys} = authRes.data.data;
+
+                    dispatch(setNavAndAuthoritys({nav: navs, authoritys: authoritys}));
+
+                    message.success('🎉🎉🎉 登录成功', 1, () => {
+                        navigate('/dashboard');
+                    });
+                })
             }).catch(() => {
                 getCodeImage();
             })

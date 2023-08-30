@@ -20,9 +20,7 @@ const AssignRolesModalComponent: React.FC<IProps> = (props: IProps) => {
 
     useEffect(() => {
         initChildren();
-    }, [])// eslint-disable-line react-hooks/exhaustive-deps
 
-    useEffect(() => {
         initAssignRoles()
     }, [props.isVisible]);  // eslint-disable-line react-hooks/exhaustive-deps
 

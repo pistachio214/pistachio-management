@@ -6,7 +6,7 @@ export const getUserList = (): string => {
 }
 
 export const permRole = (userId: number, roleIds: string[]) => {
-    return request({url: `/sys-user/role/${userId}`, method: "POST", data: roleIds});
+    return request({url: `/sys-user/role/${userId}`, method: "POST", data: {roleIds}});
 }
 
 export const restPassword = (id: number) => {

@@ -5,8 +5,6 @@ import {
 import { ThemeState } from "@/redux/types/Theme";
 import defaultSettings from "@/defaultSettings";
 
-console.log('token', defaultSettings.token?.colorPrimary || "#388991")
-
 const initialState: ThemeState = {
     config: {
         token: {

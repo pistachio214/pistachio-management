@@ -20,7 +20,7 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
 
     const [form] = Form.useForm();
     const [nodes, setNodes] = useState<MenuTreeNodesType[] | undefined>();
-    const [checkedKeys, setCheckedKeys] = useState<number[]>([]);
+    const [checkedKeys, setCheckedKeys] = useState<string[]>([]);
 
     useEffect(() => {
         const initSelected = () => {
@@ -28,9 +28,9 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
             if (isVisible && id !== undefined && id) {
                 findRoleById(id).then((res: AxiosResponse<Response<SysRole>>) => {
                     const {data} = res.data;
-                    let checkedKey: number[] = [];
+                    let checkedKey: string[] = [];
                     data.menuIds.forEach((item: number) => {
-                        checkedKey.push(item);
+                        checkedKey.push(item.toString());
                     })
                     setCheckedKeys(checkedKey);
                 })
@@ -45,11 +45,12 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
         initMenuList();
     }, []);  // eslint-disable-line react-hooks/exhaustive-deps
 
-    const initMenuList = async () => {
-        await getMenuList().then(res => {
+    const initMenuList = () => {
+        getMenuList().then(res => {
             const {data} = res.data;
             let menuList: SysMenu[] = data.list;
             let treeData: MenuTreeNodesType[] = generatorMenuTreeData(menuList);
+
             setNodes(treeData);
         })
     }
@@ -60,13 +61,13 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
             if (item.children && item.children.length) {
                 node.push({
                     title: item.name,
-                    key: Number(item.id),
+                    key: item.id.toString(),
                     children: generatorMenuTreeData(item.children)
                 })
             } else {
                 node.push({
                     title: item.name,
-                    key: Number(item.id),
+                    key: item.id.toString(),
                 })
             }
         })
@@ -85,9 +86,9 @@ const AssignPermissionsModalComponent: React.FC<IProps> = (props: IProps) => {
     }
 
     const onCheck = (checkedKeys: Key[] | {checked: Key[]; halfChecked: Key[];}, info: any) => {
-        let keys: number[] = [];
+        let keys: string[] = [];
         info.checkedNodes.forEach((item: {key: string, title: string}) => {
-            keys.push(Number(item.key));
+            keys.push(item.key);
         })
         setCheckedKeys(keys);
     };

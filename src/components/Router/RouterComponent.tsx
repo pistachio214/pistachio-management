@@ -6,16 +6,17 @@ import {
     RouterProvider,
 } from "react-router-dom";
 
-import { routes } from "@/components/Router/router"
+import { generateRoutes } from "@/components/Router/router"
 
 const RouterComponent: React.FC = () => {
-
-    const router = createBrowserRouter(routes);
 
     return (
         <>
             <Suspense fallback={<></>}>
-                <RouterProvider router={router}/>
+                <RouterProvider
+                    router={createBrowserRouter(generateRoutes())}
+                    fallbackElement={<>正在处理中.......</>}
+                />
             </Suspense>
         </>
     );

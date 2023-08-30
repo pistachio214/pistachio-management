@@ -1,4 +1,6 @@
 //接口返回值
+import { ReactNode } from "react";
+
 export interface Response<T> {
     code: number;
     message: string;
@@ -32,4 +34,24 @@ export interface ListRes<T> {
     pageIndex: number;
     pageSize: number;
     rows: T[];
+}
+
+export interface RouteReactNode {
+    key: string
+    component: ReactNode
+}
+
+export interface AuthorNavsType {
+    id: number
+    name: string
+    title: string
+    icon?: string | null
+    path: string
+    component: string | null
+    children?: AuthorNavsType[]
+}
+
+export interface AuthorResponse {
+    authoritys: string[]
+    navs: AuthorNavsType[]
 }

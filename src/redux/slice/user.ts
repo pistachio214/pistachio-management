@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from "@reduxjs/toolkit";
 
 import defaultSettings from "@/defaultSettings";
-import { UserBaseInfo, UserState } from "@/redux/types/User";
-import { MenuNavItem } from "@/redux/types/Menu";
+import { UserBaseInfo, UserNavsType, UserState } from "@/redux/types/User";
 
 const initialState: UserState = {
     nav: [],
@@ -33,7 +32,7 @@ export const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-        setNavAndAuthoritys: (state: UserState, action: PayloadAction<{authoritys: [], nav: MenuNavItem[]}>) => {
+        setNavAndAuthoritys: (state: UserState, action: PayloadAction<{authoritys: string[], nav: UserNavsType[]}>) => {
             state.authoritys = action.payload.authoritys
             state.nav = action.payload.nav
         },

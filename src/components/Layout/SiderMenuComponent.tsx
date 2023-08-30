@@ -13,7 +13,8 @@ import { CallbackItem } from "@/types/common";
 import { getRoute } from "@/utils/RouterUtil";
 import { filterToMenu, getMenus } from "@/utils/MenuUtil";
 
-import { baseRoutes } from "@/components/Router/router";
+import { generateBaseRoutes } from "@/components/Router/router";
+import { UserState } from "@/redux/types/User";
 
 interface IProps {
     menuSelect: (value: CallbackItem) => void;
@@ -24,6 +25,7 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
     const tab = useAppSelector((state: RootState) => ({...state.tab}), shallowEqual);
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
+    const userState: UserState = useAppSelector((state: RootState) => ({...state.user}), shallowEqual);
 
     const themeStyle = {
         token: {
@@ -41,7 +43,10 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
 
     //处理生成菜单数据
     const items = useMemo(() => {
-        return getMenus(filterToMenu(baseRoutes));
+        const routes = generateBaseRoutes(userState.nav);
+        return getMenus(filterToMenu(routes));
+
+        // eslint-disable-next-line
     }, []);
 
     //根据activeKey来检索当前需要展开的菜单
@@ -59,10 +64,12 @@ const SiderMenuComponent: React.FC<IProps> = (props: IProps) => {
 
     //根据pathname初始化tabs
     useEffect(() => {
+        const routes = generateBaseRoutes(userState.nav);
+
         if (pathname === "/") {
             props.menuSelect({key: "/dashboard", label: "工作台"});
         } else if (pathname !== "/") {
-            const currentRoute = getRoute(pathname, baseRoutes);
+            const currentRoute = getRoute(pathname, routes);
             if (currentRoute?.element) {
                 //如果不是菜单路由，则不触发菜单选择
                 if (currentRoute.meta.hidden) {

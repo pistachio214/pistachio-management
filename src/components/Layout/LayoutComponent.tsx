@@ -67,7 +67,7 @@ const LayoutComponent: React.FC = () => {
     }
 
     const loginOut = () => {
-        sessionStorage.removeItem("token");
+        sessionStorage.clear();
         navigate("/login", {replace: true});
     };
 
