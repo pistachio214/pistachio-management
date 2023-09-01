@@ -61,7 +61,7 @@ const Login: React.FC = () => {
         dispatch(clearUserState());
 
         getCodeImage();
-    }, [])
+    }, [])  //eslint-disable-line
 
     //表单数据
     const [form] = Form.useForm<FormState>();
