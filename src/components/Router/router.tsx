@@ -1,5 +1,7 @@
 import React from "react";
 import * as Icon from '@ant-design/icons';
+import { RouteObject } from "react-router";
+
 import { BaseRoute } from "@/components/Router/type";
 import { AuthorNavsType, RouteReactNode } from "@/types/common";
 
@@ -9,16 +11,8 @@ import NonExistent from "@/pages/error";
 import Login from "@/pages/login";
 
 import LayoutComponent from "@/components/Layout/LayoutComponent";
+import RouteNodeMap from "@/components/Router/RouteMap";
 
-import Dict from "@/pages/developer/dict"
-import Oper from "@/pages/developer/oper";
-import Exception from "@/pages/developer/exception";
-
-import Dashboard from "@/pages/dashboard";
-import User from "@/pages/system/user";
-import Role from "@/pages/system/role";
-import Menu from "@/pages/system/menu";
-import { RouteObject } from "react-router";
 
 const iconBC = (name?: string) => {
 
@@ -28,17 +22,6 @@ const iconBC = (name?: string) => {
 
     return undefined;
 }
-
-const RouteNodeMap: RouteReactNode[] = [
-    {key: "Dict", component: <Dict/>},
-    {key: "Oper", component: <Oper/>},
-    {key: "Exception", component: <Exception/>},
-
-    {key: "Dashboard", component: <Dashboard/>},
-    {key: "User", component: <User/>},
-    {key: "Role", component: <Role/>},
-    {key: "Menu", component: <Menu/>},
-];
 
 // 根据路由的key获取路由ReactNode组件
 const getComponent = (key: string | null) => {
