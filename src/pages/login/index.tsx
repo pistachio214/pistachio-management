@@ -34,7 +34,7 @@ import { getCaptcha, login } from "@/api/auth";
 import { AxiosResponse } from "axios";
 import { AuthorResponse, Response } from "@/types/common";
 import { getNav } from "@/api/menu";
-import { setNavAndAuthoritys } from "@/redux/slice/user";
+import { clearUserState, setNavAndAuthoritys } from "@/redux/slice/user";
 
 interface FormState {
     username: string;
@@ -57,6 +57,9 @@ const Login: React.FC = () => {
     }, [themeState]);
 
     useEffect(() => {
+        sessionStorage.clear();
+        dispatch(clearUserState());
+
         getCodeImage();
     }, [])
 

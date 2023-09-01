@@ -40,7 +40,9 @@ export const userSlice = createSlice({
             state.data = action.payload
         },
         clearUserState: (state: UserState) => {
-            state = initialState
+            state.nav = initialState.nav
+            state.authoritys = initialState.authoritys
+            state.data = initialState.data
         },
         saveUserAvatar: (state: UserState, action: PayloadAction<string>) => {
             state.data.avatar = action.payload

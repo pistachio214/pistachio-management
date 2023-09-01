@@ -149,14 +149,14 @@ const RouterTabsComponent = () => {
     };
 
     const clearAll = () => {
-        dispatch(setTabs([{key: "/home", label: "工作台"}]));
-        dispatch(setActiveKey("/home"));
+        dispatch(setTabs([{key: "/dashboard", label: "工作台"}]));
+        dispatch(setActiveKey("/dashboard"));
 
-        navigate("/home");
+        navigate("/dashboard");
     };
     return (
         <Tabs
-            style={{marginTop: 10, height: 32, display: 'none'}}
+            style={{marginTop: 10, height: 32}}
             type={tabsType}
             hideAdd
             className={className}

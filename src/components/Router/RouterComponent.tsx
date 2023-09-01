@@ -1,36 +1,34 @@
 import React, {
     Suspense, useEffect, useState,
 } from "react";
+import { RouteObject } from "react-router";
 import {
     createBrowserRouter,
     RouterProvider,
 } from "react-router-dom";
 import { shallowEqual } from "react-redux";
+import { Spin } from "antd";
 
 import { generateRouteObject, getDefaultRouteObject } from "@/components/Router/router"
 import { UserNavsType, UserState } from "@/redux/types/User";
 import { useAppSelector } from "@/redux/hook";
 import { RootState } from "@/redux/store";
-import { RouteObject } from "react-router";
-
 
 const RouterComponent: React.FC = () => {
 
     const userState: UserState = useAppSelector((state: RootState) => ({...state.user}), shallowEqual);
 
-    const [data, setDate] = useState<RouteObject[]>(() => getDefaultRouteObject());
-
-    useEffect(() => {
-        console.log('data list= ', data)
-        console.log("route list= ", userState.nav)
-
+    const initDefaultRouteObject = (): RouteObject[] => {
         const defaultRouterObject: UserNavsType[] = userState.nav;
-
         const newData: RouteObject[] = generateRouteObject(defaultRouterObject);
 
-        console.log("defaultRouterObject = ", defaultRouterObject)
-        console.log("newData = ", newData)
+        return newData.length > 0 ? newData : getDefaultRouteObject();
+    }
 
+    const [data, setDate] = useState<RouteObject[]>(() => initDefaultRouteObject());
+
+    useEffect(() => {
+        const newData: RouteObject[] = initDefaultRouteObject();
         setDate(newData);
     }, [userState.nav]) // eslint-disable-line
 
@@ -40,10 +38,10 @@ const RouterComponent: React.FC = () => {
 
     return (
         <>
-            <Suspense fallback={<></>}>
+            <Suspense fallback={<Spin/>}>
                 <RouterProvider
                     router={createBrowserRouter(generateRoutes())}
-                    fallbackElement={<>正在处理中.......</>}
+                    fallbackElement={<Spin/>}
                 />
             </Suspense>
         </>

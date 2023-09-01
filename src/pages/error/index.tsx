@@ -6,6 +6,7 @@ import { useAppDispatch } from "@/redux/hook";
 import { setTabs, setActiveKey } from "@/redux/slice/tab"
 import { Tab } from "@/redux/types/Tab";
 import defaultSettings from "@/defaultSettings";
+import { clearUserState } from "@/redux/slice/user";
 
 /**
  * 404页面
@@ -25,15 +26,25 @@ const NonExistent = memo(() => {
 
         dispatch(setTabs(setTabPayload));
         dispatch(setActiveKey("/dashboard"))
-        sessionStorage.clear();
-        navigate("/login", {replace: true});
+
+        const token = sessionStorage.getItem("tokenValue")
+
+        if (token) {
+            navigate("/dashboard", {replace: true});
+        } else {
+            sessionStorage.clear();
+            dispatch(clearUserState());
+
+            navigate("/login", {replace: true});
+        }
     };
+
     return (
         <>
             <Result
                 style={{margin: "auto"}}
-                status="404"
-                title="404"
+                status="500"
+                title="500"
                 subTitle={defaultSettings.notfoundTitle}
                 extra={
                     <Button type="primary" onClick={goHome}>
