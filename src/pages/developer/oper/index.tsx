@@ -151,7 +151,7 @@ const Oper: React.FC = () => {
     }
 
     const searchRender = (
-        <Form form={form} layout="inline" name="search-dict" onFinish={(values) => handleSearch(values)}>
+        <Form form={form} layout="inline" name="search-oper" onFinish={(values) => handleSearch(values)}>
             <Form.Item name={'operUserName'} label={'操作者'}>
                 <Input placeholder="操作者"/>
             </Form.Item>

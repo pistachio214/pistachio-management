@@ -176,7 +176,7 @@ const User: React.FC = () => {
 
     const handleResetPassword = (id: number) => {
         restPassword(id).then((res: AxiosResponse<Response<string>>) => {
-            message.success(`密码初始化成功! 初始化密码为: ${res.data}`)
+            message.success(`密码初始化成功! 初始化密码为: ${res.data.data}`)
         })
     }
 

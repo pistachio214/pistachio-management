@@ -18,6 +18,7 @@ import Dashboard from "@/pages/dashboard";
 import User from "@/pages/system/user";
 import Role from "@/pages/system/role";
 import Menu from "@/pages/system/menu";
+import { RouteObject } from "react-router";
 
 const iconBC = (name?: string) => {
 
@@ -51,32 +52,7 @@ const getComponent = (key: string | null) => {
     return undefined;
 }
 
-export const generateRoutes = () => {
-    return [
-        {
-            path: '/login',
-            element: <Login/>
-        },
-        {
-            element: <BeforeRouterComponent/>,
-            children: [
-                {
-                    path: '/',
-                    name: 'layout',
-                    element: <LayoutComponent/>,
-                    children: allRoutes
-                }
-            ]
-        },
-        {
-            path: "*",
-            element: <NonExistent/>
-        }
-    ]
-}
-
-
-export const generateBaseRoutes = (data: AuthorNavsType[]) => {
+export const generateBaseRoutes = (data: AuthorNavsType[]): BaseRoute[] => {
     let res: BaseRoute[] = [];
 
     if (data.length > 0) {
@@ -104,97 +80,53 @@ export const generateBaseRoutes = (data: AuthorNavsType[]) => {
     return res;
 }
 
+export const generateRouteObject = (data: AuthorNavsType[]): RouteObject[] => {
+    let baseRouteArray = generateBaseRoutes(data);
+    return insertObjectBeforePath(baseRouteArray);
+}
+
 const generateMetaHidden = (data: AuthorNavsType) => {
     let component = getComponent(data.component);
 
     return component === undefined && data.children === undefined;
 }
 
-export const allRoutes: BaseRoute[] = [
-    {
-        path: "/dashboard",
-        name: "dashboard",
-        element: <Dashboard/>,
-        meta: {
-            hidden: false,
-            title: "工作台",
-            icon: iconBC("DashboardFilled"),
-        },
-    },
-    {
-        path: "/system",
-        name: "system",
-        meta: {
-            hidden: false,
-            title: "系统设置",
-            icon: iconBC("SettingOutlined"),
-        },
+// 新的数据要插入到path为*的前面
+const insertObjectBeforePath = (newObj: BaseRoute[]): RouteObject[] => {
+    let data: RouteObject[] = getDefaultRouteObject();
+
+    const index = data.findIndex(obj => obj.path === "*");
+
+    let newRouteObject = {
+        element: <BeforeRouterComponent/>,
         children: [
             {
-                path: '/system/users',
-                element: getComponent("User"),
-                name: 'users',
-                meta: {
-                    hidden: false,
-                    title: '人员管理'
-                }
-            },
-            {
-                path: '/system/roles',
-                element: <Role/>,
-                name: 'roles',
-                meta: {
-                    hidden: false,
-                    title: '角色管理'
-                }
-            },
-            {
-                path: '/system/menus',
-                element: <Menu/>,
-                name: 'menus',
-                meta: {
-                    hidden: false,
-                    title: '菜单管理'
-                }
-            },
+                path: '/',
+                name: 'layout',
+                element: <LayoutComponent/>,
+                children: newObj
+            }
         ]
-    },
-    {
-        path: "/developer",
-        name: "developer",
-        meta: {
-            hidden: false,
-            title: "开发者工具",
-            icon: iconBC("RadiusSettingOutlined"),
+    };
+
+    if (index === -1) {
+        // 如果数组中不存在 path 属性值为 * 的对象，则直接将新对象添加到数组末尾
+        return [...data, newRouteObject];
+    } else {
+        // 如果数组中存在 path 属性值为 * 的对象，则在该对象之前插入新对象
+        return [...data.slice(0, index), newRouteObject, ...data.slice(index)];
+    }
+}
+
+export const getDefaultRouteObject = (): RouteObject[] => {
+    return [
+        {
+            path: '/login',
+            element: <Login/>
         },
-        children: [
-            {
-                path: '/developer/dict',
-                element: <Dict/>,
-                name: 'dict',
-                meta: {
-                    hidden: false,
-                    title: '数据字典'
-                }
-            },
-            {
-                path: '/developer/oper',
-                element: <Oper/>,
-                name: 'oper',
-                meta: {
-                    hidden: false,
-                    title: '操作日志'
-                }
-            },
-            {
-                path: '/developer/exception',
-                element: <Exception/>,
-                name: 'exception',
-                meta: {
-                    hidden: false,
-                    title: '异常日志'
-                }
-            },
-        ]
-    },
-];
+        {
+            path: "*",
+            element: <NonExistent/>
+        }
+    ];
+}

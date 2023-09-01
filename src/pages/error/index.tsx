@@ -26,7 +26,7 @@ const NonExistent = memo(() => {
         dispatch(setTabs(setTabPayload));
         dispatch(setActiveKey("/dashboard"))
         sessionStorage.clear();
-        navigate("/dashboard");
+        navigate("/login", {replace: true});
     };
     return (
         <>

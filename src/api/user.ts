@@ -10,7 +10,7 @@ export const permRole = (userId: number, roleIds: string[]) => {
 }
 
 export const restPassword = (id: number) => {
-    return request({url: `/sys-user/repass`, method: "POST", data: id});
+    return request({url: `/sys-user/repass`, method: "POST", data: {userId: id}});
 }
 
 export const createUser = (data: UserCreateRequest) => {

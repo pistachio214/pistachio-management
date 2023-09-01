@@ -97,9 +97,8 @@ const Login: React.FC = () => {
 
                     dispatch(setNavAndAuthoritys({nav: navs, authoritys: authoritys}));
 
-                    message.success('🎉🎉🎉 登录成功', 1, () => {
-                        navigate('/dashboard');
-                    });
+                    message.success('🎉🎉🎉 登录成功', 1);
+                    navigate('/dashboard');
                 })
             }).catch(() => {
                 getCodeImage();

@@ -36,6 +36,7 @@ import RouterTabsComponent from "@/components/Layout/RouterTabsComponent";
 import KeepAliveComponent from "@/components/Layout/KeepAliveComponent";
 import { RootState } from "@/redux/store";
 import { setContentHeight } from "@/redux/slice/setting";
+import { clearUserState } from "@/redux/slice/user";
 
 const LayoutComponent: React.FC = () => {
 
@@ -68,6 +69,8 @@ const LayoutComponent: React.FC = () => {
 
     const loginOut = () => {
         sessionStorage.clear();
+        dispatch(clearUserState());
+
         navigate("/login", {replace: true});
     };
 
