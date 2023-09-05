@@ -2,6 +2,10 @@
 
 与 `Pistachio` 配套的通用管理系统
 
+## 服务端支持
+
+[https://github.com/RogerPeng123/pistachio-api](https://github.com/RogerPeng123/pistachio-api)
+
 ## 技术方案
 
 `React18` + `Antd5` + `craco`
