@@ -88,3 +88,7 @@ export const UserTag = styled(Tag)`
   line-height: 32px;
   font-size: 14px;
 `;
+
+// UserInfoDrawer *********************************
+export const UploadContainer = styled.div`
+`

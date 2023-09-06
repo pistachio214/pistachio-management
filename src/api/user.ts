@@ -1,5 +1,5 @@
 import request from "@/axios/request";
-import { UserCreateRequest } from "@/types/user";
+import { UserCreateRequest, UserInfoEditRequest } from "@/types/user";
 
 export const getUserList = (): string => {
     return `/sys-user/list`;
@@ -23,4 +23,12 @@ export const delUser = (id: number) => {
 
 export const saveUserAvatar = (avatar: string) => {
     return request({url: `/sys-user/saveAvatar`, method: "POST", data: {avatar: avatar}});
+}
+
+export const currentUser = () => {
+    return request({url: `/sys-user/info`, method: "GET"});
+}
+
+export const currentUserSave = (data: UserInfoEditRequest) => {
+    return request({url: `/sys-user/info/save`, method: "POST", data: data})
 }

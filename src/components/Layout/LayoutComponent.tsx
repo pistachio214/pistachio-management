@@ -5,11 +5,16 @@ import {
     Layout as AntdLayout,
     Row,
     Space,
+    Dropdown,
 } from "antd";
+import type { MenuProps } from 'antd';
 import {
     MenuUnfoldOutlined,
     MenuFoldOutlined,
     UserOutlined,
+    LogoutOutlined,
+    SettingOutlined,
+    EditOutlined,
 } from "@ant-design/icons";
 import { shallowEqual } from "react-redux";
 import { useAppDispatch, useAppSelector } from "@/redux/hook";
@@ -21,7 +26,6 @@ import {
     TitleLogo,
     TitleFont,
     LayHeader,
-    UserTag,
     LayContent,
     Container,
 } from "@/components/Layout/style";
@@ -30,13 +34,14 @@ import logo from "@/assets/react.png";
 import defaultSettings from "@/defaultSettings";
 import { CallbackItem } from "@/types/common";
 import ColorSelectComponent from "@/components/ColorSelect/ColorSelectComponent";
-import { navigate as tabNavigate } from "@/redux/slice/tab";
+import { clearTabs, navigate as tabNavigate } from "@/redux/slice/tab";
 import SiderMenuComponent from "@/components/Layout/SiderMenuComponent";
 import RouterTabsComponent from "@/components/Layout/RouterTabsComponent";
 import KeepAliveComponent from "@/components/Layout/KeepAliveComponent";
 import { RootState } from "@/redux/store";
 import { setContentHeight } from "@/redux/slice/setting";
 import { clearUserState } from "@/redux/slice/user";
+import UserInfoDrawerComponent from "@/components/Layout/UserInfoDrawerComponent";
 
 const LayoutComponent: React.FC = () => {
 
@@ -49,6 +54,73 @@ const LayoutComponent: React.FC = () => {
     const dispatch = useAppDispatch();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
+    const [userInfoDrawerOpen, setUserInfoDrawerOpen] = useState<boolean>(false);
+
+    const items: MenuProps['items'] = [
+        {
+            key: '1',
+            label: (
+                <Button
+                    type={"link"}
+                    icon={<SettingOutlined/>}
+                    block={true}
+                    style={{
+                        color: '#000000',
+                    }}
+                >
+                    个人信息
+                </Button>
+            ),
+        },
+        {
+            key: '2',
+            label: (
+                <Button
+                    type={"link"}
+                    icon={<EditOutlined/>}
+                    block={true}
+                    style={{
+                        color: '#000000',
+                    }}
+                >
+                    修改密码
+                </Button>
+            ),
+        },
+        {
+            type: 'divider',
+        },
+        {
+            label: (
+                <Button
+                    type={"link"}
+                    icon={<LogoutOutlined/>}
+                    block={true}
+                    danger={true}
+
+                >
+                    退出系统
+                </Button>
+            ),
+            key: '3',
+        },
+    ];
+
+    const onClickItems = (key: string) => {
+        switch (key) {
+            case "1":
+                showUserInfoDrawer();
+                break;
+            case "2":
+                console.log("2");
+                break;
+            case "3":
+                loginOut();
+                break;
+            default:
+                console.log("未知选择");
+        }
+    }
 
     useEffect(() => {
         if (contentRef.current) {
@@ -57,6 +129,11 @@ const LayoutComponent: React.FC = () => {
         }
         // eslint-disable-next-line
     }, [])
+
+    // 展示 用户信息抽屉
+    const showUserInfoDrawer = () => {
+        setUserInfoDrawerOpen(true);
+    }
 
     const menuSelect = (value: CallbackItem) => {
         let payload = {
@@ -70,6 +147,7 @@ const LayoutComponent: React.FC = () => {
     const loginOut = () => {
         sessionStorage.clear();
         dispatch(clearUserState());
+        dispatch(clearTabs());
 
         navigate("/login", {replace: true});
     };
@@ -93,13 +171,20 @@ const LayoutComponent: React.FC = () => {
                         </Button>
                         <Row align={"middle"}>
                             <Space>
-                                <UserTag icon={<UserOutlined/>} bordered={false}>
-                                    萧十一郎
-                                </UserTag>
+                                <Dropdown menu={{
+                                    items,
+                                    onClick: (e: {key: string}) => onClickItems(e.key),
+                                }} trigger={['click']}>
+                                    <Button
+                                        onClick={(e) => e.preventDefault()}
+                                        icon={<UserOutlined/>}
+                                    >
+                                        萧十一郎
+                                    </Button>
+                                </Dropdown>
+
                                 <ColorSelectComponent/>
-                                <Button type="primary" onClick={loginOut}>
-                                    退出登录
-                                </Button>
+
                             </Space>
                         </Row>
                     </LayHeader>
@@ -113,6 +198,11 @@ const LayoutComponent: React.FC = () => {
 
                 </AntdLayout>
             </AntdLayout>
+
+            <UserInfoDrawerComponent
+                open={userInfoDrawerOpen}
+                onClose={() => setUserInfoDrawerOpen(false)}
+            />
         </>
     );
 }

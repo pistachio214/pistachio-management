@@ -35,6 +35,8 @@ import { AxiosResponse } from "axios";
 import { AuthorResponse, Response } from "@/types/common";
 import { getNav } from "@/api/menu";
 import { clearUserState, setNavAndAuthoritys } from "@/redux/slice/user";
+import { Tab } from "@/redux/types/Tab";
+import { setTabs } from "@/redux/slice/tab";
 
 interface FormState {
     username: string;
@@ -99,6 +101,16 @@ const Login: React.FC = () => {
                     const {navs, authoritys} = authRes.data.data;
 
                     dispatch(setNavAndAuthoritys({nav: navs, authoritys: authoritys}));
+
+                    let setTabPayload: Tab[] = [
+                        {
+                            key: "/dashboard",
+                            label: "工作台",
+                            isMenu: true
+                        },
+                    ];
+
+                    dispatch(setTabs(setTabPayload));
 
                     message.success('🎉🎉🎉 登录成功', 1);
                     navigate('/dashboard');

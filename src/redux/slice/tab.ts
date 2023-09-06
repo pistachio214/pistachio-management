@@ -34,10 +34,15 @@ export const tabSlice = createSlice({
         setActiveKey(state: TabState, action: PayloadAction<string>) {
             state.activeKey = action.payload;
         },
+        clearTabs(state: TabState) {
+            state.tabs = [];
+        }
     },
 });
 
-export const {reload, setTabs, navigate, setActiveKey} = tabSlice.actions;
+export const {
+    reload, setTabs, navigate, setActiveKey, clearTabs
+} = tabSlice.actions;
 export default tabSlice.reducer;
 
 

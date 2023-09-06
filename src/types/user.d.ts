@@ -27,9 +27,16 @@ interface UserCreateRequest {
     status: number
 }
 
+interface UserInfoEditRequest {
+    id: number
+    nickname: string
+    email?: string
+}
+
 export type {
     UserQuestionType,
     AssignRoles,
     SysUser,
     UserCreateRequest,
+    UserInfoEditRequest,
 }
