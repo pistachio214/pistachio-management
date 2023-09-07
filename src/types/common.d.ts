@@ -1,5 +1,6 @@
 //接口返回值
 import { ReactNode } from "react";
+import { UserBaseInfo } from "@/redux/types/User";
 
 export interface Response<T> {
     code: number;
@@ -54,4 +55,5 @@ export interface AuthorNavsType {
 export interface AuthorResponse {
     authoritys: string[]
     navs: AuthorNavsType[]
+    user: UserBaseInfo
 }

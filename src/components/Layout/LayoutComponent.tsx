@@ -92,23 +92,23 @@ const LayoutComponent: React.FC = () => {
                 </Button>
             ),
         },
-        {
-            type: 'divider',
-        },
-        {
-            label: (
-                <Button
-                    type={"link"}
-                    icon={<LogoutOutlined/>}
-                    block={true}
-                    danger={true}
-
-                >
-                    退出系统
-                </Button>
-            ),
-            key: '3',
-        },
+        // {
+        //     type: 'divider',
+        // },
+        // {
+        //     label: (
+        //         <Button
+        //             type={"link"}
+        //             icon={<LogoutOutlined/>}
+        //             block={true}
+        //             danger={true}
+        //
+        //         >
+        //             退出系统
+        //         </Button>
+        //     ),
+        //     key: '3',
+        // },
     ];
 
     const onClickItems = (key: string) => {
@@ -195,6 +195,12 @@ const LayoutComponent: React.FC = () => {
 
                                 <ColorSelectComponent/>
 
+                                <Button
+                                    danger={true}
+                                    icon={<LogoutOutlined/>}
+                                    onClick={() => loginOut()}>
+                                    退出登录
+                                </Button>
                             </Space>
                         </Row>
                     </LayHeader>

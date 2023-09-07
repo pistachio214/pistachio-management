@@ -34,7 +34,7 @@ import { getCaptcha, login } from "@/api/auth";
 import { AxiosResponse } from "axios";
 import { AuthorResponse, Response } from "@/types/common";
 import { getNav } from "@/api/menu";
-import { clearUserState, setNavAndAuthoritys } from "@/redux/slice/user";
+import { clearUserState, setNavAndAuthoritys, setUserData } from "@/redux/slice/user";
 import { Tab } from "@/redux/types/Tab";
 import { setTabs } from "@/redux/slice/tab";
 
@@ -98,9 +98,10 @@ const Login: React.FC = () => {
                 sessionStorage.setItem('tokenPrefix', data.tokenPrefix);
 
                 getNav().then((authRes: AxiosResponse<Response<AuthorResponse>>) => {
-                    const {navs, authoritys} = authRes.data.data;
+                    const {navs, authoritys, user} = authRes.data.data;
 
                     dispatch(setNavAndAuthoritys({nav: navs, authoritys: authoritys}));
+                    dispatch(setUserData(user));
 
                     let setTabPayload: Tab[] = [
                         {
