@@ -124,7 +124,7 @@ const MenuEditModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入菜单名称!'}
                         ]}
                     >
-                        <Input placeholder="菜单名称"/>
+                        <Input allowClear placeholder="菜单名称"/>
                     </Form.Item>
 
                     <Form.Item
@@ -134,7 +134,7 @@ const MenuEditModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入权限编码!'}
                         ]}
                     >
-                        <Input placeholder="权限编码"/>
+                        <Input allowClear placeholder="权限编码"/>
                     </Form.Item>
 
                     {/* <Form.Item
@@ -188,14 +188,14 @@ const MenuEditModalComponent: React.FC<IProps> = (props: IProps) => {
                         label="菜单URL"
                         name="path"
                     >
-                        <Input placeholder="菜单URL"/>
+                        <Input allowClear placeholder="菜单URL"/>
                     </Form.Item>
 
                     <Form.Item
                         label="图标"
                         name="icon"
                     >
-                        <Input placeholder="图标"/>
+                        <Input allowClear placeholder="图标"/>
                     </Form.Item>
 
                 </Form>

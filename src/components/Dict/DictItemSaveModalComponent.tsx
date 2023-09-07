@@ -98,7 +98,7 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入标签名!'}
                         ]}
                     >
-                        <Input placeholder="请输入标签名"/>
+                        <Input allowClear placeholder="请输入标签名"/>
                     </Form.Item>
 
 
@@ -109,7 +109,7 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入数据值!'}
                         ]}
                     >
-                        <Input placeholder="请输入数据值"/>
+                        <Input allowClear placeholder="请输入数据值"/>
                     </Form.Item>
 
                     <Form.Item
@@ -119,7 +119,7 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入描述!'}
                         ]}
                     >
-                        <Input placeholder="请输入描述"/>
+                        <Input allowClear placeholder="请输入描述"/>
                     </Form.Item>
 
                     <Form.Item
@@ -137,7 +137,7 @@ const DictItemSaveModalComponent: React.FC<IProps> = (props: IProps) => {
                         label="备注"
                         name="remarks"
                     >
-                        <Input.TextArea rows={5} placeholder="请输入备注"/>
+                        <Input.TextArea allowClear rows={5} placeholder="请输入备注"/>
                     </Form.Item>
 
                 </Form>

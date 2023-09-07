@@ -194,7 +194,7 @@ const User: React.FC = () => {
     const searchRender = (
         <Form form={form} layout="inline" name="search-users" onFinish={(values) => handleSearch(values)}>
             <Form.Item name={'username'}>
-                <Input placeholder="用户名"/>
+                <Input allowClear placeholder="用户名"/>
             </Form.Item>
 
             <Form.Item>

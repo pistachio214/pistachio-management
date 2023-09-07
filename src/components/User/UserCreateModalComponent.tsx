@@ -56,7 +56,7 @@ const UserCreateModalComponent: React.FC<IProps> = (props: IProps) => {
                         {required: true, message: '请输入用户名!'}
                     ]}
                 >
-                    <Input placeholder="用户名"/>
+                    <Input allowClear placeholder="用户名"/>
                 </Form.Item>
 
                 <Form.Item
@@ -66,7 +66,7 @@ const UserCreateModalComponent: React.FC<IProps> = (props: IProps) => {
                         {required: true, message: '请输入昵称!'}
                     ]}
                 >
-                    <Input placeholder="昵称"/>
+                    <Input allowClear placeholder="昵称"/>
                 </Form.Item>
 
                 <Form.Item
@@ -76,7 +76,7 @@ const UserCreateModalComponent: React.FC<IProps> = (props: IProps) => {
                         {required: true, message: '请输入邮箱!'}
                     ]}
                 >
-                    <Input placeholder="邮箱"/>
+                    <Input allowClear placeholder="邮箱"/>
                 </Form.Item>
 
                 <Form.Item

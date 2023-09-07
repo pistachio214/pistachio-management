@@ -1,5 +1,5 @@
 import request from "@/axios/request";
-import { UserCreateRequest, UserInfoEditRequest } from "@/types/user";
+import { UserChangePasswordRequest, UserCreateRequest, UserInfoEditRequest } from "@/types/user";
 
 export const getUserList = (): string => {
     return `/sys-user/list`;
@@ -31,4 +31,8 @@ export const currentUser = () => {
 
 export const currentUserSave = (data: UserInfoEditRequest) => {
     return request({url: `/sys-user/info/save`, method: "POST", data: data})
+}
+
+export const changeUserPassword = (data: UserChangePasswordRequest) => {
+    return request({url: `/sys-user/change/password`, method: "POST", data: data})
 }

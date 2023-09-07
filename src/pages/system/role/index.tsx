@@ -137,11 +137,11 @@ const Role: React.FC = () => {
     const searchRender = (
         <Form layout="inline" name="search-role" onFinish={(values) => handleSearch(values)}>
             <Form.Item name={'name'}>
-                <Input placeholder="角色名称"/>
+                <Input allowClear placeholder="角色名称"/>
             </Form.Item>
 
             <Form.Item name={'code'}>
-                <Input placeholder="唯一编码"/>
+                <Input allowClear placeholder="唯一编码"/>
             </Form.Item>
 
             <Form.Item>

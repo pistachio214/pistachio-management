@@ -85,7 +85,7 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入角色名称!'}
                         ]}
                     >
-                        <Input placeholder="角色名称"/>
+                        <Input allowClear placeholder="角色名称"/>
                     </Form.Item>
 
                     <Form.Item
@@ -95,7 +95,7 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入唯一编码!'}
                         ]}
                     >
-                        <Input placeholder="唯一编码"/>
+                        <Input allowClear placeholder="唯一编码"/>
                     </Form.Item>
 
                     <Form.Item
@@ -119,7 +119,7 @@ const RoleEditModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入角色描述!'}
                         ]}
                     >
-                        <Input.TextArea rows={4} placeholder="角色描述"/>
+                        <Input.TextArea allowClear rows={4} placeholder="角色描述"/>
                     </Form.Item>
 
                 </Form>

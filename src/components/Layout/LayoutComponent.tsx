@@ -42,19 +42,24 @@ import { RootState } from "@/redux/store";
 import { setContentHeight } from "@/redux/slice/setting";
 import { clearUserState } from "@/redux/slice/user";
 import UserInfoDrawerComponent from "@/components/Layout/UserInfoDrawerComponent";
+import { TabState } from "@/redux/types/Tab";
+import { UserState } from "@/redux/types/User";
+import UserChangePasswordDrawerComponent from "@/components/Layout/UserChangePasswordDrawerComponent";
 
 const LayoutComponent: React.FC = () => {
 
     const contentRef = useRef<HTMLDivElement>(null);
 
     const themeState: ThemeState = useAppSelector((state: RootState) => ({...state.theme}), shallowEqual);
-    const tab = useAppSelector((state: RootState) => ({...state.tab}), shallowEqual);
+    const tabState: TabState = useAppSelector((state: RootState) => ({...state.tab}), shallowEqual);
+    const userState: UserState = useAppSelector((state: RootState) => ({...state.user}), shallowEqual);
 
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
 
     const [collapsed, setCollapsed] = useState<boolean>(false);
     const [userInfoDrawerOpen, setUserInfoDrawerOpen] = useState<boolean>(false);
+    const [userChangePasswordDrawerOpen, setUserChangePasswordDrawerOpen] = useState<boolean>(false);
 
     const items: MenuProps['items'] = [
         {
@@ -112,7 +117,7 @@ const LayoutComponent: React.FC = () => {
                 showUserInfoDrawer();
                 break;
             case "2":
-                console.log("2");
+                showChangePasswordDrawer();
                 break;
             case "3":
                 loginOut();
@@ -133,6 +138,11 @@ const LayoutComponent: React.FC = () => {
     // 展示 用户信息抽屉
     const showUserInfoDrawer = () => {
         setUserInfoDrawerOpen(true);
+    }
+
+    // 展示 修改密码抽屉
+    const showChangePasswordDrawer = () => {
+        setUserChangePasswordDrawerOpen(true);
     }
 
     const menuSelect = (value: CallbackItem) => {
@@ -179,7 +189,7 @@ const LayoutComponent: React.FC = () => {
                                         onClick={(e) => e.preventDefault()}
                                         icon={<UserOutlined/>}
                                     >
-                                        萧十一郎
+                                        {userState.data.nickname}
                                     </Button>
                                 </Dropdown>
 
@@ -192,7 +202,7 @@ const LayoutComponent: React.FC = () => {
                     <LayContent>
                         {defaultSettings.isShowTabs ? (<RouterTabsComponent/>) : (<></>)}
                         <Container ref={contentRef}>
-                            <KeepAliveComponent tabs={tab.tabs}/>
+                            <KeepAliveComponent tabs={tabState.tabs}/>
                         </Container>
                     </LayContent>
 
@@ -202,6 +212,12 @@ const LayoutComponent: React.FC = () => {
             <UserInfoDrawerComponent
                 open={userInfoDrawerOpen}
                 onClose={() => setUserInfoDrawerOpen(false)}
+            />
+
+            <UserChangePasswordDrawerComponent
+                open={userChangePasswordDrawerOpen}
+                onClose={() => setUserChangePasswordDrawerOpen(false)}
+                changeSuccess={() => loginOut()}
             />
         </>
     );

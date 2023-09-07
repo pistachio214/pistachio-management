@@ -153,6 +153,7 @@ const Login: React.FC = () => {
                         rules={[{required: true, message: "请输入密码"}]}
                     >
                         <Input.Password
+                            allowClear
                             prefix={<LockOutlined className="site-form-item-icon"/>}
                             placeholder="密码(password)"
                             iconRender={(visible) =>
@@ -167,6 +168,7 @@ const Login: React.FC = () => {
                     >
                         <CodeItemContainer>
                             <Input
+                                allowClear
                                 prefix={<SafetyCertificateOutlined/>}
                                 className={'code-item-input'}
                                 placeholder="验证码(code)"

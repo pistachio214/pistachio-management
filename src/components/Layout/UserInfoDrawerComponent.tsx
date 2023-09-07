@@ -8,12 +8,15 @@ import type { UploadFile } from 'antd/es/upload/interface';
 import type { RcFile, UploadProps, UploadChangeParam } from 'antd/es/upload';
 import type { UploadRequestOption as RcCustomRequestOptions } from 'rc-upload/lib/interface';
 
-import { currentUser } from "@/api/user";
+import { currentUser, currentUserSave } from "@/api/user";
 import { AxiosResponse } from "axios";
-import { SysUser } from "@/types/user";
+import { SysUser, UserInfoEditRequest } from "@/types/user";
 import { Response } from "@/types/common";
 
 import { message } from "@/components/Antd/EscapeAntd";
+import { uploadImage } from "@/api/upload";
+import { useAppDispatch } from "@/redux/hook";
+import { setUserData } from "@/redux/slice/user";
 
 interface IProps {
     open: boolean,
@@ -44,15 +47,17 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
 
     const [form] = Form.useForm();
 
+    const dispatch = useAppDispatch();
+
     const [loading, setLoading] = useState(false);
     const [imageUrl, setImageUrl] = useState<string>();
 
     useEffect(() => {
         if (props.open) {
             currentUser().then((res: AxiosResponse<Response<SysUser>>) => {
-                console.log('res= ', res)
                 const {data} = res.data;
 
+                setImageUrl(data.avatar);
                 form.setFieldsValue(data);
             })
         }
@@ -60,11 +65,25 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
     }, [props.open]) // eslint-disable-line
 
     const onFinish = (values: SysUser) => {
-        console.log(values)
+        console.log({...values, ...{avatar: imageUrl}});
+
+        let data: UserInfoEditRequest = {
+            nickname: values.nickname,
+            email: values.email ?? null,
+            avatar: imageUrl ?? null
+        };
+        currentUserSave(data).then((res: AxiosResponse<Response<SysUser>>) => {
+            const {data} = res.data;
+            dispatch(setUserData({avatar: data.avatar, nickname: data.nickname}));
+
+            message.success("更新成功");
+        })
 
     }
 
     const handleChange: UploadProps['onChange'] = (info: UploadChangeParam<UploadFile>) => {
+        console.log(info.fileList);
+
         if (info.file.status === 'uploading') {
             setLoading(true);
             return;
@@ -93,6 +112,9 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
         formDate.append("file", options.file);
 
         // 然后让axios等待回传，回传成功再执行onsuccess
+        uploadImage(formDate).then(res => {
+            setImageUrl(res.data.data);
+        })
 
     }
 
@@ -129,24 +151,16 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
                     onFinish={(values: SysUser) => onFinish(values)}
 
                 >
-                    <Form.Item
-                        name="id"
-                        label="用户名"
-                        hidden={true}
-                    >
-                        <Input disabled={true}/>
-                    </Form.Item>
-
                     <Row gutter={16} style={{textAlign: 'center'}}>
                         <Col span={24}>
                             <Form.Item
-                                name="avatar"
+                                name="avatar-upload"
                                 valuePropName={'fileList'}
                                 getValueFromEvent={normFile}
                                 extra={'管理员头像'}
                             >
                                 <Upload
-                                    name="avatar"
+                                    name="avatar-upload"
                                     listType="picture-circle"
                                     className="avatar-uploader"
                                     showUploadList={false}
@@ -154,8 +168,14 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
                                     onChange={handleChange}
                                     customRequest={(options: RcCustomRequestOptions) => customRequest(options)}
                                 >
-                                    {imageUrl ?
-                                        <img src={imageUrl} alt="avatar" style={{width: '100%'}}/> : uploadButton}
+                                    {
+                                        imageUrl ?
+                                            <img
+                                                src={imageUrl}
+                                                alt="avatar"
+                                                style={{width: '100%', borderRadius: '50px'}}
+                                            /> : uploadButton
+                                    }
                                 </Upload>
                             </Form.Item>
                         </Col>
@@ -178,7 +198,7 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
                                 label="昵称"
                                 rules={[{required: true, message: '请输入昵称'}]}
                             >
-                                <Input placeholder="请输入用户名"/>
+                                <Input allowClear placeholder="请输入用户名"/>
                             </Form.Item>
                         </Col>
                     </Row>
@@ -188,8 +208,11 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
                             <Form.Item
                                 name="email"
                                 label="邮箱"
+                                rules={[
+                                    {type: 'email', message: "格式不正确"}
+                                ]}
                             >
-                                <Input placeholder="请输入邮箱"/>
+                                <Input allowClear placeholder="请输入邮箱"/>
                             </Form.Item>
                         </Col>
                     </Row>

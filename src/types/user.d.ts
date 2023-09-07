@@ -28,9 +28,15 @@ interface UserCreateRequest {
 }
 
 interface UserInfoEditRequest {
-    id: number
     nickname: string
-    email?: string
+    avatar?: string | null
+    email?: string | null
+}
+
+interface UserChangePasswordRequest {
+    oldPassword: string
+    newPassword: string
+    confirmPassword: string
 }
 
 export type {
@@ -39,4 +45,5 @@ export type {
     SysUser,
     UserCreateRequest,
     UserInfoEditRequest,
+    UserChangePasswordRequest,
 }

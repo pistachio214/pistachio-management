@@ -93,7 +93,7 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入类型标识!'}
                         ]}
                     >
-                        <Input placeholder="请输入类型标识"/>
+                        <Input allowClear placeholder="请输入类型标识"/>
                     </Form.Item>
 
                     <Form.Item
@@ -103,7 +103,7 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
                             {required: true, message: '请输入描述!'}
                         ]}
                     >
-                        <Input placeholder="请输入描述"/>
+                        <Input allowClear placeholder="请输入描述"/>
                     </Form.Item>
 
                     <Form.Item
@@ -121,7 +121,7 @@ const DictSaveModalComponent: React.FC<IProps> = (props: IProps) => {
                         label="备注"
                         name="remarks"
                     >
-                        <Input.TextArea rows={5} placeholder="请输入备注"/>
+                        <Input.TextArea allowClear rows={5} placeholder="请输入备注"/>
                     </Form.Item>
 
                 </Form>
