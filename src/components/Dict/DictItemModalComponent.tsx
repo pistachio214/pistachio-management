@@ -66,7 +66,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                 const item: IOperator[] = [
                     {
                         title: '编辑',
-                        permission: ['sys:dict:item:save'],
+                        permission: ['developer:dict:item:save'],
                         onClick: () => {
                             showEditDictItemModal(record.id!);
                         }
@@ -75,7 +75,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                         title: '删除',
                         danger: true,
                         icon: <DeleteOutlined/>,
-                        permission: ['sys:dict:item:delete'],
+                        permission: ['developer:dict:item:delete'],
                         message: `是否删除该字典项 [ ${record.label} ] ?`,
                         onClick: () => {
                             handleDelete(record.id!);
@@ -134,7 +134,7 @@ const DictItemModalComponent: React.FC<IProps> = (props: IProps) => {
                     params={params}
                     reload={{
                         hide: true,
-                        hasPremiss: ['sys:dict:item:list'],
+                        hasPremiss: ['developer:dict:item:list'],
                         click: () => showCreateDictItemModal()
                     }}
                     quickJump={(page: number) => {

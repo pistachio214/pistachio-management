@@ -84,14 +84,14 @@ const Dict: React.FC = () => {
                 const item: IOperator[] = [
                     {
                         title: '字典项',
-                        permission: ['sys:dict:item:list'],
+                        permission: ['developer:dict:item:list'],
                         onClick: () => {
                             showDictItemModal(record.id!, `${record.description} ( ${record.type} ) `, record.type)
                         }
                     },
                     {
                         title: '编辑',
-                        permission: ['sys:dict:edit'],
+                        permission: ['developer:dict:edit'],
                         onClick: () => {
                             showEditDictModal(record.id!);
                         }
@@ -103,7 +103,7 @@ const Dict: React.FC = () => {
                         title: '删除',
                         danger: true,
                         icon: <DeleteOutlined/>,
-                        permission: ['sys:dict:delete'],
+                        permission: ['developer:dict:delete'],
                         message: `是否删除该字典 [ ${record.description} ] ?`,
                         onClick: () => {
                             handleDelete(record.id!);
@@ -186,11 +186,11 @@ const Dict: React.FC = () => {
                 isVisible={isRefresh}
                 params={params}
                 reload={{
-                    hasPremiss: ['sys:dict:list']
+                    hasPremiss: ['developer:dict:list']
                 }}
                 plus={{
                     click: () => showSaveDictModal(),
-                    hasPremiss: ['sys:dict:save']
+                    hasPremiss: ['developer:dict:save']
                 }}
                 quickJump={(page: number) => {
                     setParams({...params, ...{current: page}})

@@ -4,7 +4,9 @@ import { ColumnsType } from "antd/lib/table";
 import {
     PartitionOutlined,
     RedoOutlined,
-    DeleteOutlined
+    DeleteOutlined,
+    StopOutlined,
+    CheckCircleOutlined,
 } from '@ant-design/icons';
 import { AxiosResponse } from "axios";
 import { message } from "@/components/Antd/EscapeAntd";
@@ -16,7 +18,7 @@ import { Response } from "@/types/common";
 import { UserRoleContainer } from "@/pages/system/user/style";
 import { IOperator } from "@/types/operator";
 import ActionOperatorComponent from "@/components/ActionOperator/ActionOperatorComponent";
-import { delUser, getUserList, restPassword } from "@/api/user";
+import { delUser, disableSysUser, enableSysUser, getUserList, restPassword } from "@/api/user";
 import PistachioTableComponent from "@/components/Table/PistachioTableComponent";
 import AssignRolesModalComponent from "@/components/User/AssignRolesModalComponent";
 import UserCreateModalComponent from "@/components/User/UserCreateModalComponent";
@@ -135,13 +137,38 @@ const User: React.FC = () => {
                     }
                 ];
 
-                if (record.id !== 1) {
+                // eslint-disable-next-line eqeqeq
+                if (record.id != 1) {
+
+                    if (record.status === 1) {
+                        item.push({
+                            title: '禁用',
+                            danger: true,
+                            icon: <StopOutlined/>,
+                            permission: ['sys:user:disable'],
+                            message: `是否确定禁用该管理员 [ ${record.username} ] ?`,
+                            onClick: () => {
+                                handleDisable(record.id);
+                            }
+                        })
+                    } else {
+                        item.push({
+                            title: '启用',
+                            icon: <CheckCircleOutlined/>,
+                            permission: ['sys:user:disable'],
+                            message: `是否确定启用该管理员 [ ${record.username} ] ?`,
+                            onClick: () => {
+                                handleEnable(record.id);
+                            }
+                        })
+                    }
+
                     item.push({
                         title: '删除',
                         danger: true,
                         icon: <DeleteOutlined/>,
                         permission: ['sys:user:delete'],
-                        message: `是否删除该用户 [ ${record.username} ] ?`,
+                        message: `是否删除该管理员 [ ${record.username} ] ?`,
                         onClick: () => {
                             handleDeleteUser(record.id);
                         }
@@ -181,10 +208,24 @@ const User: React.FC = () => {
     }
 
     const handleDeleteUser = (id: number) => {
-        delUser(id).then(res => {
+        delUser(id).then(() => {
             message.success(`删除管理员成功!`)
             setIsRefresh(!isRefresh);
         })
+    }
+
+    const handleDisable = (id: number) => {
+        disableSysUser(id).then(() => {
+            message.success(`禁止管理员成功!`)
+            setIsRefresh(!isRefresh);
+        });
+    }
+
+    const handleEnable = (id: number) => {
+        enableSysUser(id).then(() => {
+            message.success(`启用管理员成功!`)
+            setIsRefresh(!isRefresh);
+        });
     }
 
     const handleSearch = (values: {username: string}) => {

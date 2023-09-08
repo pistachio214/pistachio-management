@@ -36,3 +36,11 @@ export const currentUserSave = (data: UserInfoEditRequest) => {
 export const changeUserPassword = (data: UserChangePasswordRequest) => {
     return request({url: `/sys-user/change/password`, method: "POST", data: data})
 }
+
+export const disableSysUser = (id: number) => {
+    return request({url: `/sys-user/disable/${id}`, method: "GET"})
+}
+
+export const enableSysUser = (id: number) => {
+    return request({url: `/sys-user/enable/${id}`, method: "GET"})
+}
