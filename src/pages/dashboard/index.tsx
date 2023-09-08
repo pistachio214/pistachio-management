@@ -1,9 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
+
+import { DashboardContainer } from "@/pages/dashboard/style";
+import IntroduceRowComponent from "@/pages/dashboard/IntroduceRowComponent";
+import SalesCardComponent from "@/pages/dashboard/SalesCardComponent";
 
 const Dashboard: React.FC = () => {
 
     return (
-        <>先就这样，后面各种折线图表起飞</>
+        <DashboardContainer>
+            <IntroduceRowComponent/>
+
+            <SalesCardComponent/>
+        </DashboardContainer>
     );
 }
 
