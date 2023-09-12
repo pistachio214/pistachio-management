@@ -1,7 +1,7 @@
 import React from "react";
 import { shallowEqual } from "react-redux";
 
-import { Menu, Dropdown, Button, Popconfirm } from 'antd';
+import { Dropdown, Button, Popconfirm } from 'antd';
 import { DownOutlined } from '@ant-design/icons';
 
 import { IOperator, IOperatorProps } from "@/types/operator";
@@ -11,6 +11,7 @@ import { useAppSelector } from "@/redux/hook";
 import { OperatorContainer } from "@/components/ActionOperator/style";
 import UuidUtil from "@/utils/UuidUtil";
 import AuthUtil from "@/utils/AuthUtil";
+import { ItemType } from "antd/es/menu/hooks/useItems";
 
 const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps) => {
     const userStateMap: MenuState = useAppSelector((state: RootState) => ({...state.user}), shallowEqual);
@@ -35,27 +36,23 @@ const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps
     }
 
     const genreateMenuMore = (itemOperator: IOperator[]) => {
-        return (
-            <Menu>
-                {
-                    itemOperator.map((item: IOperator, index: number) => {
-                        return (
-                            <Menu.Item key={`menu-item-operator-${index}`}>
-                                <Button type='link'
-                                        size='small'
-                                        icon={item.icon}
-                                        onClick={() => item.onClick !== undefined ? item.onClick() : null}
-                                        disabled={item.disable}
-                                        danger={item.danger}
-                                >
-                                    {item.title}
-                                </Button>
-                            </Menu.Item>
-                        )
-                    })
-                }
-            </Menu>
-        )
+        let db: ItemType[] = [];
+
+        itemOperator.forEach((item: IOperator, index: number) => {
+            let data: ItemType = {
+                key: `menu-item-operator-${index}`,
+                label: item.title,
+                title: item.title,
+                icon: item.icon,
+                onClick: () => item.onClick !== undefined ? item.onClick() : null,
+                disabled: item.disable,
+                danger: item.danger
+            }
+
+            db.push(data);
+        })
+
+        return db;
     }
 
     const generateMenu = () => {
@@ -101,7 +98,9 @@ const ActionOperatorComponent: React.FC<IOperatorProps> = (props: IOperatorProps
                     }
                     {
                         <Dropdown key={`dropdown-happy-operator-${UuidUtil.getUuiD(8)}`}
-                                  overlay={genreateMenuMore(itemOperator)} trigger={['click']}>
+                                  trigger={['click']}
+                                  menu={{items: genreateMenuMore(itemOperator)}}
+                        >
                             <Button type='link' size='small' className="ant-dropdown-link"
                                     onClick={e => e.preventDefault()}>
                                 更多 <DownOutlined/>
