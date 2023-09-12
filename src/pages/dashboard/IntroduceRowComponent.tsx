@@ -173,7 +173,7 @@ const IntroduceRowComponent: React.FC = () => {
                                             }}
                                         >
                                             <Tooltip/>
-                                            <Area type="monotone" dataKey="uv" stroke="#975FE4" fill="#975FE4"/>
+                                            <Area name={"访问量"} type="monotone" dataKey="uv" stroke="#975FE4" fill="#975FE4"/>
                                         </AreaChart>
                                     </ResponsiveContainer>
                                 </div>
@@ -206,7 +206,7 @@ const IntroduceRowComponent: React.FC = () => {
                                             }}
                                         >
                                             <Tooltip/>
-                                            <Bar dataKey="pv" fill="#8884d8"/>
+                                            <Bar name={'数量'} dataKey="pv" fill="#8884d8"/>
                                         </BarChart>
                                     </ResponsiveContainer>
                                 </div>
