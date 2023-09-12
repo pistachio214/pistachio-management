@@ -119,10 +119,6 @@ export const IntrolduceRowColItemContainer = styled.div`
     justify-content: space-between;
     color: rgba(0, 0, 0, 0.45);
     font-size: 14px;
-
-    .title-left {
-
-    }
   }
 
   .item-content {
@@ -142,29 +138,62 @@ export const SalesCardContainer = styled.div`
   border: 1px solid rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: row;
-  
-  .tabs-container {
-    width: 100%;
-    min-height: 400px;
+
+  .sale-tabs-content {
+    display: flex;
   }
-  
+
+  .sale-right-tabs-container {
+    .two-sales-volume-tabs-container {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .tabs-container {
+    flex: 1;
+    width: 100%;
+    height: 480px;
+  }
+
   .two-tabs-container {
     width: 100%;
-    min-height: 400px;
+    height: 480px;
   }
-  
-  .title {
-    color: rgba(0,0,0,.85);
-    padding-bottom: 0.5em;
+
+  .ranking-list-container {
+
+    padding-left: 50px;
+
+    .title {
+      color: rgba(0, 0, 0, .85);
+      padding-bottom: 0.5em;
+    }
+
+    .ranking-item {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      height: 25px;
+      margin-top: 12px;
+      color: rgba(0, 0, 0, .85);
+    }
+
   }
-  
-  .ranking-item {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    height: 25px;
-    margin-top: 12px;
-    color: rgba(0,0,0,.85);
+
+`
+
+export const ThreeClassContainer = styled.div`
+  padding: 20px 24px 8px 24px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  margin-top: 30px;
+  min-height: 800px;
+
+  .row-container {
+    width: 100%;
+    padding-bottom: 20px;
   }
   
 `

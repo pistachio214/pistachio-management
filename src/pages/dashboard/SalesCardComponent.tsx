@@ -17,7 +17,7 @@ const SalesCardComponent: React.FC = () => {
         {
             key: '1',
             label: '销售额',
-            children: '特别神奇的问题',
+            children: <SalesVolumeTabComponent/>,
         },
         {
             key: '2',
@@ -51,11 +51,10 @@ const SalesCardComponent: React.FC = () => {
 
     return (
         <SalesCardContainer>
-            <Row gutter={24} style={{width: '100%'}}>
-                <Col xl={14} lg={14} md={14} sm={14} xs={14} style={{border: '1px solid red'}}>
+            <Row style={{width: '100%'}}>
+                <Col xl={14} lg={14} md={14} sm={14} xs={14} className={'sale-tabs-content'}>
                     <Tabs
                         key={"Sales-Volume-Tabs"}
-                        style={{width: '100%', height: '100%'}}
                         defaultActiveKey="1"
                         items={items}
                         onChange={onChange}
@@ -63,7 +62,7 @@ const SalesCardComponent: React.FC = () => {
                     />
                 </Col>
 
-                <Col xl={10} lg={10} md={10} sm={10} xs={10} style={{border: '1px solid blue'}}>
+                <Col xl={10} lg={10} md={10} sm={10} xs={10} className={'sale-right-tabs-container'}>
                     <div className={'two-tabs-container'}>
                         <Tabs
                             key={"Two-Sales-Volume-Tabs"}
@@ -72,9 +71,10 @@ const SalesCardComponent: React.FC = () => {
                             onChange={onChange}
                             centered={true}
                             tabBarExtraContent={<RangePicker/>}
+                            className={'two-sales-volume-tabs-container'}
                         />
 
-                        <Col xl={24} lg={24} md={24} sm={24} xs={24} style={{height: '100%'}}>
+                        <Col xl={24} lg={24} md={24} sm={24} xs={24} className={'ranking-list-container'}>
                             <h4 className={'title'}>门店销售额排名</h4>
 
                             <div>
@@ -93,8 +93,6 @@ const SalesCardComponent: React.FC = () => {
                     </div>
                 </Col>
             </Row>
-
-
         </SalesCardContainer>
     );
 }
