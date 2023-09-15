@@ -173,7 +173,12 @@ const UserInfoDrawerComponent: React.FC<IProps> = (props: IProps) => {
                                             <img
                                                 src={imageUrl}
                                                 alt="avatar"
-                                                style={{width: '100%', borderRadius: '50px'}}
+                                                style={{
+                                                    width: '100px',
+                                                    height: '100px',
+                                                    borderRadius: '50px',
+                                                    objectFit: 'cover', // 处理图片显示拉伸问题
+                                                }}
                                             /> : uploadButton
                                     }
                                 </Upload>
