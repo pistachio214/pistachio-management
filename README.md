@@ -4,7 +4,7 @@
 
 ## 服务端支持
 
-[https://github.com/RogerPeng123/pistachio-api](https://github.com/RogerPeng123/pistachio-api)
+[https://github.com/pistachio214/pistachio-api](https://github.com/pistachio214/pistachio-api)
 
 ## 技术方案
 
